@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--白色-->
+    <color name="white">#FFFFFF</color>
+    <!-- 灰色 -->
+    <color name="grey_color1">#333333</color>
+    <color name="grey_color2">#666666</color>
+    <color name="grey_color3">#999999</color>
+    <color name="grey_color4">#203152</color>
+    <color name="black1">#52575A</color>
+    <color name="red1">#F95953</color>
+    <color name="red2">#FE0C2A</color>
+    <color name="red3">#E24B1D</color>
+    <color name="black2">#8F8F8F</color>
+    <!--横线-->
+    <color name="backLine">#D6D6D6</color>
+    <!-- 海军色 -->
+    <color name="black">#3B3B3B</color>
+    <color name="black3">#000000</color>
+    <color name="black4">#6A6A6A</color>
+    <!-- 按钮按压时的颜色 -->
+    <color name="colorButtonPressed">#1976d2</color>
+    <!-- 按钮禁用时的颜色 -->
+    <color name="colorButtonDisable">#DDDDDD</color>
+    <color name="font_common_1">#424242</color>
+    <!-- 常用右侧文字颜色 -->
+    <color name="comm_text_right">#3c3c3c</color>
+    <color name="text_right">#a1a1a1</color>
+    <color name="f3">#F3F3F3</color>
+    <color name="font_blue">#42369a</color>
+    <color name="green">#22ab38</color>
+    <color name="txtColor">#757575</color>
+    <color name="yellow">#FCAB26</color>
+    <color name="pink">#FFE4E4</color>
+    <color name="grey_200">#eeeeee</color>
+</resources>

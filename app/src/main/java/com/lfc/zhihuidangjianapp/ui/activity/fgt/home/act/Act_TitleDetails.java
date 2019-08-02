@@ -1,0 +1,63 @@
+package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
+
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.gyf.barlibrary.ImmersionBar;
+import com.lfc.zhihuidangjianapp.R;
+import com.lfc.zhihuidangjianapp.base.BaseActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * 条目详情
+ */
+public class Act_TitleDetails extends BaseActivity {
+    @BindView(R.id.TitleDetailsBack)
+    ImageView TitleDetailsBack;
+    @BindView(R.id.TitleDetail_title)
+    TextView TitleDetail_title;
+    @BindView(R.id.titleDetaile_context)
+    WebView titleDetaile_context;
+    @Override
+    protected int getLayoutId() {
+        return R.layout.act_titledetails;
+    }
+
+    @Override
+    protected int getTitleBarId() {
+        return 0;
+    }
+    private String title,context;
+    @Override
+    protected void initView() {
+        ButterKnife.bind(this);
+        ImmersionBar.with(this).statusBarDarkFont(true).init();
+        findViewById(R.id.TitleDetailsBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        if(getIntent().getStringExtra("title")!=null){
+            title=getIntent().getStringExtra("title");
+            context=getIntent().getStringExtra("context");
+            TitleDetail_title.setText(title);
+//            WebSettings settings = titleDetaile_context.getSettings();
+//            settings.setUseWideViewPort(true);
+//            settings.setLoadWithOverviewMode(true);
+//            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//            settings.setJavaScriptEnabled(true);
+            titleDetaile_context.loadDataWithBaseURL(null, context, "text/html" , "utf-8", null);
+        }
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.activity.fgt.home.act.Act_PartyBuildingMatrix">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@color/red3">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="35dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="32dp"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/img_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                android:text="党费缴纳"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/My_organization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="36dp"
+                android:paddingRight="10dp"
+                android:text="我的组织"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dip_10">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/dip_120"
+                    android:layout_height="@dimen/dip_120"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/iocn_moren" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/dip_10">
+
+                    <TextView
+                        android:id="@+id/profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="陈菲菲"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fond_20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/profile_guanli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/dip_5"
+                        android:text="党员"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/fond_14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dip_30"
+                android:layout_marginTop="@dimen/dip_20"
+                android:layout_marginRight="@dimen/dip_30"
+                android:background="@drawable/membership_bt_style"
+                android:gravity="center"
+                android:padding="@dimen/dip_12"
+                android:text="已缴纳党费230元"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

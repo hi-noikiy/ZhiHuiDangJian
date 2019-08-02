@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">智慧党建</string>
+    <string name="main_name">主界面</string>
+    <string name="AnnouncementList_name">公告公示</string>
+    <string name="Announcement_name">公告详情</string>
+    <string name="SetUpc_name">设置</string>
+    <string name="PartyBuildingMatrix_name">党建矩阵</string>
+    <string name="WebView_name">首页---banner详情</string>
+    <string name="WeeklyReport_name">工作周报</string>
+    <string name="Meeting_name">会议连线</string>
+    <string name="Emulate_name">学习强局</string>
+    <string name="Demonstration_Leadership_name">专题专栏</string>
+    <string name="Party_membershipDues_name">党费缴纳</string>
+    <string name="Mail_list_name">通讯录</string>
+    <string name="Meet_Connect">会议连线</string>
+    <string name="TitleDetails_name">条目详情</string>
+</resources>

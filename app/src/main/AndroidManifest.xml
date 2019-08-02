@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.lfc.zhihuidangjianapp">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
+    <application
+        android:name=".app.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/img_iconlogo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/img_iconlogo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" /> <!-- 适配小米（xiaomi）刘海屏 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="375" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="667" />
+        <!-- 设置环信应用的AppKey -->
+        <meta-data android:name="EASEMOB_APPKEY"  android:value="1112190614157849#ztsljzhdj" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service android:name="com.hyphenate.chat.EMChatService" android:exported="true"/>
+        <service android:name="com.hyphenate.chat.EMJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"
+            />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <activity android:name=".ui.activity.Act_Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activity.Act_Main"
+            android:label="@string/main_name"
+            />
+        <activity
+            android:name=".ui.activity.fgt.home.act.Act_AnnouncementList"
+            android:label="@string/AnnouncementList_name" />
+        <activity
+            android:name=".ui.activity.fgt.home.act.Act_Announcement"
+            android:label="@string/Announcement_name" />
+        <activity
+            android:name=".ui.activity.fgt.personal.act.Act_SetUpc"
+            android:label="@string/SetUpc_name" />
+        <activity
+            android:name=".ui.activity.fgt.home.act.Act_PartyBuildingMatrix"
+            android:label="@string/PartyBuildingMatrix_name" />
+        <activity
+            android:name=".ui.activity.fgt.home.act.Act_WebView"
+            android:label="@string/WebView_name" />
+        <activity
+            android:name=".ui.activity.fgt.personal.act.Act_WeeklyReport"
+            android:label="@string/WeeklyReport_name" />
+        <activity android:name=".ui.activity.fgt.partyaffairs.act.Act_Meeting"
+            android:label="@string/Meeting_name"
+            />
+        <activity android:name=".ui.activity.fgt.home.act.Act_Emulate"
+            android:label="@string/Emulate_name"
+            />
+        <activity android:name=".ui.activity.fgt.home.act.Act_Demonstration_Leadership"
+            android:label="@string/Demonstration_Leadership_name"
+            />
+        <activity android:name=".ui.activity.fgt.home.act.Act_Party_membershipDues"
+            android:label="@string/Party_membershipDues_name"
+            />
+        <activity android:name=".ui.activity.fgt.partyaffairs.act.Act_Mail_list"
+            android:label="@string/Mail_list_name"
+            />
+        <activity android:name=".ui.activity.fgt.partyaffairs.act.Act_InviteList"
+            android:label="@string/Meet_Connect"/>
+        <activity android:name=".ui.activity.fgt.home.act.Act_TitleDetails"
+            android:label="@string/TitleDetails_name"/>
+    </application>
+
+</manifest>

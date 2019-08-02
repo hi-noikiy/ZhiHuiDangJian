@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.activity.fgt.home.act.Act_PartyBuildingMatrix">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/red3">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="32dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:text="党建矩阵"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgSearch"
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_search" />
+    </RelativeLayout>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tl_4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        tl:tl_tab_space_equal="true"
+        android:background="@color/white"
+        tl:tl_tab_padding="0dp"
+        tl:tl_tab_width="95dp"
+        tl:tl_indicator_width_equal_title="true"
+        app:tl_textSelectColor="#E24B1D"
+        app:tl_textUnselectColor="#50000000"
+        tl:tl_textsize="15sp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F4F4F4" />
+</LinearLayout>
