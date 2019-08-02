@@ -23,8 +23,6 @@ import java.util.ArrayList;
  */
 public class Act_InviteList extends BaseActivity {
 
-    private ArrayList<SortModel> list;
-
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
@@ -44,7 +42,7 @@ public class Act_InviteList extends BaseActivity {
     protected void initView() {
         findViewById(R.id.imgBack).setOnClickListener(v -> finish());
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        list = getIntent().getParcelableArrayListExtra("INTENT_MEMBER");
+        ArrayList<SortModel> list = getIntent().getParcelableArrayListExtra("INTENT_MEMBER");
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         InviteListAdapter inviteListAdapter = new InviteListAdapter(this);

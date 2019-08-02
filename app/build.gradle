@@ -122,8 +122,5 @@ dependencies {
     //配置集成sdk
     implementation project(':immoudel')
 
-    // https://github.com/saiwu-bigkoo/Android-ConvenientBanner
-    implementation 'com.bigkoo:ConvenientBanner:2.1.4'
-
     implementation 'com.facebook.fresco:fresco:2.0.0'
 }

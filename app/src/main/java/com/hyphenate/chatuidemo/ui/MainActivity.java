@@ -75,8 +75,7 @@ public class MainActivity extends BaseActivity {
 
 	private Button[] mTabs;
 	private ContactListFragment contactListFragment;
-    private SettingsFragment settingFragment;
-	private Fragment[] fragments;
+    private Fragment[] fragments;
 	private int index;
 	private int currentTabIndex;
 	// user logged into another device
@@ -137,7 +136,8 @@ public class MainActivity extends BaseActivity {
 		inviteMessgeDao = new InviteMessgeDao(this);
 		UserDao userDao = new UserDao(this);
 
-		if (savedInstanceState != null) {
+        SettingsFragment settingFragment;
+        if (savedInstanceState != null) {
 		    EMLog.d(TAG, "get fragments from saveInstanceState");
 		    conversationListFragment = (ConversationListFragment) getSupportFragmentManager().getFragment(savedInstanceState, ConversationListFragment.class.getSimpleName());
 		    contactListFragment = (ContactListFragment) getSupportFragmentManager().getFragment(savedInstanceState, ContactListFragment.class.getSimpleName());

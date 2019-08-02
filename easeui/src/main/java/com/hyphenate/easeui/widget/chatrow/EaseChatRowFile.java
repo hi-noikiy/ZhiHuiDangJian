@@ -20,8 +20,6 @@ public class EaseChatRowFile extends EaseChatRow{
     protected TextView fileNameView;
 	protected TextView fileSizeView;
     protected TextView fileStateView;
-    
-    private EMNormalFileMessageBody fileMessageBody;
 
     public EaseChatRowFile(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
@@ -44,7 +42,7 @@ public class EaseChatRowFile extends EaseChatRow{
 
 	@Override
 	protected void onSetUpView() {
-	    fileMessageBody = (EMNormalFileMessageBody) message.getBody();
+        EMNormalFileMessageBody fileMessageBody = (EMNormalFileMessageBody) message.getBody();
         String filePath = fileMessageBody.getLocalUrl();
         fileNameView.setText(fileMessageBody.getFileName());
         fileSizeView.setText(TextFormater.getDataSize(fileMessageBody.getFileSize()));

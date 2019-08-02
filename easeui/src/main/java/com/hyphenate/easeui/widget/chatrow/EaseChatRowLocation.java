@@ -15,7 +15,6 @@ import com.hyphenate.util.LatLng;
 public class EaseChatRowLocation extends EaseChatRow{
 
     private TextView locationView;
-    private EMLocationMessageBody locBody;
 
     public EaseChatRowLocation(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
@@ -35,7 +34,7 @@ public class EaseChatRowLocation extends EaseChatRow{
 
     @Override
     protected void onSetUpView() {
-		locBody = (EMLocationMessageBody) message.getBody();
+        EMLocationMessageBody locBody = (EMLocationMessageBody) message.getBody();
 		locationView.setText(locBody.getAddress());
     }
 

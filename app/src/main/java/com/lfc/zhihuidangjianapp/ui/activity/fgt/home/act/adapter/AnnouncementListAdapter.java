@@ -19,7 +19,6 @@ public class AnnouncementListAdapter extends BaseAdapter {
 
     private List<queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> list;
     private Context context;
-    private ViewHolder viewHolder;
 
     public AnnouncementListAdapter(List<queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> list, Context context) {
         this.list = list;
@@ -43,6 +42,7 @@ public class AnnouncementListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_announcementlist, null);

@@ -47,7 +47,6 @@ public class Act_AnnouncementList extends BaseActivity {
     @BindView(R.id.imgSearch)
     ImageView imgSearch;
     private PtrClassicFrameLayout ptrClassicFrameLayout;
-    private ListView announcementListView;
     private ArrayList<NoticeAnnouncementsListBean.NoticeAnnouncementListBean.DatasBean> list = new ArrayList<>();
     private AnnouncementListAdapter announcementListAdapter;
     private int page = 1;
@@ -67,7 +66,7 @@ public class Act_AnnouncementList extends BaseActivity {
         ButterKnife.bind(this);
         initImmersionBar(1);
         ptrClassicFrameLayout = findViewById(R.id.ptrClassicFrameLayout);
-        announcementListView = findViewById(R.id.announcementListView);
+        ListView announcementListView = findViewById(R.id.announcementListView);
         announcementListAdapter = new AnnouncementListAdapter(datas, this);
         announcementListView.setAdapter(announcementListAdapter);
         ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {

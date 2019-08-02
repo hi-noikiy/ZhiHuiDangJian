@@ -70,8 +70,6 @@ public class EaseMessageAdapter extends BaseAdapter{
 	// reference to conversation object in chatsdk
 	private EMConversation conversation;
 	EMMessage[] messages = null;
-	
-    private String toChatUsername;
 
     private MessageListItemClickListener itemClickListener;
     private EaseCustomChatRowProvider customRowProvider;
@@ -87,7 +85,7 @@ public class EaseMessageAdapter extends BaseAdapter{
 	public EaseMessageAdapter(Context context, String username, int chatType, ListView listView) {
 		this.context = context;
 		this.listView = listView;
-		toChatUsername = username;
+        String toChatUsername = username;
 		this.conversation = EMClient.getInstance().chatManager().getConversation(username, EaseCommonUtils.getConversationType(chatType), true);
 	}
 

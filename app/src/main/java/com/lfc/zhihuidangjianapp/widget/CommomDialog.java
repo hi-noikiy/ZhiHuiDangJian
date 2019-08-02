@@ -11,11 +11,6 @@ import android.widget.TextView;
 import com.lfc.zhihuidangjianapp.R;
 
 public class CommomDialog extends Dialog implements View.OnClickListener {
-    private TextView contentTxt;
-    private TextView titleTxt;
-    private TextView submitTxt;
-    private TextView cancelTxt;
-    private ImageView imageReturn;
 
     private Context mContext;
     private String content;
@@ -79,13 +74,13 @@ public class CommomDialog extends Dialog implements View.OnClickListener {
     }
 
     private void initView() {
-        contentTxt = (TextView) findViewById(R.id.content);
-        titleTxt = (TextView) findViewById(R.id.title);
-        imageReturn = (ImageView) findViewById(R.id.imageReturn);
+        TextView contentTxt = (TextView) findViewById(R.id.content);
+        TextView titleTxt = (TextView) findViewById(R.id.title);
+        ImageView imageReturn = (ImageView) findViewById(R.id.imageReturn);
         imageReturn.setOnClickListener(this);
-        submitTxt = (TextView) findViewById(R.id.submit);
+        TextView submitTxt = (TextView) findViewById(R.id.submit);
         submitTxt.setOnClickListener(this);
-        cancelTxt = (TextView) findViewById(R.id.cancel);
+        TextView cancelTxt = (TextView) findViewById(R.id.cancel);
         cancelTxt.setOnClickListener(this);
 
         contentTxt.setText(content);

@@ -9,11 +9,10 @@ import io.reactivex.disposables.Disposable;
 
 public class ResponseObserver<T> {
     private final String TAG = "ResponseObserver";
-    private final Context context;
     private final InternalObserver actual = new InternalObserver();
 
     public ResponseObserver(Context context) {
-        this.context = context;
+        Context context1 = context;
     }
 
     protected void onSubscribe(Disposable d) {

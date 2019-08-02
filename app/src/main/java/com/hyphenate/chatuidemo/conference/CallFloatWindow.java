@@ -40,7 +40,6 @@ public class CallFloatWindow {
     private WindowManager.LayoutParams layoutParams = null;
 
     private View floatView;
-    private ImageView avatarView;
     private EMCallSurfaceView surfaceView;
 
     private int screenWidth;
@@ -85,7 +84,7 @@ public class CallFloatWindow {
                 floatViewWidth = floatView.getWidth();
             }
         });
-        avatarView = (ImageView) floatView.findViewById(R.id.iv_avatar);
+        ImageView avatarView = (ImageView) floatView.findViewById(R.id.iv_avatar);
 
         floatView.setOnClickListener(new View.OnClickListener() {
             @Override

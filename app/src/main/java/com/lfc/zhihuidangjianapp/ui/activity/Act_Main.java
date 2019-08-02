@@ -52,9 +52,6 @@ public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeList
     @BindView(R.id.text3)
     TextView text3;
 
-    private BaseFragmentAdapter<Fragment> mPagerAdapter;
-    private SpringMenu menu;
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_home;
@@ -79,7 +76,7 @@ public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeList
     }
 
     private void sideSlideMenu() {
-        menu = new SpringMenu(this, R.layout.menu_sideslip_menu);
+        SpringMenu menu = new SpringMenu(this, R.layout.menu_sideslip_menu);
 
         /**
          * 设置弹性和摩擦
@@ -107,7 +104,7 @@ public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeList
 
     @Override
     protected void initData() {
-        mPagerAdapter = new BaseFragmentAdapter<>(this);
+        BaseFragmentAdapter<Fragment> mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(new Fgt_Home());
         mPagerAdapter.addFragment(new Fgt_PartyAffairs());
         mPagerAdapter.addFragment(new Fgt_Personal());

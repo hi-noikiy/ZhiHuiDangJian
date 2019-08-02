@@ -18,8 +18,6 @@ import com.superrtc.sdk.VideoView;
  */
 public class ConferenceMemberView extends RelativeLayout {
 
-    private Context context;
-
     private EMCallSurfaceView surfaceView;
     private ImageView avatarView;
     private ImageView audioOffView;
@@ -43,7 +41,7 @@ public class ConferenceMemberView extends RelativeLayout {
 
     public ConferenceMemberView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
+        Context context1 = context;
         LayoutInflater.from(context).inflate(R.layout.em_widget_conference_view, this);
         init();
     }

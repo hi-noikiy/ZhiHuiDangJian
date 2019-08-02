@@ -25,9 +25,7 @@ public abstract class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<V
     private OnItemClickListener mOnItemClickListener;
     //动画
     private int mLastPosition = -1;
-    private boolean mOpenAnimationEnable = true;
     private Interpolator mInterpolator = new LinearInterpolator();
-    private int mDuration = 300;
     private PageBean pageBean;
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -119,6 +117,7 @@ public abstract class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<V
      * @param index
      */
     protected void startAnim(Animator anim, int index) {
+        int mDuration = 300;
         anim.setDuration(mDuration).start();
         anim.setInterpolator(mInterpolator);
     }
@@ -128,7 +127,7 @@ public abstract class CommonRecycleViewAdapter<T> extends RecyclerView.Adapter<V
      * 关闭动画
      */
     public void closeLoadAnimation() {
-        this.mOpenAnimationEnable = false;
+        boolean mOpenAnimationEnable = false;
     }
 
 

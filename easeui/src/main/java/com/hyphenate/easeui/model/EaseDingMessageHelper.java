@@ -46,8 +46,6 @@ public class EaseDingMessageHelper {
     static final String KEY_DING_ACK = "EMDingMessageAck";
     static final String KEY_CONVERSATION_ID = "EMConversationID";
 
-    private static String NAME_PREFS = "group-ack-data-prefs";
-
     private static EaseDingMessageHelper instance;
 
     // Map<msgId, IAckUserUpdateListener>
@@ -320,6 +318,7 @@ public class EaseDingMessageHelper {
 
         listenerMap = new HashMap<>();
 
+        String NAME_PREFS = "group-ack-data-prefs";
         dataPrefs = context.getSharedPreferences(NAME_PREFS, Context.MODE_PRIVATE);
         prefsEditor = dataPrefs.edit();
     }

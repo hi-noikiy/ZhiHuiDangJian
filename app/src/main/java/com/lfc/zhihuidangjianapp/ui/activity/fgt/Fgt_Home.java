@@ -53,7 +53,6 @@ public class Fgt_Home extends BaseFragment {
     @BindView(R.id.banner)
     Banner banner;
     Unbinder unbinder;
-    private String imgPath = "";
     private ArrayList<QueryHomeNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> list = new ArrayList<>();
     private HomeAdapter homeAdapter;
 
@@ -111,6 +110,7 @@ public class Fgt_Home extends BaseFragment {
 
     @OnClick(R.id.banner)
     public void onImgBannerClicked() {
+        String imgPath = "";
         startWebView("详情", imgPath);
     }
 

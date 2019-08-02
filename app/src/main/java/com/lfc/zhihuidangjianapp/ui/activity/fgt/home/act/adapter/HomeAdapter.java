@@ -18,7 +18,6 @@ public class HomeAdapter extends BaseAdapter {
 
     private ArrayList<QueryHomeNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> list;
     private Context context;
-    private ViewHolder viewHolder;
 
     public HomeAdapter(ArrayList<QueryHomeNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> list, Context context) {
         this.list = list;
@@ -42,6 +41,7 @@ public class HomeAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.item_home, null);

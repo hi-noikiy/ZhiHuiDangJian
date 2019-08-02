@@ -31,7 +31,7 @@ public class Act_TitleDetails extends BaseActivity {
     protected int getTitleBarId() {
         return 0;
     }
-    private String title,context;
+
     @Override
     protected void initView() {
         ButterKnife.bind(this);
@@ -43,8 +43,8 @@ public class Act_TitleDetails extends BaseActivity {
             }
         });
         if(getIntent().getStringExtra("title")!=null){
-            title=getIntent().getStringExtra("title");
-            context=getIntent().getStringExtra("context");
+            String title = getIntent().getStringExtra("title");
+            String context = getIntent().getStringExtra("context");
             TitleDetail_title.setText(title);
 //            WebSettings settings = titleDetaile_context.getSettings();
 //            settings.setUseWideViewPort(true);

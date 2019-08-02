@@ -93,15 +93,9 @@ public class LiveActivity extends BaseActivity implements EMConferenceListener {
     private ImageView cameraSwitchCover;
     // 话筒开关
     private ImageButton speakerSwitch;
-    // 屏幕分享开关
-    private ImageButton screenShareSwitch;
-    // 前后摄像头切换
-    private ImageButton changeCameraSwitch;
     private ImageView changeCameraSwitchCover;
     // 挂断按钮
     private ImageButton hangupBtn;
-    // 显示debug信息按钮
-    private ImageButton debugBtn;
     // 申请视频连麦按钮
     private ImageButton videoConnectBtn;
     private ImageView videoConnectBtnCover;
@@ -112,8 +106,6 @@ public class LiveActivity extends BaseActivity implements EMConferenceListener {
     // ------ full screen views start -------
     private View stateCoverMain;
     private View membersLayout;
-    private TextView membersTVMain;
-    private TextView memberCountTVMain;
     private TextView callTimeViewMain;
     private View talkingLayout;
     private ImageView talkingImage;
@@ -191,19 +183,22 @@ public class LiveActivity extends BaseActivity implements EMConferenceListener {
         cameraSwitch = findViewById(R.id.btn_camera_switch);
         cameraSwitchCover = findViewById(R.id.btn_camera_switch_cover);
         speakerSwitch = findViewById(R.id.btn_speaker_switch);
-        screenShareSwitch = findViewById(R.id.btn_desk_share);
-        changeCameraSwitch = findViewById(R.id.btn_change_camera_switch);
+        // 屏幕分享开关
+        ImageButton screenShareSwitch = findViewById(R.id.btn_desk_share);
+        // 前后摄像头切换
+        ImageButton changeCameraSwitch = findViewById(R.id.btn_change_camera_switch);
         changeCameraSwitchCover = findViewById(R.id.btn_change_camera_switch_cover);
         hangupBtn = findViewById(R.id.btn_hangup);
-        debugBtn = findViewById(R.id.btn_debug);
+        // 显示debug信息按钮
+        ImageButton debugBtn = findViewById(R.id.btn_debug);
         scaleModeBtn = findViewById(R.id.btn_scale_mode);
 
         pageIndicator = findViewById(R.id.indicator);
 
         stateCoverMain = findViewById(R.id.state_cover_main);
         membersLayout = findViewById(R.id.layout_members);
-        membersTVMain = findViewById(R.id.tv_members_main);
-        memberCountTVMain = findViewById(R.id.tv_member_count_main);
+        TextView membersTVMain = findViewById(R.id.tv_members_main);
+        TextView memberCountTVMain = findViewById(R.id.tv_member_count_main);
         callTimeViewMain = findViewById(R.id.tv_call_time_main);
         talkingLayout = findViewById(R.id.layout_talking);
         talkingImage = findViewById(R.id.icon_talking);

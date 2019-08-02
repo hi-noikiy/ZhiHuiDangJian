@@ -71,12 +71,11 @@ public class Act_Party_membershipDues extends BaseActivity implements View.OnCli
         }
     }
 
-    private int pageNum = 1;
-
     /**
      * 我的党费
      */
     public void queryMyPartyPaymentHisPageList() {
+        int pageNum = 1;
         HttpHelper.queryMyPartyPaymentHisPageList(pageNum + "", new HttpHelper.HttpUtilsCallBack<String>() {
             @Override
             public void onFailure(String failure) {

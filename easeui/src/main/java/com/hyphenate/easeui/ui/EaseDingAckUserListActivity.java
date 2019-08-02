@@ -25,9 +25,6 @@ import java.util.List;
 public class EaseDingAckUserListActivity extends EaseBaseActivity {
     private static final String TAG = "EaseDingAckUserListActi";
 
-    private ListView ackUserListView;
-    private EaseTitleBar titleBar;
-
     private EMMessage msg;
 
     private AckUserAdapter userAdapter;
@@ -38,8 +35,8 @@ public class EaseDingAckUserListActivity extends EaseBaseActivity {
         super.onCreate(arg0);
 
         setContentView(R.layout.ease_activity_ding_ack_user_list);
-        ackUserListView = (ListView) findViewById(R.id.list_view);
-        titleBar = (EaseTitleBar) findViewById(R.id.title_bar);
+        ListView ackUserListView = (ListView) findViewById(R.id.list_view);
+        EaseTitleBar titleBar = (EaseTitleBar) findViewById(R.id.title_bar);
         titleBar.setTitle(getString(R.string.title_ack_read_list));
 
         // Set the title bar left layout click listener to back to previous activity.

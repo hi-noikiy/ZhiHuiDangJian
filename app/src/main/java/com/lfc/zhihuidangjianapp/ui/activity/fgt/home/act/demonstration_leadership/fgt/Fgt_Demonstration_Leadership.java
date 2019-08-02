@@ -101,13 +101,13 @@ public class Fgt_Demonstration_Leadership extends BaseFragment implements View.O
     }
 
     private List<QueryLeadDemonstrationPageListBean.DataBean.LeadDemonstrationListBean.DatasBean> datas = new ArrayList<>();
-    private int pageNum = 1;
 
     /**
      * 专题专栏
      * 引领示范类型(0:不忘初心 牢记使命1:改革创新 奋发有为)
      */
     public void queryLeadDemonstrationPageList() {
+        int pageNum = 1;
         HttpHelper.queryLeadDemonstrationPageList(leadDemonstrationType, pageNum + "", new HttpHelper.HttpUtilsCallBack<String>() {
             @Override
             public void onFailure(String failure) {

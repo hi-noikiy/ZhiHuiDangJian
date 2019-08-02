@@ -111,14 +111,8 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
     private ImageButton speakerSwitch;
     // 屏幕分享开关
     private ImageButton screenShareSwitch;
-    // 前后摄像头切换
-    private ImageButton changeCameraSwitch;
     // 挂断按钮
     private ImageButton hangupBtn;
-    // 显示debug信息按钮
-    private ImageButton debugBtn;
-    // 邀请其他成员加入的按钮
-    private ImageButton inviteBtn;
     // 全屏模式下改变视频显示模式的按钮,只在全屏模式下显示
     private ImageButton scaleModeBtn;
     // 显示悬浮窗的按钮
@@ -245,7 +239,8 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
 
         toolsPanelView = findViewById(R.id.layout_tools_panel);
 
-        inviteBtn = (ImageButton) findViewById(R.id.btn_invite);
+        // 邀请其他成员加入的按钮
+        ImageButton inviteBtn = (ImageButton) findViewById(R.id.btn_invite);
         membersTV = (TextView) findViewById(R.id.tv_members);
         memberCountTV = (TextView) findViewById(R.id.tv_member_count);
         callTimeView = (TextView) findViewById(R.id.tv_call_time);
@@ -253,9 +248,11 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
         cameraSwitch = (ImageButton) findViewById(R.id.btn_camera_switch);
         speakerSwitch = (ImageButton) findViewById(R.id.btn_speaker_switch);
         screenShareSwitch = (ImageButton) findViewById(R.id.btn_desk_share);
-        changeCameraSwitch = (ImageButton) findViewById(R.id.btn_change_camera_switch);
+        // 前后摄像头切换
+        ImageButton changeCameraSwitch = (ImageButton) findViewById(R.id.btn_change_camera_switch);
         hangupBtn = (ImageButton) findViewById(R.id.btn_hangup);
-        debugBtn = (ImageButton) findViewById(R.id.btn_debug);
+        // 显示debug信息按钮
+        ImageButton debugBtn = (ImageButton) findViewById(R.id.btn_debug);
         scaleModeBtn = (ImageButton) findViewById(R.id.btn_scale_mode);
         closeBtn = (ImageButton) findViewById(R.id.btn_close);
         zoominBtn = (ImageButton) findViewById(R.id.btn_zoomin);
