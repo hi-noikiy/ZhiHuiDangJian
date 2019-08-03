@@ -11,3 +11,8 @@
 *.jobf
 /app/release
 /app/debug
+/app/build
+/easeui/build
+*.icloud
+/hmspush/build
+/immoudel/build
