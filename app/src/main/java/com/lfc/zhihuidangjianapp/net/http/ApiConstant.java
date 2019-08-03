@@ -2,9 +2,11 @@ package com.lfc.zhihuidangjianapp.net.http;
 
 public class ApiConstant {
     //正试环境
-    public static final String ROOT_URL = "http://dj.sxzts.cn";
+//    public static final String ROOT_URL = "http://dj.sxzts.cn";
     //测试环境
-//    public static final String ROOT_URL = "http://58.87.96.160:8081/";
+    public static final String ROOT_URL = "http://58.87.96.160:8081/";
+
+    public static final String API= "appApi";
 
     //登录
     public static final String LOGIN = "login/login";

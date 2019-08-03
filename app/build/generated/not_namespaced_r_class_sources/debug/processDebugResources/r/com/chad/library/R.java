@@ -12,14 +12,14 @@ public final class R {
     public static final class dimen {
         private dimen() {}
 
-        public static final int def_height = 0x7f0600da;
-        public static final int dp_10 = 0x7f060149;
-        public static final int dp_4 = 0x7f06014a;
-        public static final int dp_40 = 0x7f06014b;
-        public static final int dp_72 = 0x7f06014c;
-        public static final int sp_12 = 0x7f0601bb;
-        public static final int sp_14 = 0x7f0601bc;
-        public static final int sp_16 = 0x7f0601bd;
+        public static final int def_height = 0x7f0600d9;
+        public static final int dp_10 = 0x7f060148;
+        public static final int dp_4 = 0x7f060149;
+        public static final int dp_40 = 0x7f06014a;
+        public static final int dp_72 = 0x7f06014b;
+        public static final int sp_12 = 0x7f0601ba;
+        public static final int sp_14 = 0x7f0601bb;
+        public static final int sp_16 = 0x7f0601bc;
     }
     public static final class drawable {
         private drawable() {}
@@ -34,12 +34,12 @@ public final class R {
         public static final int BaseQuickAdapter_dragging_support = 0x7f080004;
         public static final int BaseQuickAdapter_swiping_support = 0x7f080005;
         public static final int BaseQuickAdapter_viewholder_support = 0x7f080006;
-        public static final int load_more_load_end_view = 0x7f08018f;
-        public static final int load_more_load_fail_view = 0x7f080190;
-        public static final int load_more_loading_view = 0x7f080191;
-        public static final int loading_progress = 0x7f080195;
-        public static final int loading_text = 0x7f080196;
-        public static final int tv_prompt = 0x7f0802fc;
+        public static final int load_more_load_end_view = 0x7f08018b;
+        public static final int load_more_load_fail_view = 0x7f08018c;
+        public static final int load_more_loading_view = 0x7f08018d;
+        public static final int loading_progress = 0x7f080191;
+        public static final int loading_text = 0x7f080192;
+        public static final int tv_prompt = 0x7f0802f9;
     }
     public static final class layout {
         private layout() {}
@@ -50,8 +50,8 @@ public final class R {
         private string() {}
 
         public static final int app_name = 0x7f0f00b9;
-        public static final int load_end = 0x7f0f0182;
-        public static final int load_failed = 0x7f0f0183;
-        public static final int loading = 0x7f0f0184;
+        public static final int load_end = 0x7f0f0181;
+        public static final int load_failed = 0x7f0f0182;
+        public static final int loading = 0x7f0f0183;
     }
 }

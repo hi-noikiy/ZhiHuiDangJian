@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-import com.bigkoo.convenientbanner.ConvenientBanner;
-import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
-import com.bigkoo.convenientbanner.holder.Holder;
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lfc.zhihuidangjianapp.R;
@@ -25,7 +22,6 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_PartyBuildingMatri
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Party_membershipDues;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_WebView;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.adapter.HomeAdapter;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.bean.QueryAppConfigListBean1;
 import com.lfc.zhihuidangjianapp.ui.activity.item.BannerViewHolder;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.widget.MyListView;
@@ -168,39 +164,7 @@ public class Fgt_Home extends BaseFragment {
         });
     }
 
-    /**
-     * 首页banner
-     */
-    private QueryAppConfigListBean1 bannerEntity;
-
-    private void loadBanner() {
-
-    }
-
     public void queryAppConfigList() {
-//        HttpHelper.queryAppConfigList(new HttpHelper.HttpUtilsCallBack<String>() {
-//            @Override
-//            public void onFailure(String failure) {
-//            }
-//
-//            @Override
-//            public void onSucceed(String succeed) {
-//                Gson gson = new Gson();
-//                bannerEntity = gson.fromJson(succeed, QueryAppConfigListBean1.class);
-//                if (bannerEntity.getCode() == 0) {
-//                    if (bannerEntity.getData().getAppConfigList().getDatas().size() > 0) {
-////                        Glide.with(getContext()).load(ApiConstant.ROOT_URL + bannerEntity.getData().getAppConfigList().getDatas().get(0).getUrl()).into(imgBanner);
-////                        imgPath = bannerEntity.getData().getAppConfigList().getDatas().get(0).getPath();
-////                        banner.setPages(bannerEntity.getData().getAppConfigList().getDatas(), new BannerViewHolder());
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//            }
-//        });
-
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
                 .queryAppConfigList(MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
@@ -209,12 +173,6 @@ public class Fgt_Home extends BaseFragment {
 
                     @Override
                     protected void onNext(AppConfigLists response) {
-//                        banner.setPages(response.getAppConfigList().getDatas(), new MZHolderCreator() {
-//                            @Override
-//                            public MZViewHolder createViewHolder() {
-//                                return new BannerViewHolder();
-//                            }
-//                        });
                         setBanner(response);
                     }
 
@@ -227,18 +185,6 @@ public class Fgt_Home extends BaseFragment {
     }
 
     private void setBanner(AppConfigLists response){
-//        banner.setPages(new CBViewHolderCreator() {
-//            @Override
-//            public Holder createHolder(View itemView) {
-//                return new BannerViewHolder(getActivity(), itemView);
-//            }
-//
-//            @Override
-//            public int getLayoutId() {
-//                return R.layout.view_banner;
-//            }
-//        }, response.getAppConfigList().getDatas());
-
         banner.setImages(response.getAppConfigList().getDatas()).setImageLoader(new BannerViewHolder()).start();
         banner.setOnBannerListener(new OnBannerListener() {
             @Override

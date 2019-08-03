@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Fri Aug 02 15:41:46 CST 2019
+#Fri Aug 02 22:10:22 CST 2019
 5.base=/Users/guojian/Desktop/zhihuidangjian/ZhiHuiDangJian/app/build/intermediates/transforms/mergeJniLibs/debug/0
 42.base=/Users/guojian/Desktop/zhihuidangjian/ZhiHuiDangJian/app/build/intermediates/transforms/mergeJniLibs/debug/0
 22.path=lib/arm64-v8a/libBaiduMapSDK_util_v4_0_0.so

@@ -1,14 +1,9 @@
 package com.lfc.zhihuidangjianapp.ui.activity.item;
 
 import android.content.Context;
-import android.net.Uri;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Banner;
 import com.youth.banner.loader.ImageLoader;

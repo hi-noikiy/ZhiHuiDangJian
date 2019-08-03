@@ -12,24 +12,24 @@ public final class R {
     public static final class attr {
         private attr() {}
 
-        public static final int layoutManager = 0x7f030149;
-        public static final int ptr_content = 0x7f03019b;
-        public static final int ptr_duration_to_close = 0x7f03019c;
-        public static final int ptr_duration_to_close_header = 0x7f03019d;
-        public static final int ptr_header = 0x7f03019e;
-        public static final int ptr_keep_header_when_refresh = 0x7f03019f;
-        public static final int ptr_pull_to_fresh = 0x7f0301a0;
-        public static final int ptr_ratio_of_header_height_to_refresh = 0x7f0301a1;
-        public static final int ptr_resistance = 0x7f0301a2;
-        public static final int ptr_rotate_ani_time = 0x7f0301a3;
-        public static final int reverseLayout = 0x7f0301ac;
-        public static final int spanCount = 0x7f0301ed;
-        public static final int stackFromEnd = 0x7f030234;
+        public static final int layoutManager = 0x7f030147;
+        public static final int ptr_content = 0x7f030199;
+        public static final int ptr_duration_to_close = 0x7f03019a;
+        public static final int ptr_duration_to_close_header = 0x7f03019b;
+        public static final int ptr_header = 0x7f03019c;
+        public static final int ptr_keep_header_when_refresh = 0x7f03019d;
+        public static final int ptr_pull_to_fresh = 0x7f03019e;
+        public static final int ptr_ratio_of_header_height_to_refresh = 0x7f03019f;
+        public static final int ptr_resistance = 0x7f0301a0;
+        public static final int ptr_rotate_ani_time = 0x7f0301a1;
+        public static final int reverseLayout = 0x7f0301aa;
+        public static final int spanCount = 0x7f0301eb;
+        public static final int stackFromEnd = 0x7f030232;
     }
     public static final class dimen {
         private dimen() {}
 
-        public static final int item_touch_helper_max_drag_scroll_per_frame = 0x7f06016f;
+        public static final int item_touch_helper_max_drag_scroll_per_frame = 0x7f06016e;
     }
     public static final class drawable {
         private drawable() {}
@@ -39,14 +39,14 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int item_touch_helper_previous_elevation = 0x7f08013d;
-        public static final int loadmore_default_footer_progressbar = 0x7f080197;
-        public static final int loadmore_default_footer_tv = 0x7f080198;
-        public static final int ptr_classic_header_rotate_view = 0x7f0801f0;
-        public static final int ptr_classic_header_rotate_view_header_last_update = 0x7f0801f1;
-        public static final int ptr_classic_header_rotate_view_header_text = 0x7f0801f2;
-        public static final int ptr_classic_header_rotate_view_header_title = 0x7f0801f3;
-        public static final int ptr_classic_header_rotate_view_progressbar = 0x7f0801f4;
+        public static final int item_touch_helper_previous_elevation = 0x7f08013a;
+        public static final int loadmore_default_footer_progressbar = 0x7f080193;
+        public static final int loadmore_default_footer_tv = 0x7f080194;
+        public static final int ptr_classic_header_rotate_view = 0x7f0801ec;
+        public static final int ptr_classic_header_rotate_view_header_last_update = 0x7f0801ed;
+        public static final int ptr_classic_header_rotate_view_header_text = 0x7f0801ee;
+        public static final int ptr_classic_header_rotate_view_header_title = 0x7f0801ef;
+        public static final int ptr_classic_header_rotate_view_progressbar = 0x7f0801f0;
     }
     public static final class layout {
         private layout() {}
@@ -71,9 +71,9 @@ public final class R {
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] PtrClassicHeader = { 0x7f0301a3 };
+        public static final int[] PtrClassicHeader = { 0x7f0301a1 };
         public static final int PtrClassicHeader_ptr_rotate_ani_time = 0;
-        public static final int[] PtrFrameLayout = { 0x7f03019b, 0x7f03019c, 0x7f03019d, 0x7f03019e, 0x7f03019f, 0x7f0301a0, 0x7f0301a1, 0x7f0301a2 };
+        public static final int[] PtrFrameLayout = { 0x7f030199, 0x7f03019a, 0x7f03019b, 0x7f03019c, 0x7f03019d, 0x7f03019e, 0x7f03019f, 0x7f0301a0 };
         public static final int PtrFrameLayout_ptr_content = 0;
         public static final int PtrFrameLayout_ptr_duration_to_close = 1;
         public static final int PtrFrameLayout_ptr_duration_to_close_header = 2;
@@ -82,7 +82,7 @@ public final class R {
         public static final int PtrFrameLayout_ptr_pull_to_fresh = 5;
         public static final int PtrFrameLayout_ptr_ratio_of_header_height_to_refresh = 6;
         public static final int PtrFrameLayout_ptr_resistance = 7;
-        public static final int[] RecyclerView = { 0x10100c4, 0x10100f1, 0x7f0300f1, 0x7f0300f2, 0x7f0300f3, 0x7f0300f4, 0x7f0300f5, 0x7f030149, 0x7f0301ac, 0x7f0301ed, 0x7f030234 };
+        public static final int[] RecyclerView = { 0x10100c4, 0x10100f1, 0x7f0300ef, 0x7f0300f0, 0x7f0300f1, 0x7f0300f2, 0x7f0300f3, 0x7f030147, 0x7f0301aa, 0x7f0301eb, 0x7f030232 };
         public static final int RecyclerView_android_orientation = 0;
         public static final int RecyclerView_android_descendantFocusability = 1;
         public static final int RecyclerView_fastScrollEnabled = 2;

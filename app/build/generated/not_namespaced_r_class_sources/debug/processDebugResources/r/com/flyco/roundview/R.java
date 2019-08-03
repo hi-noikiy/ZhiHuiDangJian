@@ -12,24 +12,24 @@ public final class R {
     public static final class attr {
         private attr() {}
 
-        public static final int rv_backgroundColor = 0x7f0301c8;
-        public static final int rv_backgroundPressColor = 0x7f0301c9;
-        public static final int rv_cornerRadius = 0x7f0301ca;
-        public static final int rv_cornerRadius_BL = 0x7f0301cb;
-        public static final int rv_cornerRadius_BR = 0x7f0301cc;
-        public static final int rv_cornerRadius_TL = 0x7f0301cd;
-        public static final int rv_cornerRadius_TR = 0x7f0301ce;
-        public static final int rv_isRadiusHalfHeight = 0x7f0301cf;
-        public static final int rv_isWidthHeightEqual = 0x7f0301d0;
-        public static final int rv_strokeColor = 0x7f0301d1;
-        public static final int rv_strokePressColor = 0x7f0301d2;
-        public static final int rv_strokeWidth = 0x7f0301d3;
-        public static final int rv_textPressColor = 0x7f0301d4;
+        public static final int rv_backgroundColor = 0x7f0301c6;
+        public static final int rv_backgroundPressColor = 0x7f0301c7;
+        public static final int rv_cornerRadius = 0x7f0301c8;
+        public static final int rv_cornerRadius_BL = 0x7f0301c9;
+        public static final int rv_cornerRadius_BR = 0x7f0301ca;
+        public static final int rv_cornerRadius_TL = 0x7f0301cb;
+        public static final int rv_cornerRadius_TR = 0x7f0301cc;
+        public static final int rv_isRadiusHalfHeight = 0x7f0301cd;
+        public static final int rv_isWidthHeightEqual = 0x7f0301ce;
+        public static final int rv_strokeColor = 0x7f0301cf;
+        public static final int rv_strokePressColor = 0x7f0301d0;
+        public static final int rv_strokeWidth = 0x7f0301d1;
+        public static final int rv_textPressColor = 0x7f0301d2;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] RoundFrameLayout = { 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1, 0x7f0301d2, 0x7f0301d3 };
+        public static final int[] RoundFrameLayout = { 0x7f0301c6, 0x7f0301c7, 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1 };
         public static final int RoundFrameLayout_rv_backgroundColor = 0;
         public static final int RoundFrameLayout_rv_backgroundPressColor = 1;
         public static final int RoundFrameLayout_rv_cornerRadius = 2;
@@ -42,7 +42,7 @@ public final class R {
         public static final int RoundFrameLayout_rv_strokeColor = 9;
         public static final int RoundFrameLayout_rv_strokePressColor = 10;
         public static final int RoundFrameLayout_rv_strokeWidth = 11;
-        public static final int[] RoundLinearLayout = { 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1, 0x7f0301d2, 0x7f0301d3 };
+        public static final int[] RoundLinearLayout = { 0x7f0301c6, 0x7f0301c7, 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1 };
         public static final int RoundLinearLayout_rv_backgroundColor = 0;
         public static final int RoundLinearLayout_rv_backgroundPressColor = 1;
         public static final int RoundLinearLayout_rv_cornerRadius = 2;
@@ -55,7 +55,7 @@ public final class R {
         public static final int RoundLinearLayout_rv_strokeColor = 9;
         public static final int RoundLinearLayout_rv_strokePressColor = 10;
         public static final int RoundLinearLayout_rv_strokeWidth = 11;
-        public static final int[] RoundRelativeLayout = { 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1, 0x7f0301d2, 0x7f0301d3 };
+        public static final int[] RoundRelativeLayout = { 0x7f0301c6, 0x7f0301c7, 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1 };
         public static final int RoundRelativeLayout_rv_backgroundColor = 0;
         public static final int RoundRelativeLayout_rv_backgroundPressColor = 1;
         public static final int RoundRelativeLayout_rv_cornerRadius = 2;
@@ -68,7 +68,7 @@ public final class R {
         public static final int RoundRelativeLayout_rv_strokeColor = 9;
         public static final int RoundRelativeLayout_rv_strokePressColor = 10;
         public static final int RoundRelativeLayout_rv_strokeWidth = 11;
-        public static final int[] RoundTextView = { 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1, 0x7f0301d2, 0x7f0301d3, 0x7f0301d4 };
+        public static final int[] RoundTextView = { 0x7f0301c6, 0x7f0301c7, 0x7f0301c8, 0x7f0301c9, 0x7f0301ca, 0x7f0301cb, 0x7f0301cc, 0x7f0301cd, 0x7f0301ce, 0x7f0301cf, 0x7f0301d0, 0x7f0301d1, 0x7f0301d2 };
         public static final int RoundTextView_rv_backgroundColor = 0;
         public static final int RoundTextView_rv_backgroundPressColor = 1;
         public static final int RoundTextView_rv_cornerRadius = 2;

@@ -15,9 +15,9 @@ import java.lang.Override;
 public class Act_AnnouncementList_ViewBinding implements Unbinder {
   private Act_AnnouncementList target;
 
-  private View view2131231015;
+  private View view2131231012;
 
-  private View view2131231018;
+  private View view2131231015;
 
   @UiThread
   public Act_AnnouncementList_ViewBinding(Act_AnnouncementList target) {
@@ -31,7 +31,7 @@ public class Act_AnnouncementList_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.imgBack, "field 'imgBack' and method 'onImgBackClicked'");
     target.imgBack = Utils.castView(view, R.id.imgBack, "field 'imgBack'", ImageView.class);
-    view2131231015 = view;
+    view2131231012 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -40,7 +40,7 @@ public class Act_AnnouncementList_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.imgSearch, "field 'imgSearch' and method 'onImgSearchClicked'");
     target.imgSearch = Utils.castView(view, R.id.imgSearch, "field 'imgSearch'", ImageView.class);
-    view2131231018 = view;
+    view2131231015 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -59,9 +59,9 @@ public class Act_AnnouncementList_ViewBinding implements Unbinder {
     target.imgBack = null;
     target.imgSearch = null;
 
+    view2131231012.setOnClickListener(null);
+    view2131231012 = null;
     view2131231015.setOnClickListener(null);
     view2131231015 = null;
-    view2131231018.setOnClickListener(null);
-    view2131231018 = null;
   }
 }

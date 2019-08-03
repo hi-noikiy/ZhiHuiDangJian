@@ -123,4 +123,9 @@ dependencies {
     implementation project(':immoudel')
 
     implementation 'com.facebook.fresco:fresco:2.0.0'
+
+    //adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //https://github.com/hongyangAndroid/baseAdapter
+    implementation 'com.zhy:base-rvadapter:3.0.3'
 }

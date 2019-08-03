@@ -19,17 +19,17 @@ public class Fgt_Home_ViewBinding implements Unbinder {
 
   private View view2131230802;
 
-  private View view2131231081;
+  private View view2131231078;
+
+  private View view2131231079;
+
+  private View view2131231080;
 
   private View view2131231082;
 
-  private View view2131231083;
+  private View view2131231081;
 
-  private View view2131231085;
-
-  private View view2131231084;
-
-  private View view2131231237;
+  private View view2131231233;
 
   @UiThread
   public Fgt_Home_ViewBinding(final Fgt_Home target, View source) {
@@ -48,7 +48,7 @@ public class Fgt_Home_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.linear1, "method 'onLinear1Clicked'");
-    view2131231081 = view;
+    view2131231078 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class Fgt_Home_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.linear2, "method 'onLinear2Clicked'");
-    view2131231082 = view;
+    view2131231079 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -64,7 +64,7 @@ public class Fgt_Home_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.linear3, "method 'onLinear3Clicked'");
-    view2131231083 = view;
+    view2131231080 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -72,7 +72,7 @@ public class Fgt_Home_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.linear5, "method 'onLinear5Clicked'");
-    view2131231085 = view;
+    view2131231082 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -80,7 +80,7 @@ public class Fgt_Home_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.linear4, "method 'onLinear4Clicked'");
-    view2131231084 = view;
+    view2131231081 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -88,7 +88,7 @@ public class Fgt_Home_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.relativeAnnoun, "method 'onRelativeAnnounClicked'");
-    view2131231237 = view;
+    view2131231233 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -110,17 +110,17 @@ public class Fgt_Home_ViewBinding implements Unbinder {
 
     view2131230802.setOnClickListener(null);
     view2131230802 = null;
-    view2131231081.setOnClickListener(null);
-    view2131231081 = null;
+    view2131231078.setOnClickListener(null);
+    view2131231078 = null;
+    view2131231079.setOnClickListener(null);
+    view2131231079 = null;
+    view2131231080.setOnClickListener(null);
+    view2131231080 = null;
     view2131231082.setOnClickListener(null);
     view2131231082 = null;
-    view2131231083.setOnClickListener(null);
-    view2131231083 = null;
-    view2131231085.setOnClickListener(null);
-    view2131231085 = null;
-    view2131231084.setOnClickListener(null);
-    view2131231084 = null;
-    view2131231237.setOnClickListener(null);
-    view2131231237 = null;
+    view2131231081.setOnClickListener(null);
+    view2131231081 = null;
+    view2131231233.setOnClickListener(null);
+    view2131231233 = null;
   }
 }

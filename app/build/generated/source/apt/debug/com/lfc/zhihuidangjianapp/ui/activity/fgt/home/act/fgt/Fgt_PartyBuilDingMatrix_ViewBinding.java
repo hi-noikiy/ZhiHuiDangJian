@@ -3,8 +3,8 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fgt;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
 import com.lfc.zhihuidangjianapp.R;
@@ -18,7 +18,7 @@ public class Fgt_PartyBuilDingMatrix_ViewBinding implements Unbinder {
   public Fgt_PartyBuilDingMatrix_ViewBinding(Fgt_PartyBuilDingMatrix target, View source) {
     this.target = target;
 
-    target.haah = Utils.findRequiredViewAsType(source, R.id.haah, "field 'haah'", TextView.class);
+    target.recyclerView = Utils.findRequiredViewAsType(source, R.id.recyclerView, "field 'recyclerView'", RecyclerView.class);
   }
 
   @Override
@@ -28,6 +28,6 @@ public class Fgt_PartyBuilDingMatrix_ViewBinding implements Unbinder {
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
     this.target = null;
 
-    target.haah = null;
+    target.recyclerView = null;
   }
 }

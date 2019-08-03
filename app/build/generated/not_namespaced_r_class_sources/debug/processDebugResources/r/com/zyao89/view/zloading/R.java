@@ -12,10 +12,10 @@ public final class R {
     public static final class attr {
         private attr() {}
 
-        public static final int z_color = 0x7f0302df;
-        public static final int z_duration_percent = 0x7f0302e0;
-        public static final int z_text = 0x7f0302e1;
-        public static final int z_type = 0x7f0302e2;
+        public static final int z_color = 0x7f0302dd;
+        public static final int z_duration_percent = 0x7f0302de;
+        public static final int z_text = 0x7f0302df;
+        public static final int z_type = 0x7f0302e0;
     }
     public static final class color {
         private color() {}
@@ -54,10 +54,10 @@ public final class R {
         public static final int StairsRectBuilder = 0x7f080025;
         public static final int StarBuilder = 0x7f080026;
         public static final int TextBuilder = 0x7f080029;
-        public static final int z_custom_text_view = 0x7f080333;
-        public static final int z_loading = 0x7f080334;
-        public static final int z_loading_view = 0x7f080335;
-        public static final int z_text_view = 0x7f080336;
+        public static final int z_custom_text_view = 0x7f080330;
+        public static final int z_loading = 0x7f080331;
+        public static final int z_loading_view = 0x7f080332;
+        public static final int z_text_view = 0x7f080333;
     }
     public static final class layout {
         private layout() {}
@@ -77,9 +77,9 @@ public final class R {
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] ZLoadingTextView = { 0x7f0302e1 };
+        public static final int[] ZLoadingTextView = { 0x7f0302df };
         public static final int ZLoadingTextView_z_text = 0;
-        public static final int[] ZLoadingView = { 0x7f0302df, 0x7f0302e0, 0x7f0302e2 };
+        public static final int[] ZLoadingView = { 0x7f0302dd, 0x7f0302de, 0x7f0302e0 };
         public static final int ZLoadingView_z_color = 0;
         public static final int ZLoadingView_z_duration_percent = 1;
         public static final int ZLoadingView_z_type = 2;

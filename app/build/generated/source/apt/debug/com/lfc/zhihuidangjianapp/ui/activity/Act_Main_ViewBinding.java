@@ -19,13 +19,13 @@ import java.lang.Override;
 public class Act_Main_ViewBinding implements Unbinder {
   private Act_Main target;
 
-  private View view2131231233;
+  private View view2131231229;
 
-  private View view2131231234;
+  private View view2131231230;
 
-  private View view2131231235;
+  private View view2131231231;
 
-  private View view2131231236;
+  private View view2131231232;
 
   @UiThread
   public Act_Main_ViewBinding(Act_Main target) {
@@ -46,7 +46,7 @@ public class Act_Main_ViewBinding implements Unbinder {
     target.text2 = Utils.findRequiredViewAsType(source, R.id.text2, "field 'text2'", TextView.class);
     target.text3 = Utils.findRequiredViewAsType(source, R.id.text3, "field 'text3'", TextView.class);
     view = Utils.findRequiredView(source, R.id.relative1, "method 'onRelative1Clicked'");
-    view2131231233 = view;
+    view2131231229 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -54,7 +54,7 @@ public class Act_Main_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.relative2, "method 'onRelative2Clicked'");
-    view2131231234 = view;
+    view2131231230 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,7 +62,7 @@ public class Act_Main_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.relative3, "method 'onRelative3Clicked'");
-    view2131231235 = view;
+    view2131231231 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -70,7 +70,7 @@ public class Act_Main_ViewBinding implements Unbinder {
       }
     });
     view = Utils.findRequiredView(source, R.id.relative4, "method 'onRelative4Clicked'");
-    view2131231236 = view;
+    view2131231232 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -95,13 +95,13 @@ public class Act_Main_ViewBinding implements Unbinder {
     target.text2 = null;
     target.text3 = null;
 
-    view2131231233.setOnClickListener(null);
-    view2131231233 = null;
-    view2131231234.setOnClickListener(null);
-    view2131231234 = null;
-    view2131231235.setOnClickListener(null);
-    view2131231235 = null;
-    view2131231236.setOnClickListener(null);
-    view2131231236 = null;
+    view2131231229.setOnClickListener(null);
+    view2131231229 = null;
+    view2131231230.setOnClickListener(null);
+    view2131231230 = null;
+    view2131231231.setOnClickListener(null);
+    view2131231231 = null;
+    view2131231232.setOnClickListener(null);
+    view2131231232 = null;
   }
 }

@@ -4,7 +4,7 @@
             "outputFile": "/Users/guojian/Desktop/zhihuidangjian/ZhiHuiDangJian/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en/values-en.xml",
             "map": [
                 {
-                    "source": "/Users/guojian/.gradle/wrapper/dists/gradle-4.4-all/9br9xq1tocpiv8o6njlyu5op1/gradle-4.4/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.18.aar/8af37e0813727015daf6d08f9193d684/res/values-en/values-en.xml",
+                    "source": "/Users/guojian/.gradle/wrapper/dists/gradle-4.4-all/9br9xq1tocpiv8o6njlyu5op1/gradle-4.4/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.30.aar/10f1405d4a737102c515305c9f2fa9e8/res/values-en/values-en.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

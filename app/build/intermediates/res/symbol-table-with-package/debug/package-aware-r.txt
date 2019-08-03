@@ -107,7 +107,6 @@ attr autoSizeMinTextSize
 attr autoSizePresetSizes
 attr autoSizeStepGranularity
 attr autoSizeTextType
-attr autoTurningTime
 attr background
 attr backgroundImage
 attr backgroundSplit
@@ -151,7 +150,6 @@ attr buttonStyle
 attr buttonStyleSmall
 attr buttonTint
 attr buttonTintMode
-attr canLoop
 attr cardBackgroundColor
 attr cardCornerRadius
 attr cardElevation
@@ -1234,7 +1232,6 @@ dimen compat_button_padding_vertical_material
 dimen compat_control_corner_material
 dimen compat_notification_large_icon_max_height
 dimen compat_notification_large_icon_max_width
-dimen convenientbanner_margin
 dimen def_height
 dimen design_appbar_elevation
 dimen design_bottom_navigation_active_item_max_width
@@ -2170,8 +2167,6 @@ id button_uploadlog
 id bv_home_navigation
 id cancel
 id cancel_imageview
-id cbLoopViewPager
-id cb_item_tag
 id cb_member_inviter
 id cb_no_disturb_off
 id cb_no_disturb_on
@@ -2293,7 +2288,6 @@ id gridview
 id group_divider
 id group_item
 id group_name
-id haah
 id haderImage
 id head_icon
 id header
@@ -2417,7 +2411,6 @@ id ll_top_container
 id ll_user
 id ll_user_profile
 id ll_voice_control
-id loPageTurningPoint
 id load_more_load_end_view
 id load_more_load_fail_view
 id load_more_loading_view
@@ -2756,6 +2749,7 @@ id tv_chatroom_name
 id tv_connect_errormsg
 id tv_contact_details
 id tv_delivered
+id tv_dept
 id tv_error_msg
 id tv_file_name
 id tv_file_size
@@ -3068,11 +3062,11 @@ layout hwpush_layout2
 layout hwpush_layout4
 layout hwpush_layout7
 layout hwpush_layout8
-layout include_viewpager
 layout incule_title
 layout item_addr
 layout item_announcementlist
 layout item_demonstration_leadership
+layout item_dept
 layout item_home
 layout item_invite
 layout layout_tab
@@ -4349,7 +4343,6 @@ styleable ColorStateListItem android_color android_alpha alpha
 styleable CommonTabLayout tl_divider_color tl_divider_padding tl_divider_width tl_iconGravity tl_iconHeight tl_iconMargin tl_iconVisible tl_iconWidth tl_indicator_anim_duration tl_indicator_anim_enable tl_indicator_bounce_enable tl_indicator_color tl_indicator_corner_radius tl_indicator_gravity tl_indicator_height tl_indicator_margin_bottom tl_indicator_margin_left tl_indicator_margin_right tl_indicator_margin_top tl_indicator_style tl_indicator_width tl_tab_padding tl_tab_space_equal tl_tab_width tl_textAllCaps tl_textBold tl_textSelectColor tl_textUnselectColor tl_textsize tl_underline_color tl_underline_gravity tl_underline_height
 styleable CompoundButton android_button buttonTint buttonTintMode
 styleable ContactItemView contactItemImage contactItemName
-styleable ConvenientBanner autoTurningTime canLoop
 styleable CoordinatorLayout keylines statusBarBackground
 styleable CoordinatorLayout_Layout android_layout_gravity layout_anchor layout_anchorGravity layout_behavior layout_dodgeInsetEdges layout_insetEdge layout_keyline
 styleable DesignTheme bottomSheetDialogTheme bottomSheetStyle

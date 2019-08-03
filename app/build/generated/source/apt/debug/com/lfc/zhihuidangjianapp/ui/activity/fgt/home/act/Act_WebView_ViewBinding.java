@@ -17,7 +17,7 @@ import java.lang.Override;
 public class Act_WebView_ViewBinding implements Unbinder {
   private Act_WebView target;
 
-  private View view2131231015;
+  private View view2131231012;
 
   @UiThread
   public Act_WebView_ViewBinding(Act_WebView target) {
@@ -31,7 +31,7 @@ public class Act_WebView_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.imgBack, "field 'imgBack' and method 'onImgBackClicked'");
     target.imgBack = Utils.castView(view, R.id.imgBack, "field 'imgBack'", ImageView.class);
-    view2131231015 = view;
+    view2131231012 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,7 +53,7 @@ public class Act_WebView_ViewBinding implements Unbinder {
     target.textTitle = null;
     target.webView = null;
 
-    view2131231015.setOnClickListener(null);
-    view2131231015 = null;
+    view2131231012.setOnClickListener(null);
+    view2131231012 = null;
   }
 }

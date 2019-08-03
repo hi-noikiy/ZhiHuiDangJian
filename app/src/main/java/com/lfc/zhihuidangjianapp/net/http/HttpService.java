@@ -2,6 +2,7 @@ package com.lfc.zhihuidangjianapp.net.http;
 
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 
 import java.util.Map;
 
@@ -52,6 +53,13 @@ public interface HttpService {
     @POST(ApiConstant.queryAppConfigList)
     Observable<String> queryAppConfigList(@QueryMap Map<String, String> map,@Header("token") String token);
 
-    @GET(ApiConstant.captcha)
-    Observable<BaseResponse<String>> captcha(@QueryMap Map<String, String> map);
+    /**
+     * 党建矩阵
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryDeptList")
+    Observable<BaseResponse<Depts>> queryDeptList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
 }
