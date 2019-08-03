@@ -1173,7 +1173,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 						blackList.addAll(EMClient.getInstance().groupManager().fetchGroupBlackList(groupId, 0, 200));
 
 					} catch (Exception e) {
-						 //e.printStackTrace();  // User may have no permission for fetch mute, fetch black list operation
+						 //e.printStackTrace();  // DeptDetailUser may have no permission for fetch mute, fetch black list operation
 					} finally {
 						memberList.remove(group.getOwner());
 						memberList.removeAll(adminList);

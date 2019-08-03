@@ -127,14 +127,14 @@ public class ServiceCheckActivity extends BaseActivity {
                             updateResultOnUiThread(builder, R.string.check_result_get_token_fail, result, desc);
                         }
                         break;
-                    case EMCheckType.DO_LOGIN: // User login
+                    case EMCheckType.DO_LOGIN: // DeptDetailUser login
                         if (result == EMError.EM_NO_ERROR) {
                             updateResultOnUiThread(builder, R.string.check_result_login_success, 0, null);
                         } else {
                             updateResultOnUiThread(builder, R.string.check_result_login_fail, result, desc);
                         }
                         break;
-                    case EMCheckType.DO_LOGOUT: // User logout
+                    case EMCheckType.DO_LOGOUT: // DeptDetailUser logout
                         if (result == EMError.EM_NO_ERROR) {
                             updateResultOnUiThread(builder, R.string.check_result_logout_success, 0, null);
                         } else {

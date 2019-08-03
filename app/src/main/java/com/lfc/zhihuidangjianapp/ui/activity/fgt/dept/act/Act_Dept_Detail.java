@@ -1,6 +1,11 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
+import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -13,6 +18,9 @@ import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.DeptConstants;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
+import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetailUser;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +44,8 @@ public class Act_Dept_Detail extends BaseActivity {
     TextView tvBriefIntrodection;
     @BindView(R.id.tv_address)
     TextView tvAddress;
+    @BindView(R.id.rv_group)
+    RecyclerView recyclerView;
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
@@ -95,6 +105,17 @@ public class Act_Dept_Detail extends BaseActivity {
         tvDeptTitle.setText(dept.getDeptName());
         tvBriefIntrodection.setText(dept.getBriefIntroduction());
         tvAddress.setText(dept.getDeptAddress());
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new CommonAdapter<DeptDetailUser>(getActivity(), R.layout.item_dept_user, response.getUserlist()) {
+            @Override
+            protected void convert(ViewHolder holder, DeptDetailUser data, int position) {
+                holder.setText(R.id.tv_name, data.getDisplayName());
+                holder.setText(R.id.tv_content, data.getSubordinatePartyGroup());
+                holder.setText(R.id.tv_tell, data.getMobileNumber());
+            }
+
+        });
     }
 
 

@@ -132,6 +132,14 @@
                     style="@style/text_18"
                     android:text="支部成员列表"/>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dip_14"/>
+
+                <include
+                    layout="@layout/item_dept_user"
+                    />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_group"
                     android:layout_marginTop="@dimen/dip_12"

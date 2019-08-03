@@ -10,7 +10,7 @@ import java.util.List;
 public class DeptDetail {
 
     private Dept dept;
-//    private List<User> userlist;
+    private List<DeptDetailUser> userlist;
 
     public Dept getDept() {
         return dept;
@@ -20,11 +20,11 @@ public class DeptDetail {
         this.dept = dept;
     }
 
-//    public List<User> getUserlist() {
-//        return userlist;
-//    }
-//
-//    public void setUserlist(List<User> userlist) {
-//        this.userlist = userlist;
-//    }
+    public List<DeptDetailUser> getUserlist() {
+        return userlist;
+    }
+
+    public void setUserlist(List<DeptDetailUser> userlist) {
+        this.userlist = userlist;
+    }
 }
