@@ -111,6 +111,9 @@
             android:label="@string/TitleDetails_name"/>
         <activity android:name=".ui.activity.fgt.dept.act.Act_Dept_Detail"
             />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Dept_dynamic"
+            />
+        <activity android:name=".ui.activity.BaseBindViewActivity" />
     </application>
 
 </manifest>

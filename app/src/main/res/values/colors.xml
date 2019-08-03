@@ -37,4 +37,7 @@
     <color name="yellow">#FCAB26</color>
     <color name="pink">#FFE4E4</color>
     <color name="grey_200">#eeeeee</color>
+
+    <color name="tab_select_red">#E24B1D</color>
+
 </resources>

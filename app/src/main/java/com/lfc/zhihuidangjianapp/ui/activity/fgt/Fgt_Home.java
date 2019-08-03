@@ -14,6 +14,7 @@ import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Announcement;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_AnnouncementList;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Demonstration_Leadership;
@@ -121,7 +122,8 @@ public class Fgt_Home extends BaseFragment {
     }
 
     @OnClick(R.id.linear3)
-    public void onLinear3Clicked() {
+    public void onLinear3Clicked() {//党建动态
+        startActivity(new Intent(getActivity(), Act_Dept_dynamic.class));
     }
 
     @OnClick(R.id.linear5)//党费缴纳
