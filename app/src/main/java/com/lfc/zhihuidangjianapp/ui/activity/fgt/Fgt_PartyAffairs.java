@@ -5,8 +5,8 @@ import android.view.View;
 
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.base.BaseFragment;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.partyaffairs.act.Act_Mail_list;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.partyaffairs.act.Act_Meeting;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Meeting;
 
 /**
  * 党务工作

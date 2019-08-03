@@ -2,6 +2,7 @@ package com.lfc.zhihuidangjianapp.app;
 
 import android.content.Context;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.chatuidemo.DemoApplication;
 import com.hyphenate.chatuidemo.DemoHelper;
@@ -37,6 +38,10 @@ public class MyApplication extends DemoApplication {
 
         // 环信初始化
         DemoHelper.getInstance().init(app);
+        //ARouter
+        ARouter.openLog();     // Print log
+        ARouter.openDebug();
+        ARouter.init(this);
     }
     public static Context getAppContext() {
         if (sBaseApplication == null) {

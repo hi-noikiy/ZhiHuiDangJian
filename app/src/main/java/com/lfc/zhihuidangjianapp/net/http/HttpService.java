@@ -2,6 +2,7 @@ package com.lfc.zhihuidangjianapp.net.http;
 
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
+import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 
 import java.util.Map;
@@ -61,5 +62,14 @@ public interface HttpService {
      */
     @POST(ApiConstant.API+"/queryDeptList")
     Observable<BaseResponse<Depts>> queryDeptList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 党支部详情
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryDeptDetail")
+    Observable<BaseResponse<DeptDetail>> queryDeptDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 }

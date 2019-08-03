@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fgt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +11,18 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseFragment;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.DeptConstants;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Detail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
@@ -41,6 +48,8 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    private Depts mDepts;
+
     public static Fgt_PartyBuilDingMatrix getInstance(int arg) {
         Fgt_PartyBuilDingMatrix sf = new Fgt_PartyBuilDingMatrix();
         Bundle bundle = new Bundle();
@@ -60,6 +69,10 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
     protected void initView(View rootView) {
         unbinder = ButterKnife.bind(this, rootView);
         deptNumber = getArguments().getInt("deptNumber");
+        setEvent();
+    }
+
+    private void setEvent() {
     }
 
     private void loadData() {
@@ -73,6 +86,7 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
 
                     @Override
                     protected void onNext(Depts response) {
+                        mDepts = response;
                         Log.e("onNext= ", response.toString());
                         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
                         recyclerView.setAdapter(new CommonAdapter<Dept>(getActivity(), R.layout.item_dept, response.getDeptList()) {
@@ -86,6 +100,12 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
                                         image.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                                         setViewSize(image, image.getWidth(), image.getWidth());
                                     }
+                                });
+                                holder.getConvertView().setOnClickListener(item->{
+                                    //TODO 党建矩阵详情
+                                    Intent intent = new Intent(getActivity(), Act_Dept_Detail.class);
+                                    intent.putExtra("deptNumber", dept.getDeptNumber());
+                                    startActivity(intent);
                                 });
                             }
 

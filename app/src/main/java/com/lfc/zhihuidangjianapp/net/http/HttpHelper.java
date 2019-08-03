@@ -1,19 +1,16 @@
 package com.lfc.zhihuidangjianapp.net.http;
 
-import android.os.Debug;
-import android.util.ArrayMap;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.bean.LoginBean;
 import com.lfc.zhihuidangjianapp.bean.QueryHomeNoticeAnnouncementPageListBean;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.bean.QueryAppConfigListBean1;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.bean.queryNoticeAnnouncementDetailBean;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.bean.queryNoticeAnnouncementPageListBean;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.demonstration_leadership.bean.Party_membershipDuesBean;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.demonstration_leadership.bean.QueryLeadDemonstrationPageListBean;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.partyaffairs.bean.queryUserListByFirstPinYinBean;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.bean.queryUserListByFirstPinYinBean;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.bean.UserDataBean;
 
 import java.util.HashMap;
@@ -23,7 +20,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.http.HeaderMap;
 
 public class HttpHelper {
 
