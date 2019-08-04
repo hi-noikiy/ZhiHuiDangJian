@@ -6,6 +6,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
 
 import java.util.Map;
 
@@ -82,8 +83,23 @@ public interface HttpService {
     @POST(ApiConstant.API+"/queryPartyDynamicPageList")
     Observable<BaseResponse<ResponsePartyDynamicList>> queryPartyDynamicPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
+    /**
+     * 党建动态详情
+     * @param map
+     * @param token
+     * @return
+     */
     @POST(ApiConstant.API+"/queryPartyDynamicDetail")
     Observable<BaseResponse<DynamicDetail>> queryPartyDynamicDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 学习强局首页
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryStudyStrongBureauVideoPageList")
+    Observable<BaseResponse<ResponseStudyStrong>> queryStudyStrongBureauVideoPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 
 

@@ -45,7 +45,6 @@ import io.reactivex.schedulers.Schedulers;
 public class Fgt_PartyBuilDingMatrix extends BaseFragment {
     private int deptNumber = 1;
 
-    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
     private Depts mDepts;
@@ -69,6 +68,7 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
     protected void initView(View rootView) {
         unbinder = ButterKnife.bind(this, rootView);
         deptNumber = getArguments().getInt("deptNumber");
+        recyclerView = rootView.findViewById(R.id.recyclerView);
         setEvent();
     }
 

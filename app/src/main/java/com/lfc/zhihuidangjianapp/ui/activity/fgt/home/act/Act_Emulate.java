@@ -13,8 +13,6 @@ import butterknife.ButterKnife;
  * 学习强局
  */
 public class Act_Emulate extends BaseActivity {
-    @BindView(R.id.textTitle)
-    TextView textTitle;
     @Override
     protected int getLayoutId() {
         return R.layout.act_emulate;
@@ -27,9 +25,8 @@ public class Act_Emulate extends BaseActivity {
 
     @Override
     protected void initView() {
-        ButterKnife.bind(this);
         initImmersionBar(0);
-        textTitle.setText("学习强局");
+        findViewById(R.id.imgBack).setOnClickListener(back->finish());
     }
 
     @Override
