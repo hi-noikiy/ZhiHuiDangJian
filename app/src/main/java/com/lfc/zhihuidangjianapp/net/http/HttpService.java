@@ -4,13 +4,13 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 
 import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
 
@@ -71,5 +71,14 @@ public interface HttpService {
      */
     @POST(ApiConstant.API+"/queryDeptDetail")
     Observable<BaseResponse<DeptDetail>> queryDeptDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 分页查询党建动态信息
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryPartyDynamicPageList")
+    Observable<BaseResponse<ResponsePartyDynamicList>> queryPartyDynamicPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 }

@@ -19,6 +19,7 @@ public class MyApplication extends DemoApplication {
     public static LoginBean.DataBean loginBean;
 
     public static LoginBean.DataBean getLoginBean() {
+        if(loginBean==null)return new LoginBean.DataBean();
         return loginBean;
     }
 

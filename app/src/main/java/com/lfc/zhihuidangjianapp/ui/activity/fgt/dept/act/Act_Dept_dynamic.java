@@ -73,7 +73,7 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
     }
 
     private void setEvent() {
-        findViewById(R.id.imgSearch).setOnClickListener(back->finish());
+        findViewById(R.id.imgBack).setOnClickListener(back->finish());
     }
 
     private List<Fragment> list(){
