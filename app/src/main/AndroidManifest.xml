@@ -113,7 +113,9 @@
             />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Dept_dynamic"
             />
-        <activity android:name=".ui.activity.BaseBindViewActivity" />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Dept_Dynamic_Detail"
+            />
+
     </application>
 
 </manifest>

@@ -10,13 +10,13 @@ public class Dynamic {
         private String author;
         private String comment;
         private String create_code;
-        private String create_name;
+        private String createName;
         private long create_time;
         private String dynamic_source;
         private int if_pass;
         private int if_top;
-        private int party_dynamic_id;
-        private int party_dynamic_type;
+        private int partyDynamicId;
+        private int partyDynamicType;
         private String release_date;
         private String thumbnailUrl;
         private String title;
@@ -42,10 +42,10 @@ public class Dynamic {
         }
 
         public void setCreate_name(String create_name) {
-            this.create_name = create_name;
+            this.createName = create_name;
         }
         public String getCreate_name() {
-            return create_name;
+            return createName;
         }
 
         public void setCreate_time(long create_time) {
@@ -77,17 +77,17 @@ public class Dynamic {
         }
 
         public void setParty_dynamic_id(int party_dynamic_id) {
-            this.party_dynamic_id = party_dynamic_id;
+            this.partyDynamicId = party_dynamic_id;
         }
         public int getParty_dynamic_id() {
-            return party_dynamic_id;
+            return partyDynamicId;
         }
 
         public void setParty_dynamic_type(int party_dynamic_type) {
-            this.party_dynamic_type = party_dynamic_type;
+            this.partyDynamicType = party_dynamic_type;
         }
         public int getParty_dynamic_type() {
-            return party_dynamic_type;
+            return partyDynamicType;
         }
 
         public void setRelease_date(String release_date) {

@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fgt;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.BaseBindViewFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Dynamic_Detail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
@@ -93,6 +95,11 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 String url = ApiConstant.ROOT_URL+data.getThumbnail_url();
                 Glide.with(getActivity()).load(url).into(image);
+                holder.getConvertView().setOnClickListener(item->{
+                    Intent intent = new Intent(getActivity(), Act_Dept_Dynamic_Detail.class);
+                    intent.putExtra("partyDynamicId", data.getParty_dynamic_id()+"");
+                    startActivity(intent);
+                });
             }
 
         });

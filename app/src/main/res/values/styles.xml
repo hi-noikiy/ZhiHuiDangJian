@@ -109,6 +109,15 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="text_14_normal">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="text_14_grey">
+        <item name="android:textColor">@color/gray_normal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="text_16">
         <item name="android:textSize">16sp</item>
     </style>

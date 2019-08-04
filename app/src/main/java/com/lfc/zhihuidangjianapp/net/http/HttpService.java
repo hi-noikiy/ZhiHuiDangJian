@@ -4,6 +4,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
+import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 
 import java.util.Map;
@@ -80,5 +81,10 @@ public interface HttpService {
      */
     @POST(ApiConstant.API+"/queryPartyDynamicPageList")
     Observable<BaseResponse<ResponsePartyDynamicList>> queryPartyDynamicPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    @POST(ApiConstant.API+"/queryPartyDynamicDetail")
+    Observable<BaseResponse<DynamicDetail>> queryPartyDynamicDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+
 
 }
