@@ -7,6 +7,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
+import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
 
@@ -102,8 +103,22 @@ public interface HttpService {
     @POST(ApiConstant.API+"/queryStudyStrongBureauVideoPageList")
     Observable<BaseResponse<ResponseStudyStrong>> queryStudyStrongBureauVideoPageList( @Header("token") String token);
 
+    /**
+     * 学习心得详情
+      * @param map
+     * @param token
+     * @return
+     */
     @POST(ApiConstant.API+"/queryStudyStrongBureauDetail")
     Observable<BaseResponse<StudyStrongBureauDetail>> queryStudyStrongBureauDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 分页查询工匠培养-林草咨询(学习心得传studyStrongBureauType=1)
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryStudyStrongBureauConsultationPageList")
+    Observable<BaseResponse<StudyCraftTrainingList>> queryStudyStrongBureauConsultationPageList( @Header("token") String token);
 
 
 

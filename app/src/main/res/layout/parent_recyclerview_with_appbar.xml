@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/red3">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="35dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="32dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/img_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:text="党建矩阵"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

@@ -5,7 +5,7 @@ import com.baidu.platform.comapi.map.A;
 /**
  * @date: 2019-08-04
  * @autror: guojian
- * @description:
+ * @description: 工匠培养
  */
 public class StudyStrongBureau {
 

@@ -117,6 +117,8 @@
             />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Strong_Study_Experience"
             />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Craftsman_Training"
+            />
 
     </application>
 
