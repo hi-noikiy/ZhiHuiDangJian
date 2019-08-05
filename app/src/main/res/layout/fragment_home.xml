@@ -19,145 +19,19 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                  />
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="62dp"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/linear1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_home_tab1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="党建矩阵"
-                        android:textColor="@color/black3"
-                        android:textSize="13dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_home_tab2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="学习强局"
-                        android:textColor="@color/black3"
-                        android:textSize="13dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_home_tab1" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="党建动态"
-                        android:textColor="@color/black3"
-                        android:textSize="13dp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="62dp"
-                android:layout_marginLeft="55dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="55dp"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/linear4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_home_tab4" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="专题专栏"
-                        android:textColor="@color/black3"
-                        android:textSize="13dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linear5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/img_home_tab5" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:text="费缴纳局"
-                        android:textColor="@color/black3"
-                        android:textSize="13dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
+            </android.support.v7.widget.RecyclerView>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dip"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/dip_15"
                 android:background="@color/backLine" />
 
             <RelativeLayout

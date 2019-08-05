@@ -1,8 +1,12 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt;
 
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
@@ -14,7 +18,9 @@ import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Detail;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Announcement;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_AnnouncementList;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Demonstration_Leadership;
@@ -25,6 +31,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_WebView;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.adapter.HomeAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.item.BannerViewHolder;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.widget.MyListView;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -32,8 +39,11 @@ import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
 import com.scwang.smartrefresh.layout.footer.BallPulseFooter;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +62,10 @@ public class Fgt_Home extends BaseFragment {
     Unbinder unbinder;
     private ArrayList<QueryHomeNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> list = new ArrayList<>();
     private HomeAdapter homeAdapter;
+    private RecyclerView recyclerView;
+    private int[] images = {R.mipmap.img_home_tab1, R.mipmap.img_home_tab2,
+            R.mipmap.img_home_tab3,R.mipmap.img_home_tab4,R.mipmap.img_home_tab5};
+    private String[] lables = {"党建矩阵", "学习强局", "党建动态", "专题专栏", "缴纳党费"};
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +75,7 @@ public class Fgt_Home extends BaseFragment {
     @Override
     protected void initView(View rootView) {
         unbinder = ButterKnife.bind(this, rootView);
+        recyclerView = rootView.findViewById(R.id.recyclerView);
         homeAdapter = new HomeAdapter(list, getActivity());
         homeListView.setAdapter(homeAdapter);
         homeListView.setOnItemClickListener((parent, view, position, id) -> {
@@ -90,6 +105,40 @@ public class Fgt_Home extends BaseFragment {
         });
         queryHomeNoticeAnnouncementPageList();
         queryAppConfigList();
+        setFuncRecyclerView();
+    }
+
+    private void setFuncRecyclerView(){
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        recyclerView.setAdapter(new CommonAdapter<String>(getActivity(), R.layout.item_home_func, Arrays.asList(lables)) {
+            @Override
+            protected void convert(ViewHolder holder, String data, int position) {
+                holder.setText(R.id.text, data);
+                holder.setImageDrawable(R.id.icon, getResources().getDrawable(images[position]));
+                holder.getConvertView().setOnClickListener(func->{
+                    switch (position){
+                        case 0://党建矩阵
+                            startActivity(new Intent(getContext(), Act_PartyBuildingMatrix.class));
+                            break;
+                        case 1://学习强局
+                            startActivity(new Intent(getContext(), Act_Emulate.class));
+                            break;
+                        case 2://党建动态
+                            startActivity(new Intent(getActivity(), Act_Dept_dynamic.class));
+                            break;
+                        case 3://专题专栏
+                            startActivity(new Intent(getContext(), Act_Demonstration_Leadership.class));
+                            break;
+                        case 4://缴纳党费
+//                            startActivity(new Intent(getContext(), Act_Party_membershipDues.class));
+                            startActivity(new Intent(getContext(), Act_Party_Pay.class));
+                            break;
+
+                    }
+                });
+            }
+
+        });
     }
 
     @Override
@@ -109,31 +158,6 @@ public class Fgt_Home extends BaseFragment {
     public void onImgBannerClicked() {
         String imgPath = "";
         startWebView("详情", imgPath);
-    }
-
-    @OnClick(R.id.linear1)//党建矩阵
-    public void onLinear1Clicked() {
-        startActivity(new Intent(getContext(), Act_PartyBuildingMatrix.class));
-    }
-
-    @OnClick(R.id.linear2)//学习强局
-    public void onLinear2Clicked() {
-        startActivity(new Intent(getContext(), Act_Emulate.class));
-    }
-
-    @OnClick(R.id.linear3)
-    public void onLinear3Clicked() {//党建动态
-        startActivity(new Intent(getActivity(), Act_Dept_dynamic.class));
-    }
-
-    @OnClick(R.id.linear5)//党费缴纳
-    public void onLinear5Clicked() {
-        startActivity(new Intent(getContext(), Act_Party_membershipDues.class));
-    }
-
-    @OnClick(R.id.linear4)//专题专栏
-    public void onLinear4Clicked() {
-        startActivity(new Intent(getContext(), Act_Demonstration_Leadership.class));
     }
 
     @OnClick(R.id.relativeAnnoun)//公告公示

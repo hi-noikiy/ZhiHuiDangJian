@@ -119,6 +119,8 @@
             />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Craftsman_Training"
             />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Party_Pay"
+            />
 
     </application>
 

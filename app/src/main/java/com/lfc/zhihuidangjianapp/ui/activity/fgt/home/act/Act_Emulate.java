@@ -91,6 +91,7 @@ public class Act_Emulate extends BaseActivity {
     private void setRecyclerView(ResponseStudyStrong response){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        //工匠培养
         rvStudyStrong.setLayoutManager(linearLayoutManager);
         rvStudyStrong.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_study_strong
                 , response.getStudyStrongBureauList().getDatas()) {

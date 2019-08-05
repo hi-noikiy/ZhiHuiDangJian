@@ -8,6 +8,8 @@
         android:id="@+id/image"
         android:layout_width="141dp"
         android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:layout_margin="@dimen/dip_3"
         android:background="@mipmap/image_loading"/>
 
     <TextView

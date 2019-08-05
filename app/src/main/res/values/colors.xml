@@ -39,5 +39,6 @@
     <color name="grey_200">#eeeeee</color>
 
     <color name="tab_select_red">#E24B1D</color>
+    <color name="background">#F8F7F7</color>
 
 </resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <RelativeLayout
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="@color/red3">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="35dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="32dp"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/img_back" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="36dp"
+                android:text="确认支付"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_pay"
+            app:layout_constraintTop_toBottomOf="@+id/appbar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_14"
+                style="@style/text_14_grey"
+                android:text="缴纳党费"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_10"
+                style="@style/text_25"
+                android:text="0元"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_1"
+                android:layout_marginLeft="@dimen/dip_10"
+                android:layout_marginRight="@dimen/dip_10"
+                android:layout_marginTop="@dimen/dip_10"
+                android:background="@color/background"/>
+
+            <TextView
+                android:id="@+id/tv_pay_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_14"
+                android:layout_marginTop="@dimen/dip_17"
+                android:layout_marginBottom="@dimen/dip_17"
+                android:text="2019年4月20日"
+                />
+        </LinearLayout>
+
+    <RadioGroup
+        app:layout_constraintTop_toBottomOf="@+id/layout_pay"
+        android:layout_marginTop="@dimen/dip_45"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:button="@null"
+            android:paddingLeft="@dimen/dip_25"
+            android:paddingRight="@dimen/dip_25"
+            android:drawableLeft="@mipmap/b_icon_wechatpay"
+            android:drawableRight="@drawable/selector_check"
+            android:drawablePadding="@dimen/dip_15"
+            android:text="微信支付"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_1"
+            android:layout_marginLeft="@dimen/dip_10"
+            android:layout_marginRight="@dimen/dip_10"
+            android:background="@color/background"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:button="@null"
+            android:paddingLeft="@dimen/dip_25"
+            android:paddingRight="@dimen/dip_25"
+            android:drawableLeft="@mipmap/b_icon_alipay"
+            android:drawableRight="@drawable/selector_check"
+            android:drawablePadding="@dimen/dip_15"
+            android:text="支付宝"/>
+
+    </RadioGroup>
+    
+    <TextView
+        android:id="@+id/tv_pay"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F08713"
+        style="@style/text_16_white"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="确认支付"/>
+
+</android.support.constraint.ConstraintLayout>
