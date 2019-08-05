@@ -115,6 +115,8 @@
             />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Dept_Dynamic_Detail"
             />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Strong_Study_Experience"
+            />
 
     </application>
 

@@ -7,6 +7,8 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
+import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
+import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
 
 import java.util.Map;
 
@@ -94,12 +96,14 @@ public interface HttpService {
 
     /**
      * 学习强局首页
-     * @param map
      * @param token
      * @return
      */
     @POST(ApiConstant.API+"/queryStudyStrongBureauVideoPageList")
-    Observable<BaseResponse<ResponseStudyStrong>> queryStudyStrongBureauVideoPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+    Observable<BaseResponse<ResponseStudyStrong>> queryStudyStrongBureauVideoPageList( @Header("token") String token);
+
+    @POST(ApiConstant.API+"/queryStudyStrongBureauDetail")
+    Observable<BaseResponse<StudyStrongBureauDetail>> queryStudyStrongBureauDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 
 

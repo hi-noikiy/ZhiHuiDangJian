@@ -6,22 +6,22 @@ package com.lfc.zhihuidangjianapp.ui.activity.model;
  * @description:
  */
 public class ResponseStudyStrong {
-    private StudyStrongBureau studyStrongBureauList;
-    private StudyStrongBureauVideo studyStrongBureauVideoList;
+    private StudyStrongBureauList studyStrongBureauList;
+    private StudyStrongBureauVideoList studyStrongBureauVideoList;
 
-    public StudyStrongBureau getStudyStrongBureauList() {
+    public StudyStrongBureauList getStudyStrongBureauList() {
         return studyStrongBureauList;
     }
 
-    public void setStudyStrongBureauList(StudyStrongBureau studyStrongBureauList) {
+    public void setStudyStrongBureauList(StudyStrongBureauList studyStrongBureauList) {
         this.studyStrongBureauList = studyStrongBureauList;
     }
 
-    public StudyStrongBureauVideo getStudyStrongBureauVideoList() {
+    public StudyStrongBureauVideoList getStudyStrongBureauVideoList() {
         return studyStrongBureauVideoList;
     }
 
-    public void setStudyStrongBureauVideoList(StudyStrongBureauVideo studyStrongBureauVideoList) {
+    public void setStudyStrongBureauVideoList(StudyStrongBureauVideoList studyStrongBureauVideoList) {
         this.studyStrongBureauVideoList = studyStrongBureauVideoList;
     }
 }
