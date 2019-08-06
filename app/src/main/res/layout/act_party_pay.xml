@@ -80,7 +80,7 @@
                 />
         </LinearLayout>
 
-    <RadioGroup
+    <LinearLayout
         app:layout_constraintTop_toBottomOf="@+id/layout_pay"
         android:layout_marginTop="@dimen/dip_45"
         android:background="@color/white"
@@ -88,7 +88,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         
-        <RadioButton
+        <TextView
+            android:id="@+id/tv_wechat"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:button="@null"
@@ -96,6 +97,7 @@
             android:paddingRight="@dimen/dip_25"
             android:drawableLeft="@mipmap/b_icon_wechatpay"
             android:drawableRight="@drawable/selector_check"
+            android:gravity="center_vertical"
             android:drawablePadding="@dimen/dip_15"
             android:text="微信支付"/>
 
@@ -106,18 +108,20 @@
             android:layout_marginRight="@dimen/dip_10"
             android:background="@color/background"/>
 
-        <RadioButton
+        <TextView
+            android:id="@+id/tv_alipay"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:button="@null"
             android:paddingLeft="@dimen/dip_25"
             android:paddingRight="@dimen/dip_25"
+            android:gravity="center_vertical"
             android:drawableLeft="@mipmap/b_icon_alipay"
             android:drawableRight="@drawable/selector_check"
             android:drawablePadding="@dimen/dip_15"
             android:text="支付宝"/>
 
-    </RadioGroup>
+    </LinearLayout>
     
     <TextView
         android:id="@+id/tv_pay"

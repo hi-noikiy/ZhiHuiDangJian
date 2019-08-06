@@ -64,7 +64,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     implementation 'com.squareup.okhttp3:logging-interceptor:3.1.2'
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'com.jakewharton:disklrucache:2.0.2'
@@ -88,50 +87,71 @@ dependencies {
 
     //屏幕适配
     implementation 'me.jessyan:autosize:1.1.2'
+
     //butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
+
     // 吐司工具类
     implementation 'com.hjq:toast:latest.integration'
     implementation 'com.chanven.lib:cptr:1.1.0'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
+
     //一些工具类
     implementation 'com.wuxiaolong.androidutils:androidutils:1.0.6'
+
     // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
     implementation 'com.gyf.immersionbar:immersionbar:2.3.3'
+
     //noinspection NotInterpolated
     implementation 'com.jpeng:jpspringmenu:1.0.3'
+
     //banner https://github.com/youth5201314/banner
     implementation 'com.youth.banner:banner:1.4.10'
+
     //上传文件
+
     //刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-25'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-25'
+
     //加载
     implementation 'com.zyao89:zloading:1.2.0'
+
     //tab
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.2@aar'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:1.5.0@aar'
+
     //万能适配器
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
+
     //圆形图像
     implementation 'com.makeramen:roundedimageview:2.3.0'
-    //圆形头像
 
+    //圆形头像
     implementation 'com.facebook.fresco:fresco:2.0.0'
 
     //adapter https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
     //https://github.com/hongyangAndroid/baseAdapter
     implementation 'com.zhy:base-rvadapter:3.0.3'
 
     //ARouter https://github.com/alibaba/ARouter
     implementation 'com.alibaba:arouter-api:1.5.0'
+
     // annotationProcessor 'com.alibaba:arouter-compiler:1.5.0'
 
     //https://github.com/H07000223/FlycoTabLayout
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    //支付宝
+    implementation (name: 'alipaySdk-15.6.5-20190718211148', ext: 'aar')
+
+    //微信支付
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.0'
 }

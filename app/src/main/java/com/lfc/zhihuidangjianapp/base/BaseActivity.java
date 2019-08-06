@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.base;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -10,16 +11,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 import com.lfc.zhihuidangjianapp.R;
+import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.service.LoginOutBroadcastReceiver;
 import com.wuxiaolong.androidutils.library.ActivityManagerUtil;
 import com.zyao89.view.zloading.ZLoadingDialog;
@@ -39,6 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewTree
     protected LoginOutBroadcastReceiver locallReceiver;
     public ImmersionBar mImmersionBar;
     public ZLoadingDialog loding;
+
     /**
      * 获取一个 Handler 对象
      */
@@ -288,6 +293,20 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewTree
         mStartActivityTime = SystemClock.uptimeMillis();
         return result;
     }
+
+    @SuppressLint("ShowToast")
+    public void showTextToast(@NonNull String msg) {
+        try {
+            if (MyApplication.getAppContext() == null) {
+                return;
+            }
+            Toast toast = Toast.makeText(MyApplication.getAppContext(), "", Toast.LENGTH_SHORT);
+            toast.setText(msg);
+            toast.show();
+        } catch (Exception e) {
+        }
+    }
+
 
     /**
      * 隐藏软键盘

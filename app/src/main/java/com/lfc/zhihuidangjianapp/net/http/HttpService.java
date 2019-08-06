@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.net.http;
 
+import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
@@ -10,6 +11,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
+import com.lfc.zhihuidangjianapp.ui.activity.model.WechatPay;
 
 import java.util.Map;
 
@@ -120,6 +122,20 @@ public interface HttpService {
     @POST(ApiConstant.API+"/queryStudyStrongBureauConsultationPageList")
     Observable<BaseResponse<StudyCraftTrainingList>> queryStudyStrongBureauConsultationPageList( @Header("token") String token);
 
+    /**
+     * 微信支付订单
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.ROOT_URL+"weiXin2Pay/wxPayToApp")
+    Observable<BaseResponse<WechatPay>> wxPayToApp(@Header("token") String token);
 
+    /**
+     * 支付宝订单
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.ROOT_URL+"alipay/alipayToApp")
+    Observable<BaseResponse<AliPay>> alipayToApp(@Header("token") String token);
 
 }

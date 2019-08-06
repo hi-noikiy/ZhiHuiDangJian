@@ -131,6 +131,13 @@
         <activity android:name=".ui.activity.fgt.dept.act.Act_Party_Member_Practice" />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Forestry_Course" />
 
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+
     </application>
 
 </manifest>
