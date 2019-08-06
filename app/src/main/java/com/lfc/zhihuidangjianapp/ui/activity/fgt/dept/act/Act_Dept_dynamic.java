@@ -80,6 +80,9 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
         fragments = new ArrayList<>();
         for (int i=0;i<mTitles.length;i++){
             Fgt_Dept_dynamic fgtDeptDynamic = new Fgt_Dept_dynamic();
+            Bundle bundle = new Bundle();
+            bundle.putInt("partyDynamicType", i);
+            fgtDeptDynamic.setArguments(bundle);
             fragments.add(fgtDeptDynamic);
         }
         return fragments;

@@ -48,6 +48,8 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
 
     private Unbinder unbinder;
 
+    private int partyDynamicType;
+
     @Override
     protected int getLayoutId() {
         return R.layout.parent_recyclerview;
@@ -55,8 +57,9 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
 
     @Override
     protected void initData() {
+        partyDynamicType = getArguments().getInt("partyDynamicType", 0);
         Map<String, Object> map = new HashMap<>();
-        map.put("partyDynamicType", 1);
+        map.put("partyDynamicType", partyDynamicType);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
                 .queryPartyDynamicPageList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
