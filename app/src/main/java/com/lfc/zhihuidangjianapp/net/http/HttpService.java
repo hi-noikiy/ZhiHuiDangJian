@@ -138,4 +138,12 @@ public interface HttpService {
     @POST(ApiConstant.ROOT_URL+"alipay/alipayToApp")
     Observable<BaseResponse<AliPay>> alipayToApp(@Header("token") String token);
 
+    /**
+     * 党员信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.queryJoinPartyStageDeatil)
+    Observable<BaseResponse<Object>> queryJoinPartyInfo(@Header("token") String token);
+
 }

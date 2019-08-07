@@ -4,20 +4,20 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
-//    signingConfigs {
-//        release {
-//            keyAlias 'key_zhdj'
-//            keyPassword 'Zhdangjian'
-//            storeFile rootProject.file("Untitled")
-//            storePassword 'Zhdangjian'
-//        }
-//        debug {
-//            keyAlias 'key_zhdj'
-//            keyPassword 'Zhdangjian'
-//            storeFile rootProject.file("Untitled")
-//            storePassword 'Zhdangjian'
-//        }
-//    }
+    signingConfigs {
+        release {
+            keyAlias 'zhihuidangjian'
+            keyPassword 'Juketai'
+            storeFile rootProject.file("app_keystore")
+            storePassword 'Juketai'
+        }
+        debug {
+            keyAlias 'zhihuidangjian'
+            keyPassword 'Juketai'
+            storeFile rootProject.file("app_keystore")
+            storePassword 'Juketai'
+        }
+    }
     defaultConfig {
         applicationId "com.lfc.zhihuidangjianapp"
         minSdkVersion 21
@@ -25,7 +25,7 @@ android {
         versionCode 2
         versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-//        signingConfig signingConfigs.debug
+        signingConfig signingConfigs.debug
         multiDexEnabled true
         ndk {
             abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86'
@@ -37,14 +37,17 @@ android {
             }
         }
     }
+    packagingOptions {
+        pickFirst 'META-INF/*'
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.debug
         }
         debug {
-//            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -154,4 +157,7 @@ dependencies {
 
     //微信支付
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.0'
+
+    //rxbus
+    implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
 }

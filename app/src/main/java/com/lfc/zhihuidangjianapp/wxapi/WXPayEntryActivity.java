@@ -3,6 +3,7 @@ package com.lfc.zhihuidangjianapp.wxapi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.lfc.zhihuidangjianapp.pay.WechatApi;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
@@ -40,6 +41,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
 
     @Override
     public void onReq(BaseReq req) {
+        Log.e("onReq=", req.toString());
         switch (req.getType()) {
             case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:
                 break;
@@ -52,6 +54,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
 
     @Override
     public void onResp(BaseResp resp) {
+        Log.e("onResp=", resp.toString());
         if (resp.getType() == ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX) {
             // 分享
         } else if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {

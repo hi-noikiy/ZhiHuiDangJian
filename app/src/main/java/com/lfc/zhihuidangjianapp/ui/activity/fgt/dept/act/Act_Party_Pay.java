@@ -3,9 +3,11 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
+import com.lfc.zhihuidangjianapp.event.RxBusEvent;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
@@ -30,6 +32,7 @@ public class Act_Party_Pay extends BaseActivity implements AliPayApi.AliPayCalba
 
     private int payType = 0;
 
+    private int event = 0;
 
     @Override
     protected int getLayoutId() {
@@ -143,6 +146,8 @@ public class Act_Party_Pay extends BaseActivity implements AliPayApi.AliPayCalba
     @Override
     public void success() {
         Log.e("alipay success! ", "");
+        RxBus.get().post(new RxBusEvent(event));
+        finish();
     }
 
     @Override

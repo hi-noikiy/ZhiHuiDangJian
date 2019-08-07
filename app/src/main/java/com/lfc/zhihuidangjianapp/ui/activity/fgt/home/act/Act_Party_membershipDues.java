@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.demonstration_leadership.bean.Party_membershipDuesBean;
 
 import butterknife.BindView;
@@ -35,6 +37,8 @@ public class Act_Party_membershipDues extends BaseActivity implements View.OnCli
     TextView profileName;
     @BindView(R.id.profile_guanli)
     TextView profile_guanli;
+    @BindView(R.id.tv_pay_party)
+    TextView tvPayParty;
 
     @Override
     protected int getLayoutId() {
@@ -54,6 +58,13 @@ public class Act_Party_membershipDues extends BaseActivity implements View.OnCli
         Glide.with(getContext()).load(ApiConstant.ROOT_URL + MyApplication.getLoginBean().getContextUrl()).into(profileImage);
         profileName.setText(MyApplication.getLoginBean().getRealName());
         profile_guanli.setText(MyApplication.getLoginBean().getRoleName());
+        setEvent();
+    }
+
+    private void setEvent() {
+        tvPayParty.setOnClickListener(pay -> {
+            startActivity(new Intent(getContext(), Act_Party_Pay.class));
+        });
     }
 
     @Override
@@ -107,14 +118,16 @@ public class Act_Party_membershipDues extends BaseActivity implements View.OnCli
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
     /**
      * 分页查询党费缴费记录信息-已缴列表
      */
     public void queryPartyPaymentHisPageList() {
-        HttpHelper.queryPartyPaymentHisPageList( new HttpHelper.HttpUtilsCallBack<String>() {
+        HttpHelper.queryPartyPaymentHisPageList(new HttpHelper.HttpUtilsCallBack<String>() {
             @Override
             public void onFailure(String failure) {
             }
+
             @Override
             public void onSucceed(String succeed) {
                 loding.dismiss();

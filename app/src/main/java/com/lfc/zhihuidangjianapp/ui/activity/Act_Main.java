@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -19,18 +20,27 @@ import com.hjq.toast.ToastUtils;
 import com.jpeng.jpspringmenu.MenuListener;
 import com.jpeng.jpspringmenu.SpringMenu;
 import com.lfc.zhihuidangjianapp.R;
+import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.base.BaseFragmentAdapter;
+import com.lfc.zhihuidangjianapp.net.http.HttpService;
+import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
+import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.pay.AliPayApi;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.Fgt_Home;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.Fgt_PartyAffairs;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.Fgt_Personal;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.Act_SetUpc;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.Act_WeeklyReport;
+import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
 import com.lfc.zhihuidangjianapp.widget.NoScrollViewPager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeListener,
@@ -73,6 +83,30 @@ public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeList
         bvHomeNavigation.setItemIconTintList(null);
         bvHomeNavigation.setOnNavigationItemSelectedListener(this);
 //        sideSlideMenu();
+        loadPartyInfo();
+    }
+
+    /**
+     * 加载个人信息
+     */
+    private void loadPartyInfo() {
+        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+                .queryJoinPartyInfo(MyApplication.getLoginBean().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResponseObserver<Object>(this) {
+                    @Override
+                    protected void onNext(Object response) {
+                        Log.e("onNext=", response.toString());
+                        if (response != null) {
+                        }
+                    }
+
+                    @Override
+                    protected void onError(Throwable e) {
+                        Log.e("onError=", e.getMessage());
+                    }
+                }.actual());
     }
 
     private void sideSlideMenu() {

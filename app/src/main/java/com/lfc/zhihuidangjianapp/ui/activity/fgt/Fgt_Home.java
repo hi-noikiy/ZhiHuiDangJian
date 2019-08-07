@@ -130,8 +130,7 @@ public class Fgt_Home extends BaseFragment {
                             startActivity(new Intent(getContext(), Act_Demonstration_Leadership.class));
                             break;
                         case 4://缴纳党费
-//                            startActivity(new Intent(getContext(), Act_Party_membershipDues.class));
-                            startActivity(new Intent(getContext(), Act_Party_Pay.class));
+                            startActivity(new Intent(getContext(), Act_Party_membershipDues.class));
                             break;
 
                     }
