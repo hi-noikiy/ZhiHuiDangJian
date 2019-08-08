@@ -3,13 +3,15 @@ package com.lfc.zhihuidangjianapp.net.http;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
+import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
+import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
-import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.WechatPay;
 
@@ -36,8 +38,6 @@ public interface HttpService {
 
     @POST(ApiConstant.queryNoticeAnnouncementPageList)
     Observable<String> queryNoticeAnnouncementPageList(@Header("token") String token);
-    @POST(ApiConstant.queryUserListByFirstPinYin)
-    Observable<String> queryUserListByFirstPinYin(@QueryMap Map<String, String> map,@Header("token") String token);
 
     @POST(ApiConstant.queryLeadDemonstrationPageList)
     Observable<String> queryLeadDemonstrationPageList(@QueryMap Map<String, String> map,@Header("token") String token);
@@ -145,5 +145,21 @@ public interface HttpService {
      */
     @POST(ApiConstant.queryJoinPartyStageDeatil)
     Observable<BaseResponse<Object>> queryJoinPartyInfo(@Header("token") String token);
+
+    /**
+     * 通讯录
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryDeptListToAddressBook")
+    Observable<BaseResponse<MailList>> queryDeptListToAddressBook(@Header("token") String token);
+
+    /**
+     * 好友列表
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API+"/queryUserListByFirstPinYin")
+    Observable<BaseResponse<FriendList>> queryUserListByFirstPinYin(@QueryMap Map<String, Object> map,@Header("token") String token);
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.lfc.zhihuidangjianapp.widget.sidebar.SideBar
+        android:id="@+id/sideBar"
+        android:layout_width="34dp"
+        android:layout_height="328dp"
+        android:layout_marginTop="64dp"
+        android:layout_alignParentRight="true"
+        app:textColor="@color/brown_grey"
+        app:textSize="@dimen/sp_12"/>
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="45sp"
+        android:visibility="gone" />
+
+</RelativeLayout>

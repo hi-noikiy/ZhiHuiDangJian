@@ -213,37 +213,37 @@ public class HttpHelper {
      * 通讯录-按首字母查询
      */
     public static void queryUserListByFirstPinYin(String partyPosts, final HttpUtilsCallBack<String> callBack) {
-        Map<String, String> map = new HashMap<>();
-        map.put("partyPosts", partyPosts);
-        HttpService httpService = RetrofitFactory.getRetrofit(15l, 15l).create(HttpService.class);
-        httpService.queryUserListByFirstPinYin(map, MyApplication.getLoginBean().getToken())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                    }
-
-                    @Override
-                    public void onNext(String succeed) {
-                        Gson gson = new Gson();
-                        queryUserListByFirstPinYinBean entity = gson.fromJson(succeed, queryUserListByFirstPinYinBean.class);
-                        if (entity.getCode() == 0) {
-                            callBack.onSucceed(succeed);
-                        } else {
-                            callBack.onError(entity.getMsg() + "");
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        callBack.onFailure(httpFailureMsg());
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-                });
+//        Map<String, String> map = new HashMap<>();
+//        map.put("partyPosts", partyPosts);
+//        HttpService httpService = RetrofitFactory.getRetrofit(15l, 15l).create(HttpService.class);
+//        httpService.queryUserListByFirstPinYin(map, MyApplication.getLoginBean().getToken())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<String>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                    }
+//
+//                    @Override
+//                    public void onNext(String succeed) {
+//                        Gson gson = new Gson();
+//                        queryUserListByFirstPinYinBean entity = gson.fromJson(succeed, queryUserListByFirstPinYinBean.class);
+//                        if (entity.getCode() == 0) {
+//                            callBack.onSucceed(succeed);
+//                        } else {
+//                            callBack.onError(entity.getMsg() + "");
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        callBack.onFailure(httpFailureMsg());
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                    }
+//                });
     }
 
 

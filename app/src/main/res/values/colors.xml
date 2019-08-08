@@ -40,5 +40,6 @@
 
     <color name="tab_select_red">#E24B1D</color>
     <color name="background">#F8F7F7</color>
+    <color name="brown_grey">#a1a1a1</color>
 
 </resources>

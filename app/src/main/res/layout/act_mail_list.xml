@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -19,147 +20,49 @@
             android:src="@mipmap/img_back" />
 
         <TextView
-            android:id="@+id/textTitle"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="40dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
+            android:layout_marginTop="36dp"
             android:text="通讯录"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="19dp"
+            android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/imgSearch"
-            android:layout_width="40dp"
-            android:layout_height="38dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="32dp"
-            android:padding="10dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/img_search" />
     </RelativeLayout>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
-            android:id="@+id/ll_title1"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_title1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableRight="@mipmap/icon_down"
-                android:drawablePadding="@dimen/dip_5"
-                android:padding="@dimen/dip_10"
-                android:text="党委"
-                android:textColor="@drawable/signin_fond_selecte" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_title2"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_title2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/icon_down"
-                android:drawablePadding="@dimen/dip_5"
-                android:gravity="center"
-                android:padding="@dimen/dip_10"
-                android:text="党总支"
-                android:textColor="@drawable/signin_fond_selecte" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_title3"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_title3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/icon_down"
-                android:drawablePadding="@dimen/dip_5"
-                android:gravity="center"
-                android:padding="@dimen/dip_10"
-                android:text="党支部"
-                android:textColor="@drawable/signin_fond_selecte" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_title4"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_title4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/icon_down"
-                android:drawablePadding="@dimen/dip_5"
-                android:gravity="center"
-                android:padding="@dimen/dip_10"
-                android:text="党员"
-                android:textColor="@drawable/signin_fond_selecte" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:paddingBottom="50dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/dialog"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_centerInParent="true"
-            android:background="#80c0c0c0"
-            android:gravity="center"
-            android:textColor="#ffffffff"
-            android:textSize="30dp"
-            android:visibility="invisible" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <com.lfc.zhihuidangjianapp.view.SideBar
-            android:id="@+id/sideBar"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/dip_30" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/adaptive_60dp"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/dip_18"
+                android:paddingRight="@dimen/dip_18"
+                android:gravity="center_vertical"
+                android:drawableRight="@mipmap/img_start"
+                style="@style/text_16"
+                android:text="群聊"/>
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_5">
 
-        <TextView
-            android:id="@+id/textInvite"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:visibility="gone"
-            android:background="@color/holo_red_light"
-            android:textColor="@color/white"
-            android:layout_alignParentBottom="true"
-            android:text="确定邀请"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
-    </RelativeLayout>
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

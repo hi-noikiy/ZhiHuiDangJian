@@ -242,6 +242,7 @@ public class Act_Login extends BaseActivity {
 
             // 登录成功
             startActivity(Act_Main.class);
+            finish();
             return;
         } else if (!TextUtils.isEmpty(currentUser)) {
             logout();

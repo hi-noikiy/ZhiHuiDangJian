@@ -130,6 +130,7 @@
         <activity android:name=".ui.activity.fgt.dept.act.Act_Branch_lead" />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Party_Member_Practice" />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Forestry_Course" />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Friend_list" />
 
 
         <activity

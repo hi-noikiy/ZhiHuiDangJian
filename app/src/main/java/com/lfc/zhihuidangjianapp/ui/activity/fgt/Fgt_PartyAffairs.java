@@ -15,6 +15,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Branch_lead;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forestry_Course;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Government_Build;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Change;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Example;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Life;
@@ -223,7 +224,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
     private void partCommunication(int position){
         switch (position){
             case 0://通讯录
-
+                startActivity(new Intent(getActivity(), Act_Mail_list.class));
                 break;
             case 1://会议连线
 
