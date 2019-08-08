@@ -130,7 +130,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
             case 1://党费缴纳
                 startActivity(new Intent(getActivity(), Act_Party_Pay.class));
                 break;
-            case 2://党关系转让
+            case 2://党关系转移
                 startActivity(new Intent(getActivity(), Act_Party_Change.class));
                 break;
             case 3://组织生活

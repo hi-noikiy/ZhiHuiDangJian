@@ -53,6 +53,7 @@ public class User {
         private String modifierId;
         private String modifierName;
         private String modifyDt;
+        //民族
         private String nation;
         private String nativePlace;
         private String number;

@@ -8,18 +8,22 @@ import com.hyphenate.chatuidemo.DemoApplication;
 import com.hyphenate.chatuidemo.DemoHelper;
 import com.lfc.zhihuidangjianapp.bean.LoginBean;
 import com.lfc.zhihuidangjianapp.image.ImageLoader;
+import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 
 public class MyApplication extends DemoApplication {
 
     private volatile static MyApplication sBaseApplication;
     private static MyApplication app;
+
     public static MyApplication getApp() {
         return app;
     }
+
     public static LoginBean.DataBean loginBean;
+    private static UserInfo mUserInfo;
 
     public static LoginBean.DataBean getLoginBean() {
-        if(loginBean==null)return new LoginBean.DataBean();
+        if (loginBean == null) return new LoginBean.DataBean();
         return loginBean;
     }
 
@@ -44,6 +48,7 @@ public class MyApplication extends DemoApplication {
         ARouter.openDebug();
         ARouter.init(this);
     }
+
     public static Context getAppContext() {
         if (sBaseApplication == null) {
             synchronized (MyApplication.class) {
@@ -57,5 +62,16 @@ public class MyApplication extends DemoApplication {
 
     public static MyApplication getApplication() {
         return sBaseApplication;
+    }
+
+    public static UserInfo getmUserInfo() {
+        if (mUserInfo == null)
+            mUserInfo = new UserInfo();
+        return mUserInfo;
+    }
+
+    public static void setmUserInfo(UserInfo mUserInfo) {
+        if (mUserInfo == null) return;
+        MyApplication.mUserInfo = mUserInfo;
     }
 }

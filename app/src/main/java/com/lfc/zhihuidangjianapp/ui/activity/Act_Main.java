@@ -34,6 +34,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.Act_SetUpc;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.Act_WeeklyReport;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
+import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.lfc.zhihuidangjianapp.widget.NoScrollViewPager;
 
 import butterknife.BindView;
@@ -94,11 +95,12 @@ public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeList
                 .queryJoinPartyInfo(MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResponseObserver<Object>(this) {
+                .subscribe(new ResponseObserver<UserInfo>(this) {
                     @Override
-                    protected void onNext(Object response) {
+                    protected void onNext(UserInfo response) {
                         Log.e("onNext=", response.toString());
                         if (response != null) {
+                            MyApplication.setmUserInfo(response);
                         }
                     }
 
