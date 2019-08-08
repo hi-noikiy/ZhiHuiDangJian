@@ -11,6 +11,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyPayment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
@@ -202,6 +203,14 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryMyTransferOrganizationalRelationsDetail")
     Observable<BaseResponse<PartyOrganiza>> queryMyTransferOrganizationalRelationsDetail(@Header("token") String token);
+
+    /**
+     * 我的党费（待缴党费信息+党费缴纳列表）
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryMyPartyPaymentHisPageList")
+    Observable<BaseResponse<ResponsePartyPayment>> queryMyPartyPaymentHisPageList(@Header("token") String token);
 
 
 }

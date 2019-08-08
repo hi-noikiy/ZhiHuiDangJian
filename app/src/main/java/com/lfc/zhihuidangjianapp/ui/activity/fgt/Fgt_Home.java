@@ -20,6 +20,7 @@ import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Detail;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Announcement;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_AnnouncementList;
@@ -130,7 +131,7 @@ public class Fgt_Home extends BaseFragment {
                             startActivity(new Intent(getContext(), Act_Demonstration_Leadership.class));
                             break;
                         case 4://缴纳党费
-                            startActivity(new Intent(getContext(), Act_Party_membershipDues.class));
+                            startActivity(new Intent(getContext(), Act_Party_Membership.class));
                             break;
 
                     }

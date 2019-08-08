@@ -13,6 +13,7 @@ import com.lfc.zhihuidangjianapp.base.BaseFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Branch_lead;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forestry_Course;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Government_Build;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
@@ -20,6 +21,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Change;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Example;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Life;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Member_Practice;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_United_Front;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Weekend_Report;
@@ -128,7 +130,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
                 startActivity(new Intent(getActivity(), Act_PartyBuildingMatrix.class));
                 break;
             case 1://党费缴纳
-                startActivity(new Intent(getActivity(), Act_Party_Pay.class));
+                startActivity(new Intent(getActivity(), Act_Party_Membership.class));
                 break;
             case 2://党关系转移
                 startActivity(new Intent(getActivity(), Act_Party_Change.class));
@@ -149,7 +151,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
     private void partInformation(int position){
         switch (position){
             case 0://党建矩阵 TODO
-                startActivity(new Intent(getActivity(), Act_PartyBuildingMatrix.class));
+                startActivity(new Intent(getActivity(), Act_Dept_dynamic.class));
                 break;
             case 1://群团统战
                 startActivity(new Intent(getActivity(), Act_United_Front.class));

@@ -41,5 +41,7 @@
     <color name="tab_select_red">#E24B1D</color>
     <color name="background">#F8F7F7</color>
     <color name="brown_grey">#a1a1a1</color>
+    <color name="app_orange">#F08713</color>
+    <color name="app_red">#E24B1D</color>
 
 </resources>

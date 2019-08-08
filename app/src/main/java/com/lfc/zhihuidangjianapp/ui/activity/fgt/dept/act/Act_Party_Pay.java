@@ -15,6 +15,7 @@ import com.lfc.zhihuidangjianapp.pay.AliPayApi;
 import com.lfc.zhihuidangjianapp.pay.WechatApi;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
 import com.lfc.zhihuidangjianapp.ui.activity.model.WechatPay;
+import com.lfc.zhihuidangjianapp.utlis.DateUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -26,13 +27,15 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class Act_Party_Pay extends BaseActivity implements AliPayApi.AliPayCalback {
 
-    private TextView tvPay;
+    private TextView tvPay, tvPayDetail;
 
-    private TextView tvWechat, tvAlipay;
+    private TextView tvWechat, tvAlipay, tvPayTime;
 
     private int payType = 0;
 
     private int event = 0;
+
+    private String pay;
 
     @Override
     protected int getLayoutId() {
@@ -51,6 +54,8 @@ public class Act_Party_Pay extends BaseActivity implements AliPayApi.AliPayCalba
         tvPay = findViewById(R.id.tv_pay);
         tvWechat = findViewById(R.id.tv_wechat);
         tvAlipay = findViewById(R.id.tv_alipay);
+        tvPayDetail = findViewById(R.id.tv_pay_detail);
+        tvPayTime = findViewById(R.id.tv_pay_time);
         initPayView();
         setEvent();
     }
@@ -75,7 +80,9 @@ public class Act_Party_Pay extends BaseActivity implements AliPayApi.AliPayCalba
 
     @Override
     protected void initData() {
-
+        pay = getIntent().getStringExtra("pay");
+        tvPayDetail.setText(pay+"元");
+        tvPayTime.setText(DateUtils.timeStampToStr(System.currentTimeMillis(), "yyyy-MM-dd"));
     }
 
     private void initPayView(){

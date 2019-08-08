@@ -56,10 +56,11 @@
                 android:text="缴纳党费"/>
 
             <TextView
+                android:id="@+id/tv_pay_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dip_10"
-                style="@style/text_25"
+                style="@style/text_20"
                 android:text="0元"/>
             <View
                 android:layout_width="match_parent"

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="40dp"
+    android:paddingTop="@dimen/dip_5"
+    android:paddingBottom="@dimen/dip_5"
+    android:paddingRight="@dimen/dip_40">
+
+    <TextView
+        android:id="@+id/tv_ship"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        style="@style/text_14_grey"
+        android:drawableLeft="@drawable/orange_point"
+        android:drawablePadding="@dimen/dip_3"
+        android:text="4月10日已缴党费"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#429B35"
+        android:text="已缴"/>
+
+</LinearLayout>
