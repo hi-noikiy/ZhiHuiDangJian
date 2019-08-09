@@ -7,6 +7,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ForestDistrict;
 import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
@@ -211,6 +212,15 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryMyPartyPaymentHisPageList")
     Observable<BaseResponse<ResponsePartyPayment>> queryMyPartyPaymentHisPageList(@Header("token") String token);
+
+    /**
+     * 分页查询林区风采信息-通过forestDistrictType林区风采类型(0:先进基层党组织1:优秀共产党员2:优秀党务工作者3:优秀党建联络员)
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryForestDistrictPageList")
+    Observable<BaseResponse<ForestDistrict>> queryForestDistrictPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 
 }

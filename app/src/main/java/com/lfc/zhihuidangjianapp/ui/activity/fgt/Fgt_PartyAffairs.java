@@ -15,6 +15,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Branch_lead;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forestry_Course;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Government_Build;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
@@ -26,6 +27,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_United_Front;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Weekend_Report;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.Fgt_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_PartyBuildingMatrix;
 import com.lfc.zhihuidangjianapp.ui.activity.model.NativePartyBody;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
@@ -207,18 +209,23 @@ public class Fgt_PartyAffairs extends BaseFragment {
      * @param position
      */
     private void partTree(int position){
+        Intent intent = new Intent(getActivity(), Act_Forest_List.class);
         switch (position){
             case 0://先进基层党
-
+                intent.putExtra("tabType", 0);
+                startActivity(intent);
                 break;
             case 1://优秀党务工作者
-
+                intent.putExtra("tabType", 1);
+                startActivity(intent);
                 break;
             case 2://优秀共产党
-
+                intent.putExtra("tabType", 2);
+                startActivity(intent);
                 break;
             case 3://党建联系员
-
+                intent.putExtra("tabType", 3);
+                startActivity(intent);
                 break;
         }
     }
