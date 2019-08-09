@@ -15,7 +15,9 @@ public class NativePartyBody {
     private List<List<PartBody>> partBodys;
 
 
-    private String[] titles = {"党建平台", "党建资讯", "示范引领", "学习强局", "林区风采", "通讯平台"};
+    private String[] titles = {"党建平台", "党建资讯",
+//            "示范引领",
+            "学习强局", "林区风采", "通讯平台"};
 
     private int[][] imageArrays = {
             {
@@ -29,11 +31,11 @@ public class NativePartyBody {
                     R.mipmap.img_dangwu_tab2_item2,
                     R.mipmap.img_dangwu_tab2_item3
             },
-            {
-                    R.mipmap.img_dangwu_tab3_item1,
-                    R.mipmap.img_dangwu_tab3_item2,
-                    R.mipmap.img_dangwu_tab3_item3
-            },
+//            {
+//                    R.mipmap.img_dangwu_tab3_item1,
+//                    R.mipmap.img_dangwu_tab3_item2,
+//                    R.mipmap.img_dangwu_tab3_item3
+//            },
             {
                     R.mipmap.img_dangwu_tab4_item1,
                     R.mipmap.img_dangwu_tab4_item2,
@@ -58,9 +60,9 @@ public class NativePartyBody {
             {
                     "党建动态", "群团统战", "廉政建设"
             },
-            {
-                    "党委示范", "支部引领", "党员实践"
-            },
+//            {
+//                    "党委示范", "支部引领", "党员实践"
+//            },
             {
                     "林草公开课", "工匠培养", "学习心得"
             },

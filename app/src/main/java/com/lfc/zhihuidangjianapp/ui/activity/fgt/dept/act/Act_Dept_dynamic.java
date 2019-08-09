@@ -32,6 +32,13 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
 
     private List<Fragment> fragments;
 
+    //0党建动态 1群团统战 2廉政建设
+    private int tabType = 0;
+
+    public static final int TAB_DEPT_ACTIVE = 0;
+    public static final int TAB_DEPT_GROUP = 1;
+    public static final int TAB_DEPT_BUILD = 2;
+
     @BindView(R.id.tab)
     CommonTabLayout tab;
     @BindView(R.id.viewPager)
@@ -50,6 +57,10 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
     @Override
     protected void initView() {
         super.initView();
+        tabType = getIntent().getIntExtra("tabType", 0);
+        if (tabType > TAB_DEPT_BUILD) {
+            tabType = TAB_DEPT_ACTIVE;
+        }
         FragPagerAdapter fpa = new FragPagerAdapter(getSupportFragmentManager());
         fpa.setFragmentList(list());
         viewPager.setOffscreenPageLimit(mTitles.length);
@@ -69,16 +80,17 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
 
             }
         });
+        tab.setCurrentTab(tabType);
         setEvent();
     }
 
     private void setEvent() {
-        findViewById(R.id.imgBack).setOnClickListener(back->finish());
+        findViewById(R.id.imgBack).setOnClickListener(back -> finish());
     }
 
-    private List<Fragment> list(){
+    private List<Fragment> list() {
         fragments = new ArrayList<>();
-        for (int i=0;i<mTitles.length;i++){
+        for (int i = 0; i < mTitles.length; i++) {
             Fgt_Dept_dynamic fgtDeptDynamic = new Fgt_Dept_dynamic();
             Bundle bundle = new Bundle();
             bundle.putInt("partyDynamicType", i);

@@ -1,6 +1,7 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -105,16 +106,16 @@ public class Fgt_PartyAffairs extends BaseFragment {
             case 1://党建资讯
                 partInformation(position);
                 break;
-            case 2://示范引领
-                partGuide(position);
-                break;
-            case 3://学习强局
+//            case 2://示范引领
+//                partGuide(position);
+//                break;
+            case 2://学习强局
                 partStrong(position);
                 break;
-            case 4://林区风采
+            case 3://林区风采
                 partTree(position);
                 break;
-            case 5://通讯平台
+            case 4://通讯平台
                 partCommunication(position);
                 break;
         }
@@ -149,15 +150,18 @@ public class Fgt_PartyAffairs extends BaseFragment {
      * @param position
      */
     private void partInformation(int position){
+        Intent intent = new Intent(getActivity(), Act_Dept_dynamic.class);
         switch (position){
             case 0://党建矩阵 TODO
-                startActivity(new Intent(getActivity(), Act_Dept_dynamic.class));
+                startActivity(intent);
                 break;
             case 1://群团统战
-                startActivity(new Intent(getActivity(), Act_United_Front.class));
+                intent.putExtra("tabType", Act_Dept_dynamic.TAB_DEPT_GROUP);
+                startActivity(intent);
                 break;
             case 2://廉政建设
-                startActivity(new Intent(getActivity(), Act_Government_Build.class));
+                intent.putExtra("tabType", Act_Dept_dynamic.TAB_DEPT_BUILD);
+                startActivity(intent);
                 break;
         }
     }
