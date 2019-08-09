@@ -19,6 +19,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forestry_Course;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Government_Build;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Organizational_Life;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Change;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Example;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Life;
@@ -139,7 +140,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
                 startActivity(new Intent(getActivity(), Act_Party_Change.class));
                 break;
             case 3://组织生活
-                startActivity(new Intent(getActivity(), Act_Party_Life.class));
+                startActivity(new Intent(getActivity(), Act_Organizational_Life.class));
                 break;
             case 4://工作周报
                 startActivity(new Intent(getActivity(), Act_Weekend_Report.class));

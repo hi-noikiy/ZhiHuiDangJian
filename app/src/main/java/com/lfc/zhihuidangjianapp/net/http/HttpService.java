@@ -10,7 +10,9 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ForestDistrict;
 import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
+import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseOrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyPayment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
@@ -221,6 +223,24 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryForestDistrictPageList")
     Observable<BaseResponse<ForestDistrict>> queryForestDistrictPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 分页查询组织生活信息
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryOrganizationalLifePageList")
+    Observable<BaseResponse<ResponseOrganizationalLife>> queryOrganizationalLifePageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 查看组织生活详情信息
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryOrganizationalLifeDetail")
+    Observable<BaseResponse<OrganizationalLifeDetail>> queryOrganizationalLifeDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 
 }
