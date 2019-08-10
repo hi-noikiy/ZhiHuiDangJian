@@ -152,7 +152,7 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.ROOT_URL + "alipay/alipayToApp")
-    Observable<BaseResponse<AliPay>> alipayToApp(@Header("token") String token);
+    Observable<BaseResponse<AliPay>> alipayToApp(@QueryMap Map<String, Object> map,@Header("token") String token);
 
     /**
      * 党员信息
@@ -242,5 +242,12 @@ public interface HttpService {
     @POST(ApiConstant.API + "/queryOrganizationalLifeDetail")
     Observable<BaseResponse<OrganizationalLifeDetail>> queryOrganizationalLifeDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
 
+    /**
+     * 新增周报
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/insertWeeklyWorkReport")
+    Observable<BaseResponse<Object>> insertWeeklyWorkReport(@Header("token") String token);
 
 }

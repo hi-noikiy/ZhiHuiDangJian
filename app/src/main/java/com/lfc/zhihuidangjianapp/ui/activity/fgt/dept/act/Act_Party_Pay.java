@@ -14,8 +14,12 @@ import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.pay.AliPayApi;
 import com.lfc.zhihuidangjianapp.pay.WechatApi;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
+import com.lfc.zhihuidangjianapp.ui.activity.model.User;
 import com.lfc.zhihuidangjianapp.ui.activity.model.WechatPay;
 import com.lfc.zhihuidangjianapp.utlis.DateUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -97,8 +101,14 @@ public class Act_Party_Pay extends BaseActivity implements AliPayApi.AliPayCalba
 
     // 支付宝支付
     private void getAliPayOrderInfo() {
+        User user = MyApplication.getmUserInfo().getUser();
+        Map<String, Object> map = new HashMap<>();
+        map.put("total_fee", pay);
+        map.put("body", user.getDisplayName()+"缴纳"+tvPayTime.getText().toString().trim()+"党费"+pay+"元");
+        map.put("memberid", user.getUserId());
+        map.put("ifSubstitute", 1);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .alipayToApp(MyApplication.getLoginBean().getToken())
+                .alipayToApp(map,MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResponseObserver<AliPay>(this) {

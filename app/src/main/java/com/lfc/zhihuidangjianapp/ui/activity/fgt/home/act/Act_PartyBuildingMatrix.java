@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,6 +16,7 @@ import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.Fgt_Dept_detail;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fgt.Fgt_PartyBuilDingMatrix;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
@@ -55,17 +57,24 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
         findViewById(R.id.imgBack).setOnClickListener(this);
         tabLayout_4 = findViewById(R.id.tl_4);
     }
+
     MyPagerAdapter mAdapter;
+
     @Override
     protected void initData() {
         mFragments.clear();
-        for (int i=0;i<mTitles.length;i++) {
-            mFragments.add(Fgt_PartyBuilDingMatrix.getInstance(i+1));
-        }
-        ViewPager vp =findViewById( R.id.vp);
+        Fgt_Dept_detail fgtDeptDetail = new Fgt_Dept_detail();
+        Bundle bundle = new Bundle();
+        bundle.putString("deptNumber", "DT000001");
+        fgtDeptDetail.setArguments(bundle);
+
+        mFragments.add(fgtDeptDetail);
+        mFragments.add(Fgt_PartyBuilDingMatrix.getInstance("10001"));
+        mFragments.add(Fgt_PartyBuilDingMatrix.getInstance("10001"));
+        ViewPager vp = findViewById(R.id.vp);
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
         vp.setAdapter(mAdapter);
-        tabLayout_4.setViewPager(vp);
+        tabLayout_4.setViewPager(vp, mTitles);
 
     }
 

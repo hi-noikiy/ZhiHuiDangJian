@@ -43,16 +43,16 @@ import io.reactivex.schedulers.Schedulers;
  * 党建矩阵fragment
  */
 public class Fgt_PartyBuilDingMatrix extends BaseFragment {
-    private int deptNumber = 1;
+    private String deptNumber = "10002";
 
     RecyclerView recyclerView;
 
     private Depts mDepts;
 
-    public static Fgt_PartyBuilDingMatrix getInstance(int arg) {
+    public static Fgt_PartyBuilDingMatrix getInstance(String arg) {
         Fgt_PartyBuilDingMatrix sf = new Fgt_PartyBuilDingMatrix();
         Bundle bundle = new Bundle();
-        bundle.putInt("deptNumber", arg);
+        bundle.putString("deptNumber", arg);
         sf.setArguments(bundle);
         return sf;
     }
@@ -67,7 +67,7 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
     @Override
     protected void initView(View rootView) {
         unbinder = ButterKnife.bind(this, rootView);
-        deptNumber = getArguments().getInt("deptNumber");
+        deptNumber = getArguments().getString("deptNumber");
         recyclerView = rootView.findViewById(R.id.recyclerView);
         setEvent();
     }
@@ -77,7 +77,7 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
 
     private void loadData() {
         Map<String, Object> map = new HashMap<>();
-        map.put("deptNumber", "1000" + deptNumber);
+        map.put("deptNumber", deptNumber);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
                 .queryDeptList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())

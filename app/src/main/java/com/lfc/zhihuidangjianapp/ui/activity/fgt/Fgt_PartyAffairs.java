@@ -1,7 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,18 +16,13 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forestry_Course;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Government_Build;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Organizational_Life;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Change;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Example;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Life;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Member_Practice;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_United_Front;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Weekend_Report;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.Fgt_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_PartyBuildingMatrix;
 import com.lfc.zhihuidangjianapp.ui.activity.model.NativePartyBody;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
