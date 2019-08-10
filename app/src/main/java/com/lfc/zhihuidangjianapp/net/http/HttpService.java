@@ -249,7 +249,7 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.API + "/insertWeeklyWorkReport")
-    Observable<BaseResponse<Object>> insertWeeklyWorkReport(@Header("token") String token);
+    Observable<BaseResponse<Object>> insertWeeklyWorkReport(@QueryMap Map<String, Object> map,@Header("token") String token);
 
     /**
      * 分页查询精选周报信息
@@ -274,5 +274,15 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryStudyStrongBureauPageList")
     Observable<BaseResponse<StudyCraftReportList>> queryStudyStrongBureauPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 新增学习强局信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/insertStudyStrongBureau")
+    Observable<BaseResponse<Object>> insertStudyStrongBureau(@QueryMap Map<String, Object> map,@Header("token") String token);
+
+
 
 }

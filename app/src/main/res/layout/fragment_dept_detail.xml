@@ -28,7 +28,7 @@
                     android:background="@mipmap/img_iconlogo"/>
 
                 <TextView
-                    android:id="@+id/tv_dept_title"
+                    android:id="@+id/tv_title"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_marginLeft="@dimen/dip_12"
@@ -43,7 +43,7 @@
                 android:orientation="vertical"
                 android:background="@color/white">
                 <TextView
-                    android:id="@+id/tv_dept_"
+                    android:id="@+id/tv_dept_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dip_15"
@@ -58,6 +58,22 @@
                     android:layout_marginTop="@dimen/dip_12"
                     android:lineSpacingExtra="@dimen/dip_8"
                     android:text="          统战部党支部共有正式党员8名。党支部在学校党委的领导下，根据机关党委工作总体部署，以邓小平理论、三个代表重要思想和科学发展观为指导，认真学习贯彻党的十八大精神，践行“尊重聚同心、团结谋发展、服务创一流”的支部承诺，以加强支部思想建设、组织建设、作风建设为主线，按照基层组织建设年和“五好党支部”建设要求，以打造团结、和谐、上进、创新部门为目标，紧紧围绕中心工作，努力建设成为学习型、创新型、服务型基层党组织。创新型、服务型基层党组织。创新型、服务型基层党组织。"/>
+
+                <TextView
+                    android:id="@+id/tv_director_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_15"
+                    style="@style/text_18"
+                    android:text="班子成员"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_member"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_12">
+
+                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
             <LinearLayout

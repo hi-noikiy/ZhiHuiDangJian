@@ -86,29 +86,7 @@ public class Act_Study_Report extends BaseActivity {
 
     private void setEvent() {
         create.setOnClickListener(ceate->{
-            startActivity(new Intent(this, Act_Write_Weekend_Log.class));
-//            RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-//                    .queryOrganizationalLifeDetail(map, MyApplication.getLoginBean().getToken())
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new ResponseObserver<OrganizationalLifeDetail>(getActivity()) {
-//
-//                        @Override
-//                        protected void onNext(OrganizationalLifeDetail response) {
-//                            Log.e("onNext= ", response.toString());
-//                            if(response==null)return;
-//                            OrganizationalLife dynamic = response.getOrganizationalLife();
-//                            tvTitle.setText(dynamic.getTitle());
-//                            tvAuthor.setText(dynamic.getAuthor());
-//                            tvContent.setText(Html.fromHtml(dynamic.getComment()));
-//                        }
-//
-//                        @Override
-//                        protected void onError(Throwable e) {
-//                            super.onError(e);
-//                            Log.e("Throwable= ", e.getMessage());
-//                        }
-//                    }.actual());
+            startActivity(new Intent(this, Act_Write_Study_Report.class));
         });
     }
 

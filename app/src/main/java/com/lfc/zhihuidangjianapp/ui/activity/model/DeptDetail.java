@@ -11,6 +11,7 @@ public class DeptDetail {
 
     private Dept dept;
     private List<DeptDetailUser> userlist;
+    private List<String> directorNameList;
 
     public Dept getDept() {
         return dept;
@@ -26,5 +27,13 @@ public class DeptDetail {
 
     public void setUserlist(List<DeptDetailUser> userlist) {
         this.userlist = userlist;
+    }
+
+    public List<String> getDirectorNameList() {
+        return directorNameList;
+    }
+
+    public void setDirectorNameList(List<String> directorNameList) {
+        this.directorNameList = directorNameList;
     }
 }

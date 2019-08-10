@@ -5,8 +5,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.gyf.barlibrary.ImmersionBar;
@@ -18,21 +16,18 @@ import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Detail;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Announcement;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_AnnouncementList;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Demonstration_Leadership;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Emulate;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_PartyBuildingMatrix;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Party_membershipDues;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_WebView;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.adapter.HomeAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.item.BannerViewHolder;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
-import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.widget.MyListView;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -65,8 +60,8 @@ public class Fgt_Home extends BaseFragment {
     private HomeAdapter homeAdapter;
     private RecyclerView recyclerView;
     private int[] images = {R.mipmap.img_home_tab1, R.mipmap.img_home_tab2,
-            R.mipmap.img_home_tab3,R.mipmap.img_home_tab4,R.mipmap.img_home_tab5};
-    private String[] lables = {"党建矩阵", "学习强局", "党建动态", "专题专栏", "缴纳党费"};
+            R.mipmap.img_home_tab3, R.mipmap.img_home_tab4, R.mipmap.img_home_tab5,R.mipmap.img_dangwu_tab5_item1};
+    private String[] lables = {"党建矩阵", "学习强局", "党建动态", "专题专栏", "缴纳党费", "林区风采"};
 
     @Override
     protected int getLayoutId() {
@@ -109,15 +104,15 @@ public class Fgt_Home extends BaseFragment {
         setFuncRecyclerView();
     }
 
-    private void setFuncRecyclerView(){
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+    private void setFuncRecyclerView() {
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         recyclerView.setAdapter(new CommonAdapter<String>(getActivity(), R.layout.item_home_func, Arrays.asList(lables)) {
             @Override
             protected void convert(ViewHolder holder, String data, int position) {
                 holder.setText(R.id.text, data);
                 holder.setImageDrawable(R.id.icon, getResources().getDrawable(images[position]));
-                holder.getConvertView().setOnClickListener(func->{
-                    switch (position){
+                holder.getConvertView().setOnClickListener(func -> {
+                    switch (position) {
                         case 0://党建矩阵
                             startActivity(new Intent(getContext(), Act_PartyBuildingMatrix.class));
                             break;
@@ -132,6 +127,11 @@ public class Fgt_Home extends BaseFragment {
                             break;
                         case 4://缴纳党费
                             startActivity(new Intent(getContext(), Act_Party_Membership.class));
+                            break;
+                        case 5://林区风采
+                            Intent intent = new Intent(getActivity(), Act_Forest_List.class);
+                            intent.putExtra("tabType", 0);
+                            startActivity(intent);
                             break;
 
                     }
@@ -205,12 +205,12 @@ public class Fgt_Home extends BaseFragment {
                     @Override
                     protected void onError(Throwable e) {
                         super.onError(e);
-                        Log.e("Throwable= ",e.getMessage());
+                        Log.e("Throwable= ", e.getMessage());
                     }
                 }.actual());
     }
 
-    private void setBanner(AppConfigLists response){
+    private void setBanner(AppConfigLists response) {
         banner.setImages(response.getAppConfigList().getDatas()).setImageLoader(new BannerViewHolder()).start();
         banner.setOnBannerListener(new OnBannerListener() {
             @Override

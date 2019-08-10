@@ -19,6 +19,7 @@ import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -29,16 +30,17 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @date: 2019-08-09
  * @autror: guojian
- * @description:
+ * @description: 党建矩阵详情
  */
 public class Fgt_Dept_detail extends BaseFragment {
 
     TextView tvDeptTitle;
     TextView tvBriefIntrodection;
     TextView tvAddress;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, rvMember;
 
     private String deptNumber;
+    private View mRootView;
 
     @Override
     protected int getLayoutId() {
@@ -47,10 +49,12 @@ public class Fgt_Dept_detail extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
-        tvDeptTitle = rootView.findViewById(R.id.tv_dept_title);
+        mRootView = rootView;
+        tvDeptTitle = rootView.findViewById(R.id.tv_title);
         tvBriefIntrodection = rootView.findViewById(R.id.tv_brief_introduction);
         tvAddress = rootView.findViewById(R.id.tv_address);
         recyclerView = rootView.findViewById(R.id.rv_group);
+        rvMember = rootView.findViewById(R.id.rv_member);
     }
 
     @Override
@@ -88,11 +92,15 @@ public class Fgt_Dept_detail extends BaseFragment {
         }
 //        ButterKnife.bind(this);
         tvDeptTitle.setText(dept.getDeptName());
-        tvBriefIntrodection.setText(dept.getBriefIntroduction());
+        if(dept.getBriefIntroduction()!=null) {
+            tvBriefIntrodection.setText(dept.getBriefIntroduction());
+        }else{
+            mRootView.findViewById(R.id.tv_dept_title).setVisibility(View.GONE);
+        }
         tvAddress.setText(dept.getDeptAddress());
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CommonAdapter<DeptDetailUser>(getActivity(), R.layout.item_dept_user, response.getUserlist()) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(MyApplication.getAppContext()));
+        recyclerView.setAdapter(new CommonAdapter<DeptDetailUser>(MyApplication.getAppContext(), R.layout.item_dept_user, response.getUserlist()) {
             @Override
             protected void convert(ViewHolder holder, DeptDetailUser data, int position) {
                 holder.setText(R.id.tv_name, data.getDisplayName());
@@ -101,6 +109,19 @@ public class Fgt_Dept_detail extends BaseFragment {
             }
 
         });
+        List<String> members = response.getDirectorNameList();
+        if(members!=null&&!members.isEmpty()){
+            rvMember.setLayoutManager(new LinearLayoutManager(getActivity()));
+            rvMember.setAdapter(new CommonAdapter<String>(getActivity(), R.layout.item_director_member, members) {
+                @Override
+                protected void convert(ViewHolder holder, String data, int position) {
+                    holder.setText(R.id.tv_content, data);
+                }
+
+            });
+        }else{
+            mRootView.findViewById(R.id.tv_director_title).setVisibility(View.GONE);
+        }
     }
 
 }
