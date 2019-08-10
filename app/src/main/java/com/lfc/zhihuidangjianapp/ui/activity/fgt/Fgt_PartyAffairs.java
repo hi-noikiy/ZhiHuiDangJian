@@ -22,6 +22,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Change;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Example;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Member_Practice;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Study_Report;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Weekend_Report;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_PartyBuildingMatrix;
 import com.lfc.zhihuidangjianapp.ui.activity.model.NativePartyBody;
@@ -194,7 +195,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
                 startActivity(new Intent(getActivity(), Act_Craftsman_Training.class));
                 break;
             case 2://学习心得
-
+                startActivity(new Intent(getActivity(), Act_Study_Report.class));
                 break;
         }
     }

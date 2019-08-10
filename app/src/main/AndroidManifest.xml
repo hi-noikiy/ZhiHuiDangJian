@@ -135,6 +135,7 @@
         <activity android:name=".ui.activity.fgt.dept.act.Act_Organizational_Life" />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Organizational_Life_Detail" />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Write_Weekend_Log" />
+        <activity android:name=".ui.activity.fgt.dept.act.Act_Study_Report" />
 
 
         <activity

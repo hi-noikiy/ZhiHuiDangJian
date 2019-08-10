@@ -1,10 +1,8 @@
 package com.lfc.zhihuidangjianapp.bean;
 
-/**
- * @author snkso <snkso@foxmail.com>
- */
-
 import com.flyco.tablayout.listener.CustomTabEntity;
+
+
 
 public class TabEntity implements CustomTabEntity {
     public String title;

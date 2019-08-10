@@ -1,39 +1,30 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.lfc.zhihuidangjianapp.R;
-import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.bean.TabEntity;
-import com.lfc.zhihuidangjianapp.net.http.HttpService;
-import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
-import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.FragPagerAdapter;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.Fgt_Study_Report;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.Fgt_Weekend_Report;
-import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLife;
-import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 /**
  * @date: 2019-08-06
  * @autror: guojian
- * @description:
+ * @description: 学习心得
  */
-public class Act_Weekend_Report extends BaseActivity {
+public class Act_Study_Report extends BaseActivity {
 
     private ImageView create;
 
@@ -49,7 +40,7 @@ public class Act_Weekend_Report extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_weekend_report;
+        return R.layout.activity_study_report;
     }
 
     @Override
@@ -68,7 +59,11 @@ public class Act_Weekend_Report extends BaseActivity {
         fragments = new ArrayList<>();
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i]));
-            fragments.add(new Fgt_Weekend_Report());
+            Fgt_Study_Report fgt_study_report = new Fgt_Study_Report();
+            Bundle bundle = new Bundle();
+            bundle.putInt("studyStrongBureauType", i);
+            fgt_study_report.setArguments(bundle);
+            fragments.add(fgt_study_report);
         }
         tab.setTabData(mTabEntities);
         tab.setOnTabSelectListener(new OnTabSelectListener() {

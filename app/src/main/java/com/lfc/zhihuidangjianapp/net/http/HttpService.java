@@ -16,6 +16,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseOrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyPayment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
+import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftReportList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
@@ -249,5 +250,29 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/insertWeeklyWorkReport")
     Observable<BaseResponse<Object>> insertWeeklyWorkReport(@Header("token") String token);
+
+    /**
+     * 分页查询精选周报信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryWeeklyWorkReportTopPageList")
+    Observable<BaseResponse<Object>> queryWeeklyWorkReportTopPageList(@Header("token") String token);
+
+    /**
+     * 分页查询我的周报信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryMyWeeklyWorkReportPageList")
+    Observable<BaseResponse<Object>> queryMyWeeklyWorkReportPageList(@Header("token") String token);
+
+    /**
+     * 分页查询学习强局信息 -- 学习心得传studyStrongBureauType=2
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryStudyStrongBureauPageList")
+    Observable<BaseResponse<StudyCraftReportList>> queryStudyStrongBureauPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 }
