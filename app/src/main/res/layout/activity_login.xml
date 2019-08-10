@@ -34,6 +34,8 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dip_12"
+                android:layout_marginRight="@dimen/dip_12"
                 app:cardCornerRadius="10dp"
                 app:contentPadding="6dp"
                 android:layout_margin="3dp">
@@ -113,7 +115,9 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dip_10"
+                        android:paddingBottom="@dimen/dip_10">
                         <EditText
                             android:id="@+id/et_code"
                             android:layout_width="match_parent"
@@ -136,7 +140,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:background="@color/backLine" />
                 </LinearLayout>
 
