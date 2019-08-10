@@ -45,7 +45,7 @@ public class Act_TitleDetails extends BaseActivity {
         if(getIntent().getStringExtra("title")!=null){
             String title = getIntent().getStringExtra("title");
             String context = getIntent().getStringExtra("context");
-            TitleDetail_title.setText(title);
+            TitleDetail_title.setText("专题专栏");
 //            WebSettings settings = titleDetaile_context.getSettings();
 //            settings.setUseWideViewPort(true);
 //            settings.setLoadWithOverviewMode(true);
