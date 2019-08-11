@@ -49,9 +49,16 @@
             android:visibility="gone"/>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/text_14"
+        android:padding="@dimen/dip_10"/>
+
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"/>
+        />
 </LinearLayout>

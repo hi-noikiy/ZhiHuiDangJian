@@ -3,6 +3,7 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -41,6 +42,7 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
     SlidingTabLayout tab;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    TextView tvAppTitle;
 
     @Override
     protected int getLayoutId() {
@@ -55,6 +57,9 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
     @Override
     protected void initView() {
         super.initView();
+        tvAppTitle = findViewById(R.id.tv_apptitle);
+        tvAppTitle.setText("党建资讯");
+
         tabType = getIntent().getIntExtra("tabType", 0);
         if (tabType > TAB_DEPT_BUILD) {
             tabType = TAB_DEPT_ACTIVE;

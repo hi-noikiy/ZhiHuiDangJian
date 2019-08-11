@@ -163,6 +163,7 @@ public class Fgt_Demonstration_Leadership extends BaseFragment implements View.O
                 Intent intent = new Intent();
                 intent.putExtra("title", datas.get(position).getTitle());
                 intent.putExtra("context", datas.get(position).getComment());
+                intent.putExtra("context", datas.get(position).getComment());
                 intent.setClass(getContext(), Act_TitleDetails.class);
                 startActivity(intent);
                 break;

@@ -164,4 +164,7 @@ dependencies {
     //bugly
     implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    //https://github.com/SufficientlySecure/html-textview
+    implementation 'org.sufficientlysecure:html-textview:3.6'
 }

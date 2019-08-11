@@ -22,6 +22,8 @@ public class Act_TitleDetails extends BaseActivity {
     TextView TitleDetail_title;
     @BindView(R.id.titleDetaile_context)
     WebView titleDetaile_context;
+
+    TextView tvTitle;
     @Override
     protected int getLayoutId() {
         return R.layout.act_titledetails;
@@ -42,6 +44,9 @@ public class Act_TitleDetails extends BaseActivity {
                 finish();
             }
         });
+        tvTitle = findViewById(R.id.tv_title);
+
+
         if(getIntent().getStringExtra("title")!=null){
             String title = getIntent().getStringExtra("title");
             String context = getIntent().getStringExtra("context");
@@ -51,6 +56,7 @@ public class Act_TitleDetails extends BaseActivity {
 //            settings.setLoadWithOverviewMode(true);
 //            settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 //            settings.setJavaScriptEnabled(true);
+            tvTitle.setText(title);
             titleDetaile_context.loadDataWithBaseURL(null, context, "text/html" , "utf-8", null);
         }
 

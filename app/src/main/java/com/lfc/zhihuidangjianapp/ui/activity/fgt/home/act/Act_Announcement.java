@@ -33,6 +33,7 @@ public class Act_Announcement extends BaseActivity {
     ImageView imgSearch;
     @BindView(R.id.webView)
     WebView webView;
+    TextView tvTitle;
 
     @Override
     protected int getLayoutId() {
@@ -48,28 +49,13 @@ public class Act_Announcement extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
         initImmersionBar(1);
+        tvTitle = findViewById(R.id.tv_title);
     }
 
     @Override
     protected void initData() {
         noticeAnnouncementId = getIntent().getStringExtra("id");
         queryNoticeAnnouncementDetail();
-//        PresenterAboutMain presenterAboutMain = new PresenterAboutMain(this);
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("noticeAnnouncementId", getIntent().getStringExtra("id"));
-//        presenterAboutMain.apiAppApiQueryNoticeAnnouncementDetail(map, new MainAboutMain.IView() {
-//            @Override
-//            public void Success(int type, Object bean) {
-//                BaseBean<NoticeAnnouncementsBean> noticeAnnouncementsBeanBaseBean = (BaseBean<NoticeAnnouncementsBean>) bean;
-//                textTitle.setText(noticeAnnouncementsBeanBaseBean.getData().getNoticeAnnouncement().getAnnouncementTitle());
-//                webView.loadDataWithBaseURL(null, noticeAnnouncementsBeanBaseBean.getData().getNoticeAnnouncement().getAnnouncementComtent(), "text/html", "UTF-8", null);
-//            }
-//
-//            @Override
-//            public void Failed(int type, String e) {
-//                ToastUtils.show(e);
-//            }
-//        });
     }
 
     @OnClick(R.id.imgBack)
@@ -98,6 +84,7 @@ public class Act_Announcement extends BaseActivity {
                 Gson gson = new Gson();
                 queryNoticeAnnouncementDetailBean entity = gson.fromJson(succeed, queryNoticeAnnouncementDetailBean.class);
                 if (entity.getCode() == 0) {
+                    tvTitle.setText(entity.getData().getNoticeAnnouncement().getAnnouncementTitle());
                     webView.loadDataWithBaseURL(null, entity.getData().getNoticeAnnouncement().getAnnouncementComtent(), "text/html", "UTF-8", null);
                 }
             }

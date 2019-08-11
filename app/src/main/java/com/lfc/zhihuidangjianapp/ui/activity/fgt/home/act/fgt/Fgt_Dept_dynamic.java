@@ -28,6 +28,9 @@ import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import org.sufficientlysecure.htmltextview.HtmlAssetsImageGetter;
+import org.sufficientlysecure.htmltextview.HtmlTextView;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,8 +96,10 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
             @Override
             protected void convert(ViewHolder holder, Dynamic data, int position) {
                 holder.setText(R.id.tv_title, data.getTitle());
-                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-                tvContent.setText(Html.fromHtml(data.getComment()));
+                HtmlTextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
+//                tvContent.setText(Html.fromHtml(data.getComment()));
+                tvContent.setHtml(data.getComment(),
+                        new HtmlAssetsImageGetter(tvContent));
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 String url = ApiConstant.ROOT_URL+data.getThumbnail_url();
                 Glide.with(getActivity()).load(url).into(image);
