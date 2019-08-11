@@ -23,7 +23,9 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -92,33 +94,31 @@ public class Act_Weekend_Report extends BaseActivity {
     private void setEvent() {
         create.setOnClickListener(ceate->{
             startActivity(new Intent(this, Act_Write_Weekend_Log.class));
-//            RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-//                    .queryOrganizationalLifeDetail(map, MyApplication.getLoginBean().getToken())
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(new ResponseObserver<OrganizationalLifeDetail>(getActivity()) {
-//
-//                        @Override
-//                        protected void onNext(OrganizationalLifeDetail response) {
-//                            Log.e("onNext= ", response.toString());
-//                            if(response==null)return;
-//                            OrganizationalLife dynamic = response.getOrganizationalLife();
-//                            tvTitle.setText(dynamic.getTitle());
-//                            tvAuthor.setText(dynamic.getAuthor());
-//                            tvContent.setText(Html.fromHtml(dynamic.getComment()));
-//                        }
-//
-//                        @Override
-//                        protected void onError(Throwable e) {
-//                            super.onError(e);
-//                            Log.e("Throwable= ", e.getMessage());
-//                        }
-//                    }.actual());
         });
     }
 
     @Override
     protected void initData() {
-
+        //精选周报
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("studyStrongBureauType", 2);
+//        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+//                .queryWeeklyWorkReportTopPageList( map, MyApplication.getLoginBean().getToken())
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new ResponseObserver<Object>(getActivity()) {
+//
+//                    @Override
+//                    protected void onNext(Object response) {
+//                        Log.e("onNext= ", response.toString());
+//                        if(response==null)return;
+//                    }
+//
+//                    @Override
+//                    protected void onError(Throwable e) {
+//                        super.onError(e);
+//                        Log.e("Throwable= ", e.getMessage());
+//                    }
+//                }.actual());
     }
 }

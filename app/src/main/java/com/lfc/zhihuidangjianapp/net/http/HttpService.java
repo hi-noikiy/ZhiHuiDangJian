@@ -135,7 +135,16 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.API + "/queryStudyStrongBureauConsultationPageList")
-    Observable<BaseResponse<StudyCraftTrainingList>> queryStudyStrongBureauConsultationPageList(@Header("token") String token);
+    Observable<BaseResponse<StudyCraftTrainingList>> queryStudyStrongBureauConsultationPageList(@QueryMap Map<String, Object> map,@Header("token") String token);
+
+    /**
+     * 分页查询工匠培养-林业技能培养
+     *
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryStudyStrongBureauCraftsmanPageList")
+    Observable<BaseResponse<StudyCraftTrainingList>> queryStudyStrongBureauCraftsmanPageList(@QueryMap Map<String, Object> map,@Header("token") String token);
 
     /**
      * 微信支付订单
@@ -282,6 +291,15 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/insertStudyStrongBureau")
     Observable<BaseResponse<Object>> insertStudyStrongBureau(@QueryMap Map<String, Object> map,@Header("token") String token);
+
+    /**
+     * 分页查询精选周报信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryWeeklyWorkReportTopPageList")
+    Observable<BaseResponse<Object>> queryWeeklyWorkReportTopPageList(@QueryMap Map<String, Object> map,@Header("token") String token);
+
 
 
 

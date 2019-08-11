@@ -1,25 +1,19 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
-import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
-import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
-import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -46,6 +40,8 @@ public class Act_Write_Log extends BaseActivity {
 
     private String[] contents = {"", "", "", ""};
 
+    private EditText etTitle;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_write_log;
@@ -62,6 +58,9 @@ public class Act_Write_Log extends BaseActivity {
         initImmersionBar(0);
         recyclerView = findViewById(R.id.recyclerView);
         tvSubmit = findViewById(R.id.tv_submit);
+        etTitle = findViewById(R.id.et_title);
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new CommonAdapter<String>(Act_Write_Log.this, R.layout.item_write_log, Arrays.asList(titles)) {
             @Override
@@ -101,6 +100,7 @@ public class Act_Write_Log extends BaseActivity {
             for (int i=0;i<contents.length;i++){
                 map.put("comment"+(i+1), contents[i]);
             }
+            map.put("title", etTitle.getText().toString().trim());
             RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
                     .insertWeeklyWorkReport( map,MyApplication.getLoginBean().getToken())
                     .subscribeOn(Schedulers.io())
@@ -125,6 +125,9 @@ public class Act_Write_Log extends BaseActivity {
     }
 
     private boolean unWriteLog(){
+        if(etTitle.getText().toString().trim().isEmpty()){
+            return false;
+        }
         for (String s: contents){
             if(!s.isEmpty()){
                 return false;

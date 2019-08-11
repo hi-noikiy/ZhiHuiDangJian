@@ -22,8 +22,8 @@ android {
         applicationId "com.lfc.zhihuidangjianapp"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.0.3"
+        versionCode 5
+        versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
         multiDexEnabled true
@@ -160,4 +160,8 @@ dependencies {
 
     //rxbus
     implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
+
+    //bugly
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 }

@@ -65,8 +65,10 @@ public class Act_Craftsman_Training extends BaseActivity {
 
     @Override
     protected void initData() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("studyStrongBureauType", 1);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .queryStudyStrongBureauConsultationPageList( MyApplication.getLoginBean().getToken())
+                .queryStudyStrongBureauCraftsmanPageList( map,MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResponseObserver<StudyCraftTrainingList>(getActivity()) {
@@ -101,6 +103,7 @@ public class Act_Craftsman_Training extends BaseActivity {
                 holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
                     Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
                     intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");
+                    intent.putExtra("appTitle", "工匠培养");
                     startActivity(intent);
                 });
             }

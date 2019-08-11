@@ -9,6 +9,7 @@ import com.hyphenate.chatuidemo.DemoHelper;
 import com.lfc.zhihuidangjianapp.bean.LoginBean;
 import com.lfc.zhihuidangjianapp.image.ImageLoader;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
+import com.tencent.bugly.crashreport.CrashReport;
 
 public class MyApplication extends DemoApplication {
 
@@ -47,6 +48,8 @@ public class MyApplication extends DemoApplication {
         ARouter.openLog();     // Print log
         ARouter.openDebug();
         ARouter.init(this);
+        //bugly
+        CrashReport.initCrashReport(getApplicationContext(), "4040802878", false);
     }
 
     public static Context getAppContext() {

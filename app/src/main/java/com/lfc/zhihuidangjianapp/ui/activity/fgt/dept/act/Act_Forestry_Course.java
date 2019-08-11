@@ -24,10 +24,14 @@ import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
+ * 林草公开课
  * @date: 2019-08-06
  * @autror: guojian
  * @description:
@@ -52,14 +56,16 @@ public class Act_Forestry_Course extends BaseActivity {
         initImmersionBar(0);
         recyclerView = findViewById(R.id.recyclerView);
         tvTitle = findViewById(R.id.tv_title);
-        tvTitle.setText("工匠培养");
+        tvTitle.setText("林草公开课");
         findViewById(R.id.imgBack).setOnClickListener(back->finish());
     }
 
     @Override
     protected void initData() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("studyStrongBureauType", 0);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .queryStudyStrongBureauConsultationPageList( MyApplication.getLoginBean().getToken())
+                .queryStudyStrongBureauConsultationPageList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResponseObserver<StudyCraftTrainingList>(getActivity()) {
@@ -92,6 +98,7 @@ public class Act_Forestry_Course extends BaseActivity {
                 holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
                     Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
                     intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");
+                    intent.putExtra("appTitle", "林草公开课");
                     startActivity(intent);
                 });
             }

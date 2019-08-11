@@ -30,7 +30,9 @@ public class Act_Strong_Study_Experience extends BaseActivity {
 
     private String studyStrongBureauId;
 
-    private TextView tvTitle, tvAuthor, tvContent;
+    private TextView tvTitle, tvAuthor, tvContent, tvAppTitle;
+
+    private String appTitle = "学习心得";
 
     @Override
     protected int getLayoutId() {
@@ -49,11 +51,15 @@ public class Act_Strong_Study_Experience extends BaseActivity {
         tvTitle = findViewById(R.id.tv_title);
         tvAuthor = findViewById(R.id.tv_author);
         tvContent = findViewById(R.id.tv_content);
+        tvAppTitle = findViewById(R.id.app_title);
     }
 
     @Override
     protected void initData() {
         studyStrongBureauId = getIntent().getStringExtra("studyStrongBureauId");
+        appTitle = getIntent().getStringExtra("appTitle");
+
+        tvAppTitle.setText(appTitle);
         Map<String, Object> map = new HashMap<>();
         map.put("studyStrongBureauId", studyStrongBureauId);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)

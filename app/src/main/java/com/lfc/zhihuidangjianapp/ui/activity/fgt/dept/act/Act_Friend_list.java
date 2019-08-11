@@ -31,7 +31,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 好友列表
+ * 通讯录列表
  */
 public class Act_Friend_list extends BaseActivity {
 
@@ -97,6 +97,8 @@ public class Act_Friend_list extends BaseActivity {
                 holder.setText(R.id.tv_name, data.getSealName());
                 ImageView image = holder.getConvertView().findViewById(R.id.iv_head);
                 Glide.with(holder.getConvertView().getContext()).load(ApiConstant.ROOT_URL+data.getImgAddress()).into(image);
+                holder.setText(R.id.tv_content, data.getSubordinatePartyGroup());
+                holder.setText(R.id.tv_tell, data.getMobileNumber());
             }
 
         });

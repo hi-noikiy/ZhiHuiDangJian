@@ -1,30 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="65dp"
-    android:background="@color/white"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingLeft="18dp"
-    android:paddingRight="36dp">
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/dip_12"
+    android:paddingRight="@dimen/dip_12"
+    android:paddingTop="@dimen/dip_2"
+    android:paddingBottom="@dimen/dip_2">
 
     <ImageView
         android:id="@+id/iv_head"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:src="@mipmap/image_loading" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/tv_name"
-        style="@style/text_20"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dip_12"
-        android:drawableRight="@drawable/selector_check"
-        android:layout_weight="1"
-        android:text="123" />
+        style="@style/text_14"
+        app:layout_constraintLeft_toRightOf="@+id/iv_head"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="姓名"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_14"
+        android:layout_marginLeft="110dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="职务"/>
+
+    <TextView
+        android:id="@+id/tv_tell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_14"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="联系电话"/>
 
 
-</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
