@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lfc.zhihuidangjianapp.R;
@@ -22,8 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -38,6 +37,7 @@ public class Fgt_Dept_detail extends BaseFragment {
     TextView tvBriefIntrodection;
     TextView tvAddress;
     RecyclerView recyclerView, rvMember;
+    private LinearLayout viewMember;
 
     private String deptNumber;
     private View mRootView;
@@ -55,6 +55,7 @@ public class Fgt_Dept_detail extends BaseFragment {
         tvAddress = rootView.findViewById(R.id.tv_address);
         recyclerView = rootView.findViewById(R.id.rv_group);
         rvMember = rootView.findViewById(R.id.rv_member);
+        viewMember = rootView.findViewById(R.id.view_member);
     }
 
     @Override
@@ -99,16 +100,20 @@ public class Fgt_Dept_detail extends BaseFragment {
         }
         tvAddress.setText(dept.getDeptAddress());
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(MyApplication.getAppContext()));
-        recyclerView.setAdapter(new CommonAdapter<DeptDetailUser>(MyApplication.getAppContext(), R.layout.item_dept_user, response.getUserlist()) {
-            @Override
-            protected void convert(ViewHolder holder, DeptDetailUser data, int position) {
-                holder.setText(R.id.tv_name, data.getDisplayName());
-                holder.setText(R.id.tv_content, data.getSubordinatePartyGroup());
-                holder.setText(R.id.tv_tell, data.getMobileNumber());
-            }
+        if(response.getUserlist()!=null&&!response.getUserlist().isEmpty()) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(MyApplication.getAppContext()));
+            recyclerView.setAdapter(new CommonAdapter<DeptDetailUser>(MyApplication.getAppContext(), R.layout.item_dept_user, response.getUserlist()) {
+                @Override
+                protected void convert(ViewHolder holder, DeptDetailUser data, int position) {
+                    holder.setText(R.id.tv_name, data.getDisplayName());
+                    holder.setText(R.id.tv_content, data.getSubordinatePartyGroup());
+                    holder.setText(R.id.tv_tell, data.getMobileNumber());
+                }
 
-        });
+            });
+        }else{
+            viewMember.setVisibility(View.GONE);
+        }
         List<String> members = response.getDirectorNameList();
         if(members!=null&&!members.isEmpty()){
             rvMember.setLayoutManager(new LinearLayoutManager(getActivity()));

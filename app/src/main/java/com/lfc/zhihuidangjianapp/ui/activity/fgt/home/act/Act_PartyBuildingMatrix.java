@@ -63,14 +63,10 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
     @Override
     protected void initData() {
         mFragments.clear();
-        Fgt_Dept_detail fgtDeptDetail = new Fgt_Dept_detail();
-        Bundle bundle = new Bundle();
-        bundle.putString("deptNumber", "DT000001");
-        fgtDeptDetail.setArguments(bundle);
+        mFragments.add(getDetailFragment("DT000001"));
+        mFragments.add(getDetailFragment("10002"));
+        mFragments.add(Fgt_PartyBuilDingMatrix.getInstance("10001"));
 
-        mFragments.add(fgtDeptDetail);
-        mFragments.add(Fgt_PartyBuilDingMatrix.getInstance("10001"));
-        mFragments.add(Fgt_PartyBuilDingMatrix.getInstance("10001"));
         ViewPager vp = findViewById(R.id.vp);
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
         vp.setAdapter(mAdapter);
@@ -78,6 +74,13 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
 
     }
 
+    private Fgt_Dept_detail getDetailFragment(String deptNumber){
+        Fgt_Dept_detail fgtDeptDetail = new Fgt_Dept_detail();
+        Bundle bundle = new Bundle();
+        bundle.putString("deptNumber", deptNumber);
+        fgtDeptDetail.setArguments(bundle);
+        return fgtDeptDetail;
+    }
 
     @Override
     public void onClick(View v) {

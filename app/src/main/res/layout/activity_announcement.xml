@@ -33,9 +33,9 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text=""
+            android:text="公告公示"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="18dp" />
 
         <ImageView
             android:id="@+id/imgSearch"

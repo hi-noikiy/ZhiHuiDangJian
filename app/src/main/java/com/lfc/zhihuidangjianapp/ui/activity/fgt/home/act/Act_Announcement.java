@@ -98,7 +98,6 @@ public class Act_Announcement extends BaseActivity {
                 Gson gson = new Gson();
                 queryNoticeAnnouncementDetailBean entity = gson.fromJson(succeed, queryNoticeAnnouncementDetailBean.class);
                 if (entity.getCode() == 0) {
-                    textTitle.setText(entity.getData().getNoticeAnnouncement().getAnnouncementTitle());
                     webView.loadDataWithBaseURL(null, entity.getData().getNoticeAnnouncement().getAnnouncementComtent(), "text/html", "UTF-8", null);
                 }
             }
