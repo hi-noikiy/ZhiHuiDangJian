@@ -8,11 +8,15 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 
+import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
+import com.lfc.zhihuidangjianapp.bean.TabEntity;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
@@ -23,6 +27,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -37,9 +42,11 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
 
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
-    SlidingTabLayout tabLayout_4;
+    CommonTabLayout tab;
 
     private int deptNumber = 1;
+
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -55,7 +62,7 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
     protected void initView() {
         ImmersionBar.with(this).statusBarDarkFont(true).init();
         findViewById(R.id.imgBack).setOnClickListener(this);
-        tabLayout_4 = findViewById(R.id.tl_4);
+        tab = findViewById(R.id.tl_4);
     }
 
     MyPagerAdapter mAdapter;
@@ -70,11 +77,26 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
         ViewPager vp = findViewById(R.id.vp);
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
         vp.setAdapter(mAdapter);
-        tabLayout_4.setViewPager(vp, mTitles);
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i]));
+        }
+        tab.setTabData(mTabEntities);
+        tab.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                vp.setCurrentItem(position);
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+//        tab.setTabData(vp);
 
     }
 
-    private Fgt_Dept_detail getDetailFragment(String deptNumber){
+    private Fgt_Dept_detail getDetailFragment(String deptNumber) {
         Fgt_Dept_detail fgtDeptDetail = new Fgt_Dept_detail();
         Bundle bundle = new Bundle();
         bundle.putString("deptNumber", deptNumber);

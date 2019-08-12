@@ -67,7 +67,7 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
                 .queryPartyDynamicPageList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResponseObserver<ResponsePartyDynamicList>(getActivity()) {
+                .subscribe(new ResponseObserver<ResponsePartyDynamicList>(MyApplication.getAppContext()) {
 
                     @Override
                     protected void onNext(ResponsePartyDynamicList response) {
@@ -96,15 +96,15 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
             @Override
             protected void convert(ViewHolder holder, Dynamic data, int position) {
                 holder.setText(R.id.tv_title, data.getTitle());
-                HtmlTextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-//                tvContent.setText(Html.fromHtml(data.getComment()));
-                tvContent.setHtml(data.getComment(),
-                        new HtmlAssetsImageGetter(tvContent));
+                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
+                tvContent.setText(Html.fromHtml(data.getComment()));
+//                tvContent.setHtml(data.getComment(),
+//                        new HtmlAssetsImageGetter(tvContent));
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 String url = ApiConstant.ROOT_URL+data.getThumbnail_url();
-                Glide.with(getActivity()).load(url).into(image);
+                Glide.with(MyApplication.getAppContext()).load(url).into(image);
                 holder.getConvertView().setOnClickListener(item->{
-                    Intent intent = new Intent(getActivity(), Act_Dept_Dynamic_Detail.class);
+                    Intent intent = new Intent(MyApplication.getAppContext(), Act_Dept_Dynamic_Detail.class);
                     intent.putExtra("partyDynamicId", data.getParty_dynamic_id()+"");
                     startActivity(intent);
                 });
@@ -113,8 +113,8 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
         });
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 DividerItemDecoration.VERTICAL_LIST,
-                ContextCompat.getColor(getActivity(), R.color.divider_list),
-                DispalyUtil.dp2px(getActivity(), 5),
+                ContextCompat.getColor(MyApplication.getAppContext(), R.color.divider_list),
+                DispalyUtil.dp2px(MyApplication.getAppContext(), 5),
                 0, 0, false
         ));
     }

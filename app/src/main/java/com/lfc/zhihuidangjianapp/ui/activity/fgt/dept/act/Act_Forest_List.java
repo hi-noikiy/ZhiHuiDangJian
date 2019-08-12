@@ -3,6 +3,7 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.TextView;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -23,7 +24,7 @@ import butterknife.BindView;
 /**
  * @date: 2019-08-03
  * @autror: guojian
- * @description:
+ * @description:林区风采
  */
 public class Act_Forest_List extends BaseBindViewActivity {
 
@@ -43,7 +44,7 @@ public class Act_Forest_List extends BaseBindViewActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_dept_dynamic;
+        return R.layout.activity_forest_list;
     }
 
     @Override
@@ -54,6 +55,8 @@ public class Act_Forest_List extends BaseBindViewActivity {
     @Override
     protected void initView() {
         super.initView();
+        TextView tvAppTitle = findViewById(R.id.tv_apptitle);
+        tvAppTitle.setText("林区风采");
         tabType = getIntent().getIntExtra("tabType", 0);
         if (tabType >= mTitles.length) {
             tabType = 0;

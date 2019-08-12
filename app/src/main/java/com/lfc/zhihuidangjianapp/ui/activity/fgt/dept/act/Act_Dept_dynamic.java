@@ -5,10 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.widget.TextView;
 
+import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.lfc.zhihuidangjianapp.R;
+import com.lfc.zhihuidangjianapp.bean.TabEntity;
 import com.lfc.zhihuidangjianapp.ui.activity.BaseBindViewActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.FragPagerAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fgt.Fgt_Dept_dynamic;
@@ -21,7 +23,7 @@ import butterknife.BindView;
 /**
  * @date: 2019-08-03
  * @autror: guojian
- * @description:
+ * @description: 党建动态
  */
 public class Act_Dept_dynamic extends BaseBindViewActivity {
 
@@ -39,7 +41,7 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
     public static final int TAB_DEPT_BUILD = 2;
 
     @BindView(R.id.tab)
-    SlidingTabLayout tab;
+    CommonTabLayout tab;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
     TextView tvAppTitle;
@@ -68,11 +70,10 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
         fpa.setFragmentList(list());
         viewPager.setOffscreenPageLimit(mTitles.length);
         viewPager.setAdapter(fpa);
-//        for (int i = 0; i < mTitles.length; i++) {
-//            mTabEntities.add(new TabEntity(mTitles[i]));
-//        }
-//        tab.setTabData(mTabEntities);
-        tab.setViewPager(viewPager, mTitles);
+        for (int i = 0; i < mTitles.length; i++) {
+            mTabEntities.add(new TabEntity(mTitles[i]));
+        }
+        tab.setTabData(mTabEntities);
         tab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

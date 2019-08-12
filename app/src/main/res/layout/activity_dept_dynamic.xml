@@ -33,7 +33,7 @@
 
     </RelativeLayout>
 
-    <com.flyco.tablayout.SlidingTabLayout
+    <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"

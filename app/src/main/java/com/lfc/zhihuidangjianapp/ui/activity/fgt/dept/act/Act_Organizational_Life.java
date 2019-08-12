@@ -3,6 +3,7 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -36,7 +37,7 @@ public class Act_Organizational_Life extends BaseBindViewActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_dept_dynamic;
+        return R.layout.activity_orgnizational_life;
     }
 
     @Override
@@ -47,6 +48,9 @@ public class Act_Organizational_Life extends BaseBindViewActivity {
     @Override
     protected void initView() {
         super.initView();
+        TextView tvAppTitle = findViewById(R.id.tv_apptitle);
+        tvAppTitle.setText("组织生活");
+
         FragPagerAdapter fpa = new FragPagerAdapter(getSupportFragmentManager());
         fpa.setFragmentList(list());
         viewPager.setOffscreenPageLimit(mTitles.length);

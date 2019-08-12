@@ -33,7 +33,7 @@
         android:singleLine="true"
         />
 
-    <org.sufficientlysecure.htmltextview.HtmlTextView
+    <TextView
         android:id="@+id/tv_content"
         style="@style/text_9"
         android:layout_width="0dp"

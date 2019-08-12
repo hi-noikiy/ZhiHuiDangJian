@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tl="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".ui.activity.fgt.home.act.Act_PartyBuildingMatrix">
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,29 +21,22 @@
             android:src="@mipmap/img_back" />
 
         <TextView
+            android:id="@+id/tv_apptitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="36dp"
-            android:text="党建矩阵"
+            android:text="组织生活"
             android:textColor="@color/white"
             android:textSize="19dp"
             android:textStyle="bold" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/imgSearch"-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="38dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_marginTop="32dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:scaleType="fitXY"-->
-            <!--android:src="@mipmap/img_search" />-->
     </RelativeLayout>
-    <com.flyco.tablayout.CommonTabLayout
-        android:id="@+id/tl_4"
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tab"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="50dp"
         tl:tl_textSelectColor="@color/tab_select_red"
         tl:tl_textUnselectColor="@color/comm_text_right"
         tl:tl_textsize="@dimen/dip_14"
@@ -54,10 +44,16 @@
         app:tl_indicator_margin_left="30dp"
         app:tl_indicator_margin_right="30dp" />
 
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp"
+    <com.lfc.zhihuidangjianapp.widget.NoScrollViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F4F4F4" />
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dip_1"
+        android:paddingTop="@dimen/dip_5"
+        android:paddingBottom="@dimen/dip_5"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </com.lfc.zhihuidangjianapp.widget.NoScrollViewPager>
+
 </LinearLayout>

@@ -39,7 +39,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * @date: 2019-08-04
  * @autror: guojian
- * @description:
+ * @description: 组织生活
  */
 public class Fgt_Organizational_Life extends BaseBindViewFragment {
 
@@ -105,8 +105,8 @@ public class Fgt_Organizational_Life extends BaseBindViewFragment {
         });
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 DividerItemDecoration.VERTICAL_LIST,
-                ContextCompat.getColor(getActivity(), R.color.background),
-                DispalyUtil.dp2px(getActivity(), 1),
+                ContextCompat.getColor(MyApplication.getAppContext(), R.color.background),
+                DispalyUtil.dp2px(MyApplication.getAppContext(), 1),
                 0, 0, false
         ));
     }
