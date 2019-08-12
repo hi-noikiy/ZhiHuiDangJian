@@ -3,6 +3,9 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Debug;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
@@ -23,9 +27,15 @@ import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.bean.BaseBean;
 import com.lfc.zhihuidangjianapp.bean.NoticeAnnouncementsListBean;
 import com.lfc.zhihuidangjianapp.bean.QueryHomeNoticeAnnouncementPageListBean;
+import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.adapter.AnnouncementListAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.bean.queryNoticeAnnouncementPageListBean;
+import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
+import com.lfc.zhihuidangjianapp.utlis.DateUtils;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,10 +56,7 @@ public class Act_AnnouncementList extends BaseActivity {
     ImageView imgBack;
     @BindView(R.id.imgSearch)
     ImageView imgSearch;
-    private PtrClassicFrameLayout ptrClassicFrameLayout;
-    private ArrayList<NoticeAnnouncementsListBean.NoticeAnnouncementListBean.DatasBean> list = new ArrayList<>();
-    private AnnouncementListAdapter announcementListAdapter;
-    private int page = 1;
+    RecyclerView recyclerView;
 
     @Override
     protected int getLayoutId() {
@@ -65,33 +72,7 @@ public class Act_AnnouncementList extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
         initImmersionBar(1);
-        ptrClassicFrameLayout = findViewById(R.id.ptrClassicFrameLayout);
-        ListView announcementListView = findViewById(R.id.announcementListView);
-        announcementListAdapter = new AnnouncementListAdapter(datas, this);
-        announcementListView.setAdapter(announcementListAdapter);
-        ptrClassicFrameLayout.setPtrHandler(new PtrDefaultHandler() {
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                datas.clear();
-                page = 1;
-                queryNoticeAnnouncementPageList();
-                announcementListAdapter.notifyDataSetChanged();
-                frame.refreshComplete();
-            }
-        });
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void loadMore() {
-                queryNoticeAnnouncementPageList();
-                ptrClassicFrameLayout.loadMoreComplete(true);
-                page++;
-            }
-        });
-        announcementListView.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getActivity(), Act_Announcement.class);
-            intent.putExtra("id", datas.get(position).getNoticeAnnouncementId() + "");
-            startActivity(intent);
-        });
+        recyclerView = findViewById(R.id.recyclerView);
     }
 
     @Override
@@ -128,7 +109,7 @@ public class Act_AnnouncementList extends BaseActivity {
                     for (int i = 0; i < entity.getData().getNoticeAnnouncementList().getDatas().size(); i++) {
                         datas.add(entity.getData().getNoticeAnnouncementList().getDatas().get(i));
                     }
-                    announcementListAdapter.notifyDataSetChanged();
+                    setRecyclerView(datas);
                 } else {
                     ToastUtils.show(entity.getMsg());
                 }
@@ -138,6 +119,24 @@ public class Act_AnnouncementList extends BaseActivity {
             public void onError(String error) {
                 ToastUtils.show(error);
             }
+        });
+    }
+
+
+    private void setRecyclerView(List<queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean> data){
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new CommonAdapter<queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean>(Act_AnnouncementList.this, R.layout.activity_announcement_list1, data) {
+            @Override
+            protected void convert(ViewHolder holder, queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean data, int position) {
+                holder.setText(R.id.tv_content, data.getAnnouncementTitle());
+                holder.setText(R.id.tv_time, DateUtils.timeStampToStr(data.getCreateTime(),"yyyy-MM-dd"));
+                holder.getConvertView().setOnClickListener(detail->{
+                    Intent intent = new Intent(getActivity(), Act_Announcement.class);
+                    intent.putExtra("id", data.getNoticeAnnouncementId() + "");
+                    startActivity(intent);
+                });
+            }
+
         });
     }
 }

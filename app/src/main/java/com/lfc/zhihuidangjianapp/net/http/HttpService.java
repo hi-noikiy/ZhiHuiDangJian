@@ -43,9 +43,6 @@ public interface HttpService {
     @POST(ApiConstant.queryNoticeAnnouncementDetail)
     Observable<String> queryNoticeAnnouncementDetail(@QueryMap Map<String, String> map, @Header("token") String token);
 
-    @POST(ApiConstant.queryNoticeAnnouncementPageList)
-    Observable<String> queryNoticeAnnouncementPageList(@Header("token") String token);
-
     @POST(ApiConstant.queryLeadDemonstrationPageList)
     Observable<String> queryLeadDemonstrationPageList(@QueryMap Map<String, String> map, @Header("token") String token);
 
@@ -300,6 +297,13 @@ public interface HttpService {
     @POST(ApiConstant.API + "/queryWeeklyWorkReportTopPageList")
     Observable<BaseResponse<Object>> queryWeeklyWorkReportTopPageList(@QueryMap Map<String, Object> map,@Header("token") String token);
 
+    /**
+     * 公告列表
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.queryNoticeAnnouncementPageList)
+    Observable<String> queryNoticeAnnouncementPageList(@Header("token") String token);
 
 
 

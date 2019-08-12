@@ -86,6 +86,22 @@ public class Act_Dept_dynamic extends BaseBindViewActivity {
             }
         });
         tab.setCurrentTab(tabType);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                tab.setCurrentTab(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         setEvent();
     }
 

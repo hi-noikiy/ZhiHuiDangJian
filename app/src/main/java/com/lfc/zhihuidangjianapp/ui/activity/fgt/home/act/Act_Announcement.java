@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 
+import android.text.Html;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,22 +23,23 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * 公告详情
+ * 公示公告详情
  */
 public class Act_Announcement extends BaseActivity {
     @BindView(R.id.imgBack)
     ImageView imgBack;
-    @BindView(R.id.textTitle)
-    TextView textTitle;
-    @BindView(R.id.imgSearch)
-    ImageView imgSearch;
-    @BindView(R.id.webView)
-    WebView webView;
+    @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_author)
+    TextView tvAuthor;
+    @BindView(R.id.tv_content)
+    TextView tvContent;
+
+    String noticeAnnouncementId = "";
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_announcement;
+        return R.layout.activity_dept_dynamic_detail;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class Act_Announcement extends BaseActivity {
     protected void initView() {
         ButterKnife.bind(this);
         initImmersionBar(1);
+        findViewById(R.id.imgBack).setOnClickListener(back->finish());
         tvTitle = findViewById(R.id.tv_title);
     }
 
@@ -57,16 +60,6 @@ public class Act_Announcement extends BaseActivity {
         noticeAnnouncementId = getIntent().getStringExtra("id");
         queryNoticeAnnouncementDetail();
     }
-
-    @OnClick(R.id.imgBack)
-    public void onImgBackClicked() {
-        finish();
-    }
-
-    @OnClick(R.id.imgSearch)
-    public void onImgSearchClicked() {
-    }
-    String noticeAnnouncementId = "";
     /**
      * 查看公告详情信息
      */
@@ -84,8 +77,11 @@ public class Act_Announcement extends BaseActivity {
                 Gson gson = new Gson();
                 queryNoticeAnnouncementDetailBean entity = gson.fromJson(succeed, queryNoticeAnnouncementDetailBean.class);
                 if (entity.getCode() == 0) {
+//                    tvTitle.setText(entity.getData().getNoticeAnnouncement().getAnnouncementTitle());
+//                    webView.loadDataWithBaseURL(null, entity.getData().getNoticeAnnouncement().getAnnouncementComtent(), "text/html", "UTF-8", null);
                     tvTitle.setText(entity.getData().getNoticeAnnouncement().getAnnouncementTitle());
-                    webView.loadDataWithBaseURL(null, entity.getData().getNoticeAnnouncement().getAnnouncementComtent(), "text/html", "UTF-8", null);
+                    tvAuthor.setText(entity.getData().getNoticeAnnouncement().getAuthor());
+                    tvContent.setText(Html.fromHtml(entity.getData().getNoticeAnnouncement().getAnnouncementComtent()));
                 }
             }
 

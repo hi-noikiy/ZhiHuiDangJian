@@ -44,9 +44,8 @@
         android:id="@+id/tv_tell"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autoLink="phone"
         android:layout_marginRight="@dimen/dip_30"
-        style="@style/text_14"
+        style="@style/text_14_grey"
         app:layout_constraintLeft_toLeftOf="@+id/tv_name"
         app:layout_constraintBottom_toBottomOf="@+id/iv_head"
         android:text="联系电话"/>

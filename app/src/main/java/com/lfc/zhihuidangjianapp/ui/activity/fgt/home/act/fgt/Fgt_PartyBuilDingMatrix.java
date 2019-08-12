@@ -88,7 +88,7 @@ public class Fgt_PartyBuilDingMatrix extends BaseFragment {
                     protected void onNext(Depts response) {
                         mDepts = response;
                         Log.e("onNext= ", response.toString());
-                        recyclerView.setLayoutManager(new GridLayoutManager(MyApplication.getAppContext(), 4));
+                        recyclerView.setLayoutManager(new GridLayoutManager(MyApplication.getAppContext(), 3));
                         recyclerView.setAdapter(new CommonAdapter<Dept>(MyApplication.getAppContext(), R.layout.item_dept, response.getDeptList()) {
                             @Override
                             protected void convert(ViewHolder holder, Dept dept, int position) {

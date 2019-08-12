@@ -96,7 +96,7 @@ public class Fgt_Dept_detail extends BaseFragment {
         if(dept.getBriefIntroduction()!=null) {
             tvBriefIntrodection.setText(dept.getBriefIntroduction());
         }else{
-            mRootView.findViewById(R.id.tv_dept_title).setVisibility(View.GONE);
+            mRootView.findViewById(R.id.view_introduction).setVisibility(View.GONE);
         }
         tvAddress.setText(dept.getDeptAddress());
 

@@ -11,12 +11,16 @@
         android:layout_height="80dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
+        android:layout_gravity="center_horizontal"
         android:background="@mipmap/img_iconlogo"/>
 
     <TextView
         android:id="@+id/tv_dept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/text_12"
+        android:lines="1"
+        android:ellipsize="end"
         android:layout_marginTop="@dimen/dip_15"/>
 
 
