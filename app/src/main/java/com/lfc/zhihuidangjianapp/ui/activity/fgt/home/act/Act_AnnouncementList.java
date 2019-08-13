@@ -128,7 +128,8 @@ public class Act_AnnouncementList extends BaseActivity {
         recyclerView.setAdapter(new CommonAdapter<queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean>(Act_AnnouncementList.this, R.layout.activity_announcement_list1, data) {
             @Override
             protected void convert(ViewHolder holder, queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean data, int position) {
-                holder.setText(R.id.tv_content, data.getAnnouncementTitle());
+                holder.setText(R.id.tv_title, data.getAnnouncementTitle());
+                holder.setText(R.id.tv_content, data.getAnnouncementComtent());
                 holder.setText(R.id.tv_time, DateUtils.timeStampToStr(data.getCreateTime(),"yyyy-MM-dd"));
                 holder.getConvertView().setOnClickListener(detail->{
                     Intent intent = new Intent(getActivity(), Act_Announcement.class);

@@ -92,8 +92,22 @@ public class Act_PartyBuildingMatrix extends BaseActivity implements View.OnClic
 
             }
         });
-//        tab.setTabData(vp);
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
 
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                tab.setCurrentTab(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     private Fgt_Dept_detail getDetailFragment(String deptNumber) {
