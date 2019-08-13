@@ -3,6 +3,7 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Debug;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -29,11 +30,13 @@ import com.lfc.zhihuidangjianapp.bean.NoticeAnnouncementsListBean;
 import com.lfc.zhihuidangjianapp.bean.QueryHomeNoticeAnnouncementPageListBean;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
+import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.adapter.AnnouncementListAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.bean.queryNoticeAnnouncementPageListBean;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
 import com.lfc.zhihuidangjianapp.utlis.DateUtils;
+import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -129,7 +132,8 @@ public class Act_AnnouncementList extends BaseActivity {
             @Override
             protected void convert(ViewHolder holder, queryNoticeAnnouncementPageListBean.DataBean.NoticeAnnouncementListBean.DatasBean data, int position) {
                 holder.setText(R.id.tv_title, data.getAnnouncementTitle());
-                holder.setText(R.id.tv_content, data.getAnnouncementComtent());
+                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
+                tvContent.setText(Html.fromHtml(data.getAnnouncementComtent()));
                 holder.setText(R.id.tv_time, DateUtils.timeStampToStr(data.getCreateTime(),"yyyy-MM-dd"));
                 holder.getConvertView().setOnClickListener(detail->{
                     Intent intent = new Intent(getActivity(), Act_Announcement.class);
@@ -139,5 +143,11 @@ public class Act_AnnouncementList extends BaseActivity {
             }
 
         });
+        recyclerView.addItemDecoration(new DividerItemDecoration(
+                DividerItemDecoration.VERTICAL_LIST,
+                ContextCompat.getColor(getActivity(), R.color.background),
+                DispalyUtil.dp2px(getActivity(), 1),
+                0, 0, false
+        ));
     }
 }
