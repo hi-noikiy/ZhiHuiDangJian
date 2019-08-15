@@ -1,5 +1,7 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,7 +26,9 @@ import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -40,6 +44,8 @@ public class Act_Friend_list extends BaseActivity {
     private LinearLayoutManager linearLayoutManager;
 
     private String deptNumber;
+
+    private ArrayList<User> selectUsers = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -91,7 +97,7 @@ public class Act_Friend_list extends BaseActivity {
         //TODO 初始化操作
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new CommonAdapter<User>(getActivity(), R.layout.item_friend_list, response.getUserList()) {
+        recyclerView.setAdapter(new CommonAdapter<User>(MyApplication.getAppContext(), R.layout.item_friend_list, response.getUserList()) {
             @Override
             protected void convert(ViewHolder holder, User data, int position) {
                 holder.setText(R.id.tv_name, data.getSealName());
@@ -99,6 +105,19 @@ public class Act_Friend_list extends BaseActivity {
                 Glide.with(holder.getConvertView().getContext()).load(ApiConstant.ROOT_URL+data.getImgAddress()).into(image);
                 holder.setText(R.id.tv_content, data.getSubordinatePartyGroup());
                 holder.setText(R.id.tv_tell, data.getMobileNumber());
+                holder.getConvertView().setOnClickListener(meeting->{
+                    if(selectUsers.contains(data)){
+                        selectUsers.remove(data);
+                    }else{
+                        selectUsers.add(data);
+                    }
+                    if(selectUsers.isEmpty()){
+                        return;
+                    }
+                    Intent intent = new Intent(getActivity(), Act_Meeting_Line.class);
+                    intent.putParcelableArrayListExtra("users", selectUsers);
+                    startActivity(intent);
+                });
             }
 
         });

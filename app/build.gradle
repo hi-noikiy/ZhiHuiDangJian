@@ -167,4 +167,7 @@ dependencies {
 
     //https://github.com/SufficientlySecure/html-textview
     implementation 'org.sufficientlysecure:html-textview:3.6'
+
+    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
 }

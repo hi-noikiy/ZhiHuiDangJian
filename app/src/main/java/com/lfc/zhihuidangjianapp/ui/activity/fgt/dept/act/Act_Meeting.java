@@ -38,25 +38,6 @@ public class Act_Meeting extends BaseActivity implements View.OnClickListener {
 
     }
 
-    /**
-     * 沉浸式状态栏
-     */
-    @Override
-    protected void initImmersionBar(int type) {
-        //在BaseActivity里初始化
-        mImmersionBar = ImmersionBar.with(this)
-                .statusBarDarkFont(statusBarDarkFont())    //默认状态栏字体颜色为黑色
-                .keyboardEnable(false, WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
-                        | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);  //解决软键盘与底部输入框冲突问题，默认为false，还有一个重载方法，可以指定软键盘mode
-        //必须设置View树布局变化监听，否则软键盘无法顶上去，还有模式必须是SOFT_INPUT_ADJUST_PAN
-        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(this);
-        if (type == 0) {
-            initImmersionBarBlack();
-        } else {
-            initImmersionBarWhite();
-        }
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -71,6 +52,7 @@ public class Act_Meeting extends BaseActivity implements View.OnClickListener {
 
                 break;
             case R.id.relJoinMeet:
+                startActivity(new Intent(getActivity(), Act_Meeting_Start.class));
                 break;
             default:
         }

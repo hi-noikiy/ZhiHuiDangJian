@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.model;
 
+import com.google.gson.Gson;
 import com.lfc.zhihuidangjianapp.R;
 
 import java.util.ArrayList;
@@ -90,6 +91,7 @@ public class NativePartyBody {
                 partBodys.add(partBodyList);
             }
         }
+        String part = new Gson().toJson(partBodys).toString();
         return partBodys;
     }
 

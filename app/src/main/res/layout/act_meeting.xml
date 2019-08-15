@@ -29,9 +29,10 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text=""
+            android:text="会议连线"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            />
 
         <ImageView
             android:id="@+id/imgSearch"
@@ -53,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="党建矩阵"
-            android:textColor="#99000000"
+            style="@style/text_16"
             android:textSize="20sp" />
 
         <ImageView

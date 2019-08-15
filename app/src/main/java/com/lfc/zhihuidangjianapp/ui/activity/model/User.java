@@ -1,11 +1,14 @@
 package com.lfc.zhihuidangjianapp.ui.activity.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * @date: 2019-08-07
  * @autror: guojian
  * @description:
  */
-public class User {
+public class User implements Parcelable {
 
         private String addr;
         private String addr1;
@@ -84,6 +87,21 @@ public class User {
         private String userNumber;
         private String userType;
         private String workPost;
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(roleName);
+        dest.writeString(imgAddress);
+    }
+
+    public User(){}
+
+    protected User(Parcel in){
+        roleName = in.readString();
+        imgAddress = in.readString();
+    }
+
+
         public void setAddr(String addr) {
             this.addr = addr;
         }
@@ -616,4 +634,20 @@ public class User {
             return workPost;
         }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

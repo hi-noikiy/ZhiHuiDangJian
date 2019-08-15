@@ -1,6 +1,7 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.base.BaseFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
@@ -17,6 +21,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forest_List;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Forestry_Course;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Meeting;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Organizational_Life;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Change;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Example;
@@ -89,6 +94,18 @@ public class Fgt_PartyAffairs extends BaseFragment {
             }
 
         });
+//        recyclerView.setAdapter(new BaseQuickAdapter<NativePartyBody.PartBody, BaseViewHolder>(partBodies){
+//            @Override
+//            protected void convert(@NonNull BaseViewHolder helper, NativePartyBody.PartBody item) {
+//
+//            }
+//        });
+//        recyclerView.addOnItemTouchListener(new OnItemClickListener() {
+//            @Override
+//            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+//
+//            }
+//        });
     }
 
     /**
@@ -236,7 +253,7 @@ public class Fgt_PartyAffairs extends BaseFragment {
                 startActivity(new Intent(getActivity(), Act_Mail_list.class));
                 break;
             case 1://会议连线
-
+                startActivity(new Intent(getActivity(), Act_Meeting.class));
                 break;
         }
     }
