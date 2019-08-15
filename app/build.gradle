@@ -22,8 +22,8 @@ android {
         applicationId "com.lfc.zhihuidangjianapp"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.0.6"
+        versionCode 7
+        versionName "1.0.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug
         multiDexEnabled true
@@ -52,6 +52,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    //use legacy for android 6.0
     useLibrary 'org.apache.http.legacy'
     compileOptions {
         targetCompatibility 1.8
@@ -153,7 +154,7 @@ dependencies {
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
     //支付宝
-    implementation (name: 'alipaySdk-15.6.5-20190718211148', ext: 'aar')
+    implementation(name: 'alipaySdk-15.6.5-20190718211148', ext: 'aar')
 
     //微信支付
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.0'
@@ -170,4 +171,8 @@ dependencies {
 
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+
+    //环信相关
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation files('libs/hyphenatechat_3.6.0.jar')
 }
