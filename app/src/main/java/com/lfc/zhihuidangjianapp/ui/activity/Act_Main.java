@@ -82,7 +82,6 @@ public class Act_Main extends EazyChatListenerActivity implements ViewPager.OnPa
 //        sideSlideMenu();
         loadPartyInfo();
         // 在Activity#onCreate()中添加监听
-        EMClient.getInstance().conferenceManager().addConferenceListener(emConferenceListener);
         EMClient.getInstance().chatManager().addMessageListener(emMessageListener);
     }
 

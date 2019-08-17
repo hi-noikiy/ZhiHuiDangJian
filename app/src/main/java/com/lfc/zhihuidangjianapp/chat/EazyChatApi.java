@@ -94,14 +94,14 @@ public class EazyChatApi {
         }
     }
 
-    public static void sendMeeting(List<User> users) {
+    public static void sendMeeting(List<User> users, String conferenceId) {
         for (User user : users) {
             EMMessage message = EMMessage.createTxtSendMessage("join", user.getLoginName());
             message.setChatType(EMMessage.ChatType.Chat);
             //消息扩展
-//            message.setAttribute("userHeadimgurlResource", user.getUserHeadimgurlResource());
-//            message.setAttribute("userNickname", user.getUserNickname());
-//            message.setAttribute("user", new Gson().toJson(user));
+            message.setAttribute("conferenceId", conferenceId);
+//            message.setAttribute("userNickname", user.getLoginName());
+            message.setAttribute("user", new Gson().toJson(user));
             EMClient.getInstance().chatManager().sendMessage(message);
         }
     }

@@ -32,15 +32,29 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-    <RelativeLayout
+        </android.support.v7.widget.RecyclerView>
+        
+        <ImageView
+            android:id="@+id/iv_create_user"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            android:layout_gravity="center"/>
+        
+    </FrameLayout>
+    
+    <LinearLayout
         android:id="@+id/view_break"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,15 +63,32 @@
         android:background="#F08713"
         android:padding="@dimen/dip_10">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:text="会议连线"
             android:paddingTop="@dimen/dip_5"
             android:paddingBottom="@dimen/dip_5"
             android:drawableLeft="@mipmap/icon_bai"
+            android:visibility="invisible"
             android:drawablePadding="@dimen/dip_10"
             android:textColor="@color/white"
             android:layout_height="wrap_content" />
+
         <TextView
+            android:id="@+id/tv_join"
+            android:layout_width="wrap_content"
+            android:text="接听会议"
+            android:paddingRight="@dimen/dip_10"
+            android:paddingTop="@dimen/dip_5"
+            android:layout_alignRight="@+id/tv_exit"
+            android:paddingBottom="@dimen/dip_5"
+            android:drawableLeft="@mipmap/icon_lainxian"
+            android:drawablePadding="@dimen/dip_10"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_exit"
             android:layout_width="wrap_content"
             android:text="退出连接"
             android:paddingRight="@dimen/dip_10"
@@ -68,6 +99,6 @@
             android:drawablePadding="@dimen/dip_10"
             android:textColor="@color/white"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

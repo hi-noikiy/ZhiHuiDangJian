@@ -114,8 +114,9 @@ public class Act_Friend_list extends BaseActivity {
                     if(selectUsers.isEmpty()){
                         return;
                     }
-                    Intent intent = new Intent(getActivity(), Act_Meeting_Line.class);
+                    Intent intent = new Intent(getActivity(), Act_Meeting_Start.class);
                     intent.putParcelableArrayListExtra("users", selectUsers);
+                    intent.putExtra("type", Act_Meeting_Start.TYPE_CREATE);
                     startActivity(intent);
                 });
             }
