@@ -7,6 +7,7 @@ import com.hjq.toast.ToastUtils;
 import com.hyphenate.chatuidemo.DemoApplication;
 import com.hyphenate.chatuidemo.DemoHelper;
 import com.lfc.zhihuidangjianapp.bean.LoginBean;
+import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.image.ImageLoader;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -43,7 +44,9 @@ public class MyApplication extends DemoApplication {
         ImageLoader.init(this);
 
         // 环信初始化
-        DemoHelper.getInstance().init(app);
+//        DemoHelper.getInstance().init(app);
+        EazyChatApi.initEasemob(getAppContext(), EazyChatApi.APP_KEY);
+
         //ARouter
         ARouter.openLog();     // Print log
         ARouter.openDebug();

@@ -20,6 +20,7 @@ import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.bean.LoginBean;
+import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
 import com.lfc.zhihuidangjianapp.utlis.ACache;
@@ -235,7 +236,7 @@ public class Act_Login extends BaseActivity {
         String currentUsername = loginBean.getLoginName();
         String currentPassword = loginBean.getImPwd();
 
-
+        EazyChatApi.loginChat(currentUsername, currentPassword, getActivity(), null);
         String currentUser = EMClient.getInstance().getCurrentUser();
 
         if (TextUtils.equals(loginBean.getLoginName(), currentUser)) {
@@ -248,50 +249,6 @@ public class Act_Login extends BaseActivity {
             logout();
             return;
         }
-
-        EMClient.getInstance().login(currentUsername, currentPassword, new EMCallBack() {
-
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "login: onSuccess");
-
-
-                // ** manually load all local groups and conversation
-                EMClient.getInstance().groupManager().loadAllGroups();
-                EMClient.getInstance().chatManager().loadAllConversations();
-
-                // update current user's display name for APNs
-                boolean updatenick = EMClient.getInstance().pushManager().updatePushNickname(
-                    DemoApplication.currentUserNick.trim());
-                if (!updatenick) {
-                    Log.e("LoginActivity", "update current user nick fail");
-                }
-
-
-                // get user's info (this should be get from App's server or 3rd party service)
-                DemoHelper.getInstance().getUserProfileManager().asyncGetCurrentUserInfo();
-
-                // 登录成功
-                startActivity(Act_Main.class);
-            }
-
-            @Override
-            public void onProgress(int progress, String status) {
-                Log.d(TAG, "login: onProgress");
-            }
-
-            @Override
-            public void onError(final int code, final String message) {
-                Log.d(TAG, "login: onError: " + code);
-
-                runOnUiThread(() -> {
-                    Toast.makeText(getApplicationContext(), getString(com.hyphenate.chatuidemo.R.string.Login_failed) + message,
-                        Toast.LENGTH_SHORT).show();
-
-                    regist();
-                });
-            }
-        });
     }
 
     /**
