@@ -1,6 +1,5 @@
 package com.lfc.zhihuidangjianapp.ui.activity;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -17,23 +16,20 @@ import android.widget.Toast;
 
 import com.facebook.rebound.SpringConfig;
 import com.hjq.toast.ToastUtils;
+import com.hyphenate.chat.EMClient;
 import com.jpeng.jpspringmenu.MenuListener;
 import com.jpeng.jpspringmenu.SpringMenu;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
-import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.base.BaseFragmentAdapter;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
-import com.lfc.zhihuidangjianapp.pay.AliPayApi;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.Fgt_Home;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.Fgt_PartyAffairs;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.Fgt_Personal;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Pay;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.Act_SetUpc;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.Act_WeeklyReport;
-import com.lfc.zhihuidangjianapp.ui.activity.model.AliPay;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.lfc.zhihuidangjianapp.widget.NoScrollViewPager;
 
@@ -44,7 +40,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeListener,
+public class Act_Main extends EazyChatListenerActivity implements ViewPager.OnPageChangeListener,
         BottomNavigationView.OnNavigationItemSelectedListener, MenuListener {
     @BindView(R.id.vp_home_pager)
     NoScrollViewPager vpHomePager;
@@ -85,6 +81,9 @@ public class Act_Main extends BaseActivity implements ViewPager.OnPageChangeList
         bvHomeNavigation.setOnNavigationItemSelectedListener(this);
 //        sideSlideMenu();
         loadPartyInfo();
+        // 在Activity#onCreate()中添加监听
+        EMClient.getInstance().conferenceManager().addConferenceListener(emConferenceListener);
+        EMClient.getInstance().chatManager().addMessageListener(emMessageListener);
     }
 
     /**

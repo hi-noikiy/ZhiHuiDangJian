@@ -171,8 +171,4 @@ dependencies {
 
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
-
-    //环信相关
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation files('libs/hyphenatechat_3.6.0.jar')
 }

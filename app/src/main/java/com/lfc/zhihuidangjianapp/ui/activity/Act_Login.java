@@ -11,11 +11,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.hjq.toast.ToastUtils;
 import com.hyphenate.EMCallBack;
-import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.chatuidemo.DemoApplication;
-import com.hyphenate.chatuidemo.DemoHelper;
-import com.hyphenate.exceptions.HyphenateException;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
@@ -183,52 +179,6 @@ public class Act_Login extends BaseActivity {
     }
 
     /**
-     * 注册
-     */
-    private void regist() {
-        new Thread(() -> {
-            try {
-                // call method in SDK
-
-                LoginBean.DataBean loginBean = MyApplication.getLoginBean();
-                String currentUsername = loginBean.getLoginName();
-                String currentPassword = loginBean.getImPwd();
-                EMClient.getInstance().createAccount(currentUsername, currentPassword);
-                runOnUiThread(() -> {
-                    DemoHelper.getInstance().setCurrentUserName(currentUsername);
-                    Toast.makeText(getApplicationContext(), getResources().getString(com.hyphenate.chatuidemo.R.string.Registered_successfully), Toast.LENGTH_SHORT).show();
-
-                    login();
-
-                });
-            } catch (final HyphenateException e) {
-                runOnUiThread(() -> {
-                    int errorCode=e.getErrorCode();
-                    if(errorCode== EMError.NETWORK_ERROR){
-                        Toast.makeText(getApplicationContext(), getResources().getString(
-                            com.hyphenate.chatuidemo.R.string.network_anomalies), Toast.LENGTH_SHORT).show();
-                    }else if(errorCode == EMError.USER_ALREADY_EXIST){
-                        Toast.makeText(getApplicationContext(), getResources().getString(
-                            com.hyphenate.chatuidemo.R.string.User_already_exists), Toast.LENGTH_SHORT).show();
-                    }else if(errorCode == EMError.USER_AUTHENTICATION_FAILED){
-                        Toast.makeText(getApplicationContext(), getResources().getString(
-                            com.hyphenate.chatuidemo.R.string.registration_failed_without_permission), Toast.LENGTH_SHORT).show();
-                    }else if(errorCode == EMError.USER_ILLEGAL_ARGUMENT){
-                        Toast.makeText(getApplicationContext(), getResources().getString(
-                            com.hyphenate.chatuidemo.R.string.illegal_user_name),Toast.LENGTH_SHORT).show();
-                    }else if(errorCode == EMError.EXCEED_SERVICE_LIMIT){
-                        Toast.makeText(getApplicationContext(), getResources().getString(
-                            com.hyphenate.chatuidemo.R.string.register_exceed_service_limit), Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), getResources().getString(
-                            com.hyphenate.chatuidemo.R.string.Registration_failed), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }).start();
-    }
-
-    /**
      * 登录
      */
     private void login() {
@@ -236,50 +186,45 @@ public class Act_Login extends BaseActivity {
         String currentUsername = loginBean.getLoginName();
         String currentPassword = loginBean.getImPwd();
 
-        EazyChatApi.loginChat(currentUsername, currentPassword, getActivity(), null);
-        String currentUser = EMClient.getInstance().getCurrentUser();
-
-        if (TextUtils.equals(loginBean.getLoginName(), currentUser)) {
-
-            // 登录成功
-            startActivity(Act_Main.class);
-            finish();
-            return;
-        } else if (!TextUtils.isEmpty(currentUser)) {
-            logout();
-            return;
-        }
-    }
-
-    /**
-     * 退出
-     */
-    void logout() {
-        DemoHelper.getInstance().logout(true,new EMCallBack() {
-
+        EazyChatApi.loginChat(currentUsername, currentPassword, getActivity(), new EMCallBack() {
             @Override
             public void onSuccess() {
-                getActivity().runOnUiThread(() -> {
-                    // 本地生成环信
-                    login();
-                });
-            }
-
-            @Override
-            public void onProgress(int progress, String status) {
-
-            }
-
-            @Override
-            public void onError(int code, String message) {
-                getActivity().runOnUiThread(new Runnable() {
-
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getActivity(), "unbind devicetokens failed", Toast.LENGTH_SHORT).show();
+                        Log.d("main", "登录聊天服务器成功！");
+                        String currentUser = EMClient.getInstance().getCurrentUser();
+                        if (TextUtils.equals(loginBean.getLoginName(), currentUser)) {
+
+                            // 登录成功
+                            startActivity(Act_Main.class);
+                            finish();
+                            return;
+                        } else if (!TextUtils.isEmpty(currentUser)) {
+                            return;
+                        }
                     }
                 });
             }
+
+            @Override
+            public void onError(int code, String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("main", "登录聊天服务器失败！");
+                    }
+                });
+                if (code == 200) {
+
+                }
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
         });
     }
+
 }

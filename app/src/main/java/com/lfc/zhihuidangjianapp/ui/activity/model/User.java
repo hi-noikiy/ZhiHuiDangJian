@@ -93,6 +93,8 @@ public class User implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(roleName);
         dest.writeString(imgAddress);
+        dest.writeString(loginName);
+        dest.writeString(imPwd);
     }
 
     public User() {
@@ -101,6 +103,8 @@ public class User implements Parcelable {
     protected User(Parcel in) {
         roleName = in.readString();
         imgAddress = in.readString();
+        loginName = in.readString();
+        imPwd = in.readString();
     }
 
 

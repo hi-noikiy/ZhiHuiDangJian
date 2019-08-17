@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
@@ -55,6 +56,7 @@ public class EazyChatApi {
 
     /**
      * 根据Pid获取当前进程的名字，一般就是当前app的包名
+     *
      * @param pid 进程的id
      * @return 返回进程的名字
      */
@@ -89,6 +91,18 @@ public class EazyChatApi {
             loginChat(user.getLoginName(), user.getImPwd(), activity, null);
         } catch (Exception e) {
             Log.e("EazyChatApi", e.getMessage());
+        }
+    }
+
+    public static void sendMeeting(List<User> users) {
+        for (User user : users) {
+            EMMessage message = EMMessage.createTxtSendMessage("join", user.getLoginName());
+            message.setChatType(EMMessage.ChatType.Chat);
+            //消息扩展
+//            message.setAttribute("userHeadimgurlResource", user.getUserHeadimgurlResource());
+//            message.setAttribute("userNickname", user.getUserNickname());
+//            message.setAttribute("user", new Gson().toJson(user));
+            EMClient.getInstance().chatManager().sendMessage(message);
         }
     }
 
