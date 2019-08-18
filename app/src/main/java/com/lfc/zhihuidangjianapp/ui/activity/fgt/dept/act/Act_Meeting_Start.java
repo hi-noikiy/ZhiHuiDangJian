@@ -16,20 +16,30 @@ import com.hyphenate.chat.EMConference;
 import com.hyphenate.chat.EMConferenceManager;
 import com.hyphenate.chat.EMConferenceMember;
 import com.hyphenate.chat.EMConferenceStream;
+import com.hyphenate.chat.EMStreamParam;
 import com.hyphenate.chat.EMStreamStatistics;
+import com.hyphenate.util.EMLog;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
+import com.lfc.zhihuidangjianapp.net.http.HttpService;
+import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
+import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.model.User;
+import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 会议进行
@@ -85,7 +95,7 @@ public class Act_Meeting_Start extends BaseActivity {
             findViewById(R.id.tv_join).setVisibility(View.GONE);
 //            selectUsers.add(MyApplication.getmUserInfo().getUser());
             selectUsers = getIntent().getParcelableArrayListExtra("users");
-            nofityAdapter();
+//            nofityAdapter();
             createMeeting();
         }else {
             //加入会议
@@ -93,9 +103,10 @@ public class Act_Meeting_Start extends BaseActivity {
             if(createUser!=null){
                 tvTitle.setText(createUser.getRoleName()+"邀请你加入会议");
                 selectUsers.add(createUser);
-                nofityAdapter();
+//                nofityAdapter();
             }
         }
+        setRecyclerView(selectUsers);
     }
 
     private void setEvent() {
@@ -118,12 +129,6 @@ public class Act_Meeting_Start extends BaseActivity {
     @Override
     protected void initData() {
 
-    }
-
-    private void nofityAdapter(){
-        meetingAdapter.getDatas().clear();
-        meetingAdapter.getDatas().addAll(selectUsers);
-        meetingAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -170,6 +175,8 @@ public class Act_Meeting_Start extends BaseActivity {
                                     return;
                                 }
                                 EazyChatApi.sendMeeting(selectUsers, value.getConferenceId());
+                                //推流
+                                pubLocalStream();
                             }
                         });
                     }
@@ -210,22 +217,34 @@ public class Act_Meeting_Start extends BaseActivity {
     protected EMConferenceListener emConferenceListener = new EMConferenceListener() {
         @Override
         public void onMemberJoined(EMConferenceMember emConferenceMember) {
-            Log.e("onMemberJoined=", "有成员加入");
+            Log.e("onMemberJoined=", emConferenceMember.toString());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     showTextToast(emConferenceMember.memberId+"加入会议室");
+                    refreshByUserid(emConferenceMember.memberName, true);
                 }
             });
         }
 
         @Override
         public void onMemberExited(EMConferenceMember emConferenceMember) {
-            Log.e("onMemberExited=", "有成员退出");
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    refreshByUserid(emConferenceMember.memberName, false);
+                }
+            });
         }
 
         @Override
-        public void onStreamAdded(EMConferenceStream emConferenceStream) {
+        public void onStreamAdded(EMConferenceStream stream) {
+            EMLog.i("onStreamAdded=", String.format("Stream added streamId: %s, streamName: %s, memberName: %s, username: %s, extension: %s, videoOff: %b, mute: %b",
+                    stream.getStreamId(), stream.getStreamName(), stream.getMemberName(), stream.getUsername(),
+                    stream.getExtension(), stream.isVideoOff(), stream.isAudioOff()));
+            EMLog.i("onStreamAdded=", String.format("Conference stream subscribable: %d, subscribed: %d",
+                    EMClient.getInstance().conferenceManager().getAvailableStreamMap().size(),
+                    EMClient.getInstance().conferenceManager().getSubscribedStreamMap().size()));
 
         }
 
@@ -274,5 +293,59 @@ public class Act_Meeting_Start extends BaseActivity {
 
         }
     };
+
+    private void pubLocalStream() {
+        EMStreamParam param = new EMStreamParam();
+        param.setStreamType(EMConferenceStream.StreamType.NORMAL);
+        param.setVideoOff(false);
+        param.setAudioOff(true);
+
+        EMClient.getInstance().conferenceManager().publish(param, new EMValueCallBack<String>() {
+            @Override
+            public void onSuccess(String streamId) {
+                EMLog.e("onSuccess", "publish failed: streamId=" + streamId);
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+                EMLog.e("onError", "publish failed: error=" + error + ", msg=" + errorMsg);
+            }
+        });
+    }
+
+    private void refreshByUserid(String userId, boolean isJoin){
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", userId);
+        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+                .queryUserByUserId( map, MyApplication.getLoginBean().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResponseObserver<UserInfo>(getActivity()) {
+
+                    @Override
+                    protected void onNext(UserInfo response) {
+                        Log.e("onNext= ", response.toString());
+                        if(response==null)return;
+                        User user = response.getUser();
+                        if(isJoin){
+                            if(!selectUsers.contains(user)){
+                                selectUsers.add(user);
+                                setRecyclerView(selectUsers);
+                            }
+                        }else{
+                            if(selectUsers.contains(user)){
+                                selectUsers.remove(user);
+                                setRecyclerView(selectUsers);
+                            }
+                        }
+                    }
+
+                    @Override
+                    protected void onError(Throwable e) {
+                        super.onError(e);
+                        Log.e("Throwable= ", e.getMessage());
+                    }
+                }.actual());
+    }
 
 }

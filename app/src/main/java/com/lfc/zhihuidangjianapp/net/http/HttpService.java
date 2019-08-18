@@ -305,6 +305,14 @@ public interface HttpService {
     @POST(ApiConstant.queryNoticeAnnouncementPageList)
     Observable<String> queryNoticeAnnouncementPageList(@Header("token") String token);
 
+    /**
+     * 根据用户ID查询用户信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryUserByUserId")
+    Observable<BaseResponse<UserInfo>> queryUserByUserId(@QueryMap Map<String, Object> map,@Header("token") String token);
+
 
 
 }
