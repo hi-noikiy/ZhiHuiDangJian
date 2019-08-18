@@ -20,6 +20,7 @@ import com.hyphenate.chat.EMStreamParam;
 import com.hyphenate.chat.EMStreamStatistics;
 import com.hyphenate.util.EMLog;
 import com.lfc.zhihuidangjianapp.R;
+import com.lfc.zhihuidangjianapp.app.Constants;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
@@ -56,7 +57,7 @@ public class Act_Meeting_Start extends BaseActivity {
 
     private MeetingStartAdapter meetingAdapter;
 
-    private String password = "password";
+    private String password = Constants.CONFERENCE_PASSWORD;
 
     public static final int TYPE_CREATE = 1;
     public static final int TYPE_JOIN = 0;

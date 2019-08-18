@@ -11,7 +11,9 @@ import com.hyphenate.chat.EMConferenceMember;
 import com.hyphenate.chat.EMConferenceStream;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMStreamStatistics;
+import com.hyphenate.chatuidemo.conference.ConferenceActivity;
 import com.hyphenate.exceptions.HyphenateException;
+import com.lfc.zhihuidangjianapp.app.Constants;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Meeting_Start;
 import com.lfc.zhihuidangjianapp.ui.activity.model.User;
@@ -38,12 +40,14 @@ public abstract class EazyChatListenerActivity extends BaseActivity {
                         EMMessage emMessage = list.get(0);
                         if (emMessage.getChatType() == EMMessage.ChatType.Chat) {
                             try {
-                                Intent intent = new Intent(getActivity(), Act_Meeting_Start.class);
-                                String userJson = emMessage.getStringAttribute("user");
-                                intent.putExtra("type", Act_Meeting_Start.TYPE_JOIN);
-                                intent.putExtra("conferenceId", emMessage.getStringAttribute("conferenceId"));
-                                intent.putExtra("user", new Gson().fromJson(userJson, User.class));
-                                startActivity(intent);
+//                                Intent intent = new Intent(getActivity(), Act_Meeting_Start.class);
+//                                String userJson = emMessage.getStringAttribute("user");
+//                                intent.putExtra("type", Act_Meeting_Start.TYPE_JOIN);
+//                                intent.putExtra("conferenceId", emMessage.getStringAttribute("conferenceId"));
+//                                intent.putExtra("user", new Gson().fromJson(userJson, User.class));
+//                                startActivity(intent);
+
+                                ConferenceActivity.receiveConferenceCall(getActivity(), emMessage.getStringAttribute("conferenceId"), Constants.CONFERENCE_PASSWORD, "", null);
                             } catch (HyphenateException e) {
                                 e.printStackTrace();
                             }

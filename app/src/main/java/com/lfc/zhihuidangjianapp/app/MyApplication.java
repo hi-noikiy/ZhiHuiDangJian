@@ -5,13 +5,14 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hjq.toast.ToastUtils;
+import com.hyphenate.chatuidemo.DemoApplication;
 import com.lfc.zhihuidangjianapp.bean.LoginBean;
 import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.image.ImageLoader;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.tencent.bugly.crashreport.CrashReport;
 
-public class MyApplication extends Application {
+public class MyApplication extends DemoApplication {
 
     private volatile static MyApplication sBaseApplication;
     private static MyApplication app;
