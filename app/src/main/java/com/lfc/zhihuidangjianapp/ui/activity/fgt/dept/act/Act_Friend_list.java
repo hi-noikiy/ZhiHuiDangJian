@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lfc.zhihuidangjianapp.R;
@@ -27,6 +29,7 @@ import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +72,8 @@ public class Act_Friend_list extends BaseActivity {
 
     @Override
     protected void initData() {
-        deptNumber = getIntent().getStringExtra("deptNumber");
+//        deptNumber = getIntent().getStringExtra("deptNumber");
+        deptNumber = MyApplication.getDeptNumber();
         Map<String, Object> map = new HashMap<>();
         map.put("deptNumber", deptNumber);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
@@ -114,10 +118,19 @@ public class Act_Friend_list extends BaseActivity {
                     if(selectUsers.isEmpty()){
                         return;
                     }
-                    Intent intent = new Intent(getActivity(), Act_Meeting_Start.class);
-                    intent.putParcelableArrayListExtra("users", selectUsers);
-                    intent.putExtra("type", Act_Meeting_Start.TYPE_CREATE);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getActivity(), Act_Meeting_Start.class);
+//                    intent.putParcelableArrayListExtra("users", selectUsers);
+//                    intent.putExtra("type", Act_Meeting_Start.TYPE_CREATE);
+//                    startActivity(intent);
+                    //todo 环信
+                    String[] members = new String[selectUsers.size()];
+                    for (int i=0;i<selectUsers.size();i++){
+                        members[i] = selectUsers.get(i).getLoginName();
+                    }
+                    Intent i = new Intent();
+                    i.putExtra("members", members);
+                    setResult(Activity.RESULT_OK, i);
+                    finish();
                 });
             }
 

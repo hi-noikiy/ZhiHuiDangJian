@@ -48,6 +48,9 @@ import com.hyphenate.chatuidemo.widget.EasePageIndicator;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.EasyUtils;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Friend_list;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Meeting_Start;
 import com.superrtc.mediamanager.ScreenCaptureManager;
 import com.superrtc.sdk.VideoView;
 
@@ -627,7 +630,8 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
      * 邀请他人加入会议
      */
     private void selectUserToJoinConference() {
-        Intent intent = new Intent(activity, ConferenceInviteActivity.class);
+        //TODO 修改环信demo
+        Intent intent = new Intent(activity, Act_Friend_list.class);
         intent.putExtra(Constant.EXTRA_CONFERENCE_GROUP_ID, groupId);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

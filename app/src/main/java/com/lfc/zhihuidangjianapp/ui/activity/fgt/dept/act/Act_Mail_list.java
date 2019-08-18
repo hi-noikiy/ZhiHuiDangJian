@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.hyphenate.chatuidemo.conference.ConferenceActivity;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
@@ -84,9 +85,13 @@ public class Act_Mail_list extends BaseActivity {
             protected void convert(ViewHolder holder, Dept data, int position) {
                 holder.setText(R.id.tv_name, data.getAbbreviation());
                 holder.getConvertView().setOnClickListener(mailList->{
-                    Intent intent = new Intent(getActivity(), Act_Friend_list.class);
-                    intent.putExtra("deptNumber", data.getDeptNumber());
-                    startActivity(intent);
+                    //TODO 通讯录
+//                    Intent intent = new Intent(getActivity(), Act_Friend_list.class);
+//                    intent.putExtra("deptNumber", data.getDeptNumber());
+//                    startActivity(intent);
+                    MyApplication.setDeptNumber(data.getDeptNumber());
+                    //创建音视频会议
+                    ConferenceActivity.startConferenceCall(getActivity(), null);
                 });
             }
 

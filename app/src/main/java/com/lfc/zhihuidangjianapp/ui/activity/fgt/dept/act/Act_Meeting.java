@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.gyf.barlibrary.ImmersionBar;
+import com.hyphenate.chatuidemo.conference.ConferenceActivity;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 
@@ -53,6 +54,7 @@ public class Act_Meeting extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.relJoinMeet:
                 startActivity(new Intent(getActivity(), Act_Meeting_Start.class));
+
                 break;
             default:
         }

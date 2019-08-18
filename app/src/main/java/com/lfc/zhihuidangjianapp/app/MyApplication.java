@@ -14,6 +14,8 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 public class MyApplication extends DemoApplication {
 
+    private static String deptNumber;
+
     private volatile static MyApplication sBaseApplication;
     private static MyApplication app;
 
@@ -53,6 +55,14 @@ public class MyApplication extends DemoApplication {
         ARouter.init(this);
         //bugly
         CrashReport.initCrashReport(getApplicationContext(), "4040802878", false);
+    }
+
+    public static String getDeptNumber() {
+        return deptNumber;
+    }
+
+    public static void setDeptNumber(String deptNumber) {
+        MyApplication.deptNumber = deptNumber;
     }
 
     public static Context getAppContext() {
