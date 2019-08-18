@@ -90,8 +90,9 @@ public class Fgt_Organizational_Life extends BaseBindViewFragment {
             @Override
             protected void convert(ViewHolder holder, OrganizationalLife data, int position) {
                 holder.setText(R.id.tv_title, data.getTitle());
+                holder.setText(R.id.tv_bottom, data.getDeptName());
                 TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-                tvContent.setText(Html.fromHtml(data.getComment()));
+                tvContent.setText(data.getReleaseDate());
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
                 Glide.with(getActivity()).load(url).into(image);

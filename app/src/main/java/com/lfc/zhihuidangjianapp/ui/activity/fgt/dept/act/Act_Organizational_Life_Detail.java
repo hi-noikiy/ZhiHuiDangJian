@@ -30,7 +30,9 @@ public class Act_Organizational_Life_Detail extends BaseActivity {
 
     private String organizationalLifeId;
 
-    private TextView tvTitle, tvAuthor, tvContent;
+    private TextView tvTitle, tvAuthor, tvCreateTime, tv_time, tv_day,
+
+    tv_place, tv_total_count, tv_count, tv_join_member, tv_content, tv_type;
 
     @Override
     protected int getLayoutId() {
@@ -48,7 +50,15 @@ public class Act_Organizational_Life_Detail extends BaseActivity {
         findViewById(R.id.imgBack).setOnClickListener(back->finish());
         tvTitle = findViewById(R.id.tv_title);
         tvAuthor = findViewById(R.id.tv_author);
-        tvContent = findViewById(R.id.tv_content);
+        tvCreateTime = findViewById(R.id.tv_create_time);
+        tv_time = findViewById(R.id.tv_time);
+        tv_day = findViewById(R.id.tv_day);
+        tv_place = findViewById(R.id.tv_place);
+        tv_total_count = findViewById(R.id.tv_total_count);
+        tv_count = findViewById(R.id.tv_count);
+        tv_join_member = findViewById(R.id.tv_join_member);
+        tv_content = findViewById(R.id.tv_content);
+        tv_type = findViewById(R.id.tv_type);
     }
 
     @Override
@@ -69,7 +79,15 @@ public class Act_Organizational_Life_Detail extends BaseActivity {
                         OrganizationalLife dynamic = response.getOrganizationalLife();
                         tvTitle.setText(dynamic.getTitle());
                         tvAuthor.setText(dynamic.getAuthor());
-                        tvContent.setText(Html.fromHtml(dynamic.getComment()));
+                        tvCreateTime.setText(dynamic.getReleaseDate());
+                        tv_time.setText("时间："+dynamic.getStudyDate());
+                        tv_day.setText("天数："+dynamic.getStudyDays()+"");
+                        tv_place.setText("地点："+dynamic.getAddress());
+                        tv_total_count.setText("应到人数："+dynamic.getArtyMembersCount()+"");
+                        tv_count.setText("实到人数："+dynamic.getPartyMembershipCount()+"");
+                        tv_join_member.setText(dynamic.getParticipants());
+                        tv_content.setText(Html.fromHtml(dynamic.getComment()));
+                        tv_type.setText(dynamic.getStudyForm());
                     }
 
                     @Override

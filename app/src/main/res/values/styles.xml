@@ -159,6 +159,14 @@
         <item name="android:textSize">9sp</item>
     </style>
 
+    <style name="dept_detail_title">
+        <item name="android:background">@color/app_red</item>
+        <item name="textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">@dimen/dip_5</item>
+        <item name="android:paddingBottom">@dimen/dip_5</item>
+    </style>
 
     <style name="btn_submit">
         <item name="android:background">#F08713</item>

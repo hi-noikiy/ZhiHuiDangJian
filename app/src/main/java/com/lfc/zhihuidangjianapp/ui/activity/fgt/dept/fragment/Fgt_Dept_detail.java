@@ -33,14 +33,17 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class Fgt_Dept_detail extends BaseFragment {
 
-    TextView tvDeptTitle;
+    TextView tvTitle;
     TextView tvBriefIntrodection;
     TextView tvAddress;
     RecyclerView recyclerView, rvMember;
     private LinearLayout viewMember;
+    private TextView tvDeptTitle, tvDirectorTitle;
 
     private String deptNumber;
     private View mRootView;
+
+    private int position;
 
     @Override
     protected int getLayoutId() {
@@ -50,17 +53,30 @@ public class Fgt_Dept_detail extends BaseFragment {
     @Override
     protected void initView(View rootView) {
         mRootView = rootView;
-        tvDeptTitle = rootView.findViewById(R.id.tv_title);
+        tvTitle = rootView.findViewById(R.id.tv_title);
         tvBriefIntrodection = rootView.findViewById(R.id.tv_brief_introduction);
         tvAddress = rootView.findViewById(R.id.tv_address);
         recyclerView = rootView.findViewById(R.id.rv_group);
         rvMember = rootView.findViewById(R.id.rv_member);
         viewMember = rootView.findViewById(R.id.view_member);
+        tvDeptTitle = rootView.findViewById(R.id.tv_dept_title);
+        tvDirectorTitle = rootView.findViewById(R.id.tv_director_title);
     }
 
     @Override
     protected void initData() {
         deptNumber = getArguments().getString("deptNumber");
+        position = getArguments().getInt("position");
+        if(position==0){
+            tvDeptTitle.setText("党委介绍");
+            tvDirectorTitle.setText("党委成员");
+        }else if(position==1){
+            tvDeptTitle.setText("支部介绍");
+            tvDirectorTitle.setText("支委成员");
+        }else if(position==2){
+            tvDeptTitle.setText("支部介绍");
+            tvDirectorTitle.setText("支委成员");
+        }
         Map<String, Object> map = new HashMap<>();
         map.put("deptNumber", deptNumber);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
@@ -92,7 +108,7 @@ public class Fgt_Dept_detail extends BaseFragment {
             return;
         }
 //        ButterKnife.bind(this);
-        tvDeptTitle.setText(dept.getDeptName());
+        tvTitle.setText(dept.getDeptName());
         if(dept.getBriefIntroduction()!=null) {
             tvBriefIntrodection.setText(dept.getBriefIntroduction());
         }else{

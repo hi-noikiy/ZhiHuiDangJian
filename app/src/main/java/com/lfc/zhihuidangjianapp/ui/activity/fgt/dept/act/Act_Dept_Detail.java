@@ -47,6 +47,7 @@ public class Act_Dept_Detail extends BaseActivity {
         Fgt_Dept_detail fgtDeptDetail = new Fgt_Dept_detail();
         Bundle bundle = new Bundle();
         bundle.putString("deptNumber", deptNumber);
+        bundle.putInt("position", 2);
         fgtDeptDetail.setArguments(bundle);
         getSupportFragmentManager().beginTransaction().add(R.id.content, fgtDeptDetail).commit();
     }

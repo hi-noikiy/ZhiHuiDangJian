@@ -54,12 +54,11 @@
 
                     <TextView
                         android:id="@+id/tv_dept_title"
-                        style="@style/text_18"
+                        style="@style/dept_detail_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dip_12"
                         android:layout_marginTop="@dimen/dip_15"
-                        android:text="支部介绍" />
+                        android:text="党委介绍" />
 
                     <TextView
                         android:id="@+id/tv_brief_introduction"
@@ -74,12 +73,11 @@
 
                 <TextView
                     android:id="@+id/tv_director_title"
-                    style="@style/text_18"
+                    style="@style/dept_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dip_12"
                     android:layout_marginTop="@dimen/dip_15"
-                    android:text="班子成员" />
+                    android:text="党委成员" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_member"
@@ -103,10 +101,9 @@
                     android:background="@color/background" />
 
                 <TextView
-                    style="@style/text_18"
+                    style="@style/dept_detail_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dip_12"
                     android:layout_marginTop="@dimen/dip_15"
                     android:text="党建地图" />
 

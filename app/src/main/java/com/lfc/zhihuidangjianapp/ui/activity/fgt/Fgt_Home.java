@@ -61,7 +61,7 @@ public class Fgt_Home extends BaseFragment {
     private RecyclerView recyclerView;
     private int[] images = {R.mipmap.img_home_tab1, R.mipmap.img_home_tab2,
             R.mipmap.img_home_tab3, R.mipmap.img_home_tab4, R.mipmap.img_home_tab5,R.mipmap.img_dangwu_tab5_item1};
-    private String[] lables = {"党建矩阵", "学习强局", "党建动态", "专题专栏", "缴纳党费", "林区风采"};
+    private String[] lables = {"党建矩阵", "学习强局", "党建资讯", "专题专栏", "党费收缴", "林区风采"};
 
     @Override
     protected int getLayoutId() {
@@ -80,7 +80,6 @@ public class Fgt_Home extends BaseFragment {
             startActivity(intent);
         });
         ImmersionBar.with(this).statusBarDarkFont(true).init();
-
     }
 
     @Override

@@ -57,11 +57,145 @@
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/tv_content"
-                style="@style/text_14_normal"
-                android:layout_marginTop="@dimen/dip_10"
+                android:id="@+id/tv_create_time"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_10"
+                style="@style/text_14"
+                />
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/view_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_10"
+                android:background="@color/white"
+                android:padding="@dimen/dip_12">
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="@dimen/dip_10"
+                    style="@style/text_14_grey"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="@dimen/dip_10"
+                    style="@style/text_14_grey"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_time"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_time"
+                    android:layout_marginTop="@dimen/dp_4"
+                    style="@style/text_14_grey"/>
+
+                <TextView
+                    android:id="@+id/tv_total_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_place"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_place"
+                    android:layout_marginTop="@dimen/dp_4"
+                    style="@style/text_14_grey"/>
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_total_count"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_total_count"
+                    android:layout_marginTop="@dimen/dp_4"
+                    style="@style/text_14_grey"/>
+
+                <TextView
+                    android:id="@+id/tv_join_member_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_count"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_count"
+                    android:layout_marginTop="@dimen/dp_4"
+                    style="@style/text_14_grey"
+                    android:text="参学人员："/>
+
+                <TextView
+                    android:id="@+id/tv_join_member"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_join_member_title"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_join_member_title"
+                    android:layout_marginTop="@dimen/dp_4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    style="@style/text_14_grey"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_10"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/dip_10"
+                android:paddingRight="@dimen/dip_10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_content_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_10"
+                    style="@style/dept_detail_title"
+                    android:text="集中学习研究的专题和内容"/>
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_14"
+                    android:layout_marginTop="@dimen/dip_14"
+                    android:layout_marginBottom="@dimen/dip_10"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_10"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/dip_10"
+                android:paddingRight="@dimen/dip_10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_type_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_10"
+                    style="@style/dept_detail_title"
+                    android:text="集中学习研究的专题和内容"/>
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_14"
+                    android:layout_marginTop="@dimen/dip_14"
+                    android:layout_marginBottom="@dimen/dip_10"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 
