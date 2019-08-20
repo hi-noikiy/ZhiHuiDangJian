@@ -164,8 +164,10 @@ public class Act_Login extends BaseActivity {
                     aCache.put("data", succeed);
                     MyApplication.setLoginBean(bean.getData());
                     ToastUtils.show("登录成功");
+                    // 登录成功
                     login();
-
+                    startActivity(Act_Main.class);
+                    finish();
                 } else {
                     ToastUtils.show(bean.getMsg());
                 }
@@ -196,9 +198,6 @@ public class Act_Login extends BaseActivity {
                         String currentUser = EMClient.getInstance().getCurrentUser();
                         if (TextUtils.equals(loginBean.getLoginName(), currentUser)) {
 
-                            // 登录成功
-                            startActivity(Act_Main.class);
-                            finish();
                             return;
                         } else if (!TextUtils.isEmpty(currentUser)) {
                             return;

@@ -89,13 +89,11 @@ public class Act_Craftsman_Training extends BaseActivity {
     }
 
     public void setRecyclerView(StudyCraftTrainingList response) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CommonAdapter<StudyStrongBureau>(Act_Craftsman_Training.this, R.layout.item_dept_dynamic, response.getStudyStrongBureauCraftsmanList().getDatas()) {
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setAdapter(new CommonAdapter<StudyStrongBureau>(Act_Craftsman_Training.this, R.layout.item_craftsman, response.getStudyStrongBureauCraftsmanList().getDatas()) {
             @Override
             protected void convert(ViewHolder holder, StudyStrongBureau data, int position) {
                 holder.setText(R.id.tv_title, data.getTitle());
-                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-                tvContent.setText(Html.fromHtml(data.getComment()));
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
                 Glide.with(getActivity()).load(url).into(image);

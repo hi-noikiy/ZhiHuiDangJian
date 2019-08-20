@@ -18,6 +18,7 @@ import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
+import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureau;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
@@ -87,14 +88,17 @@ public class Act_Forestry_Course extends BaseActivity {
 
     public void setRecyclerView(StudyCraftTrainingList response) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CommonAdapter<StudyStrongBureau>(Act_Forestry_Course.this, R.layout.item_forest_course, response.getStudyStrongBureauCraftsmanList().getDatas()) {
+        recyclerView.setAdapter(new CommonAdapter<StudyStrongBureau>(MyApplication.getAppContext(), R.layout.item_dept_dynamic, response.getStudyStrongBureauCraftsmanList().getDatas()) {
             @Override
             protected void convert(ViewHolder holder, StudyStrongBureau data, int position) {
-                holder.setText(R.id.tv_title, data.getTitle());
+                TextView title = holder.getConvertView().findViewById(R.id.tv_title);
+                title.setText(Html.fromHtml(data.getComment()));
+                holder.setText(R.id.tv_bottom, data.getTitle());
+                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
+                tvContent.setText(data.getReleaseDate());
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
                 Glide.with(getActivity()).load(url).into(image);
-
                 holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
                     Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
                     intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");

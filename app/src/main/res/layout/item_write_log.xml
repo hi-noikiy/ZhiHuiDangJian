@@ -7,11 +7,11 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dip_10"
         android:layout_marginBottom="@dimen/dip_10"
-        style="@style/text_14"
+        style="@style/dept_detail_title"
         android:text="二、参加学习教育情况："/>
     
     <EditText

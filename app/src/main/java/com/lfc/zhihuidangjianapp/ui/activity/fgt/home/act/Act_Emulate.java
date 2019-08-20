@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -90,16 +91,20 @@ public class Act_Emulate extends BaseActivity {
 
     private void setRecyclerView(ResponseStudyStrong response){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         //工匠培养
         rvStudyStrong.setLayoutManager(linearLayoutManager);
-        rvStudyStrong.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_study_strong
+        rvStudyStrong.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_dept_dynamic
                 , response.getStudyStrongBureauList().getDatas()) {
             @Override
             protected void convert(ViewHolder holder, StudyStrongBureau data, int position) {
-                holder.setText(R.id.tv_title, data.getTitle());
+                TextView title = holder.getConvertView().findViewById(R.id.tv_title);
+                title.setText(Html.fromHtml(data.getComment()));
+                holder.setText(R.id.tv_bottom, data.getTitle());
+                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
+                tvContent.setText(data.getReleaseDate());
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
-                Glide.with(getContext()).load(ApiConstant.ROOT_URL+data.getThumbnailUrl()).into(image);
+                String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
+                Glide.with(getActivity()).load(url).into(image);
                 holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
                     Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
                     intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");
@@ -109,13 +114,15 @@ public class Act_Emulate extends BaseActivity {
 
         });
         //学习心得
-        rvStudyStrongVideo.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        rvStudyStrongVideo.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_stuty_strong_video
+        rvStudyStrongVideo.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        rvStudyStrongVideo.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_craftsman
                 , response.getStudyStrongBureauList().getDatas()) {
             @Override
             protected void convert(ViewHolder holder, StudyStrongBureau data, int position) {
+                holder.setText(R.id.tv_title, data.getTitle());
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
-                Glide.with(getContext()).load(ApiConstant.ROOT_URL+data.getThumbnailUrl()).into(image);
+                String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
+                Glide.with(getActivity()).load(url).into(image);
                 holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
                     Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
                     intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");

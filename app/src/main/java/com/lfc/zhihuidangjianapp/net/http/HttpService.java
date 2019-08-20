@@ -16,6 +16,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseOrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyPayment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseWorkReport;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftReportList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyCraftTrainingList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.StudyStrongBureauDetail;
@@ -271,7 +272,7 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.API + "/queryMyWeeklyWorkReportPageList")
-    Observable<BaseResponse<Object>> queryMyWeeklyWorkReportPageList(@Header("token") String token);
+    Observable<BaseResponse<ResponseWorkReport>> queryMyWeeklyWorkReportPageList(@Header("token") String token);
 
     /**
      * 分页查询学习强局信息 -- 学习心得传studyStrongBureauType=2

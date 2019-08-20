@@ -14,6 +14,7 @@ import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.utlis.DateUtils;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -33,14 +34,18 @@ public class Act_Write_Log extends BaseActivity {
 
     private RecyclerView recyclerView;
 
-    private TextView tvSubmit;
+    private TextView tvSubmit, tvBranchName, tvReportTime;
 
-    private String[] titles = {"一、参加组织生活情况：","二、参加学习教育情况：",
-    "三、承诺践诺完成情况（含党员示范岗、党员责任区的完成情况）：","四、其他需报告党组织事宜："};
+    private String[] titles = {"组织生活情况","学习教育情况",
+    "承诺践诺完成情况","其他需报告党组织事宜"};
 
     private String[] contents = {"", "", "", ""};
 
     private EditText etTitle;
+
+    private String branchName;
+
+    private long reportTime;
 
     @Override
     protected int getLayoutId() {
@@ -59,7 +64,13 @@ public class Act_Write_Log extends BaseActivity {
         recyclerView = findViewById(R.id.recyclerView);
         tvSubmit = findViewById(R.id.tv_submit);
         etTitle = findViewById(R.id.et_title);
+        tvBranchName = findViewById(R.id.tv_branch_name);
+        tvReportTime = findViewById(R.id.tv_report_time);
 
+        branchName = MyApplication.getmUserInfo().getUser().getDeptName();
+        reportTime = System.currentTimeMillis();
+        tvBranchName.setText(tvBranchName.getText()+branchName);
+        tvReportTime.setText(tvReportTime.getText()+ DateUtils.timeStampToStr(reportTime, ""));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new CommonAdapter<String>(Act_Write_Log.this, R.layout.item_write_log, Arrays.asList(titles)) {

@@ -43,7 +43,7 @@ public class Act_Weekend_Report extends BaseActivity {
 
     private ViewPager viewPager;
 
-    private String[] mTitles = {"党委","党总支", "党支部", "党员"};
+    private String[] mTitles = {"我的周报","周报查询"};
 
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
 
@@ -99,26 +99,5 @@ public class Act_Weekend_Report extends BaseActivity {
 
     @Override
     protected void initData() {
-        //精选周报
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("studyStrongBureauType", 2);
-//        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-//                .queryWeeklyWorkReportTopPageList( map, MyApplication.getLoginBean().getToken())
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new ResponseObserver<Object>(getActivity()) {
-//
-//                    @Override
-//                    protected void onNext(Object response) {
-//                        Log.e("onNext= ", response.toString());
-//                        if(response==null)return;
-//                    }
-//
-//                    @Override
-//                    protected void onError(Throwable e) {
-//                        super.onError(e);
-//                        Log.e("Throwable= ", e.getMessage());
-//                    }
-//                }.actual());
     }
 }
