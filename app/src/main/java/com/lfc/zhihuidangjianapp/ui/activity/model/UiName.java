@@ -5,11 +5,13 @@ package com.lfc.zhihuidangjianapp.ui.activity.model;
  * @autror: guojian
  * @description:
  */
-public class UiDataUser {
+public class UiName {
 
     private String title;
 
     private String name;
+
+    private String text;
 
     public String getTitle() {
         return title;
@@ -27,4 +29,18 @@ public class UiDataUser {
         this.name = name;
     }
 
+    public UiName(String title, String name) {
+        this.title = title;
+        this.name = name;
+    }
+    public UiName() {
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }

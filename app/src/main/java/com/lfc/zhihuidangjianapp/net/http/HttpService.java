@@ -12,6 +12,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseMeetingMine;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseOrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyPayment;
@@ -313,6 +314,38 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryUserByUserId")
     Observable<BaseResponse<UserInfo>> queryUserByUserId(@QueryMap Map<String, Object> map,@Header("token") String token);
+
+    /**
+     * 新增会议信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.MEETING + "/insertMeeting")
+    Observable<BaseResponse<UserInfo>> insertMeeting(@QueryMap Map<String, Object> map,@Header("token") String token);
+
+    /**
+     * 我的会议信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.MEETING + "/queryMyMeetingPageList")
+    Observable<BaseResponse<ResponseMeetingMine>> queryMyMeetingPageList(@Header("token") String token);
+
+    /**
+     * 会议列表信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.MEETING + "/queryMeetingPageList")
+    Observable<BaseResponse<ResponseMeetingMine>> queryMeetingPageList( @Header("token") String token);
+
+    /**
+     * 历史会议列表信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.MEETING + "/queryMeetingHisPageList")
+    Observable<BaseResponse<ResponseMeetingMine>> queryMeetingHisPageList( @Header("token") String token);
 
 
 

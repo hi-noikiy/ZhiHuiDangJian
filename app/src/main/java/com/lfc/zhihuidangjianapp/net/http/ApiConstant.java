@@ -8,6 +8,8 @@ public class ApiConstant {
 
     public static final String API= "appApi";
 
+    public static final String MEETING= "meeting";
+
     //登录
     public static final String LOGIN = "login/login";
     //分页公告信息

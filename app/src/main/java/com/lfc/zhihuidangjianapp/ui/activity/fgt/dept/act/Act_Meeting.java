@@ -47,14 +47,16 @@ public class Act_Meeting extends BaseActivity implements View.OnClickListener {
                 break;
 
             case R.id.relAddMeet:
-
-                Intent intent = new Intent(Act_Meeting.this, Act_Mail_list.class);
-                startActivity(intent);
+                //创建会议
+//                Intent intent = new Intent(Act_Meeting.this, Act_Mail_list.class);
+//                startActivity(intent);
+                startActivity(new Intent(Act_Meeting.this, Act_Create_Meeting.class));
 
                 break;
             case R.id.relJoinMeet:
-                startActivity(new Intent(getActivity(), Act_Meeting_Start.class));
-
+                //会议中心
+//                startActivity(new Intent(getActivity(), Act_Meeting_Start.class));
+                startActivity(new Intent(getActivity(), MeetingCenterActivity.class));
                 break;
             default:
         }

@@ -17,12 +17,9 @@ import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
-import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
-import com.lfc.zhihuidangjianapp.ui.activity.model.NativePartyBody;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
-import com.lfc.zhihuidangjianapp.ui.activity.model.UiDataUser;
+import com.lfc.zhihuidangjianapp.ui.activity.model.UiName;
 import com.lfc.zhihuidangjianapp.ui.activity.model.User;
-import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.lfc.zhihuidangjianapp.utlis.DateUtils;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
@@ -53,7 +50,7 @@ public class Act_Party_Change extends BaseActivity {
 
     private String[] titles = {"姓名", "性别", "民族", "出生日期", "学历", "支部"};
 
-    private List<UiDataUser> uiDataUserList = new ArrayList<>();
+    private List<UiName> uiNameList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -147,10 +144,10 @@ public class Act_Party_Change extends BaseActivity {
     @Override
     protected void initData() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CommonAdapter<UiDataUser>(getActivity(), R.layout.item_user_info, formatData()) {
+        recyclerView.setAdapter(new CommonAdapter<UiName>(getActivity(), R.layout.item_user_info, formatData()) {
 
             @Override
-            protected void convert(ViewHolder holder, UiDataUser data, int position) {
+            protected void convert(ViewHolder holder, UiName data, int position) {
                 holder.setText(R.id.tv_title, data.getTitle());
                 holder.setText(R.id.tv_name, data.getName());
             }
@@ -169,35 +166,35 @@ public class Act_Party_Change extends BaseActivity {
         loadOrganizational();
     }
 
-    private List<UiDataUser> formatData(){
+    private List<UiName> formatData(){
         User user = MyApplication.getmUserInfo().getUser();
-        uiDataUserList.clear();
+        uiNameList.clear();
         for (int i=0; i<titles.length;i++){
-            UiDataUser uiDataUser = new UiDataUser();
-            uiDataUser.setTitle(titles[i]);
+            UiName uiName = new UiName();
+            uiName.setTitle(titles[i]);
             switch (i){
                 case 0://姓名
-                    uiDataUser.setName(user.getSealName());
+                    uiName.setName(user.getSealName());
                     break;
                 case 1://性别
-                    uiDataUser.setName(user.getUserNumber()+"");
+                    uiName.setName(user.getUserNumber()+"");
                     break;
                 case 2://民族
-                    uiDataUser.setName(user.getNation()+"");
+                    uiName.setName(user.getNation()+"");
                     break;
                 case 3://出生日期
-                    uiDataUser.setName(DateUtils.timeStampToStr(user.getBirthday(), "yyyy-MM-dd"));
+                    uiName.setName(DateUtils.timeStampToStr(user.getBirthday(), "yyyy-MM-dd"));
                     break;
                 case 4://学历
-                    uiDataUser.setName(user.getEducation()+"");
+                    uiName.setName(user.getEducation()+"");
                     break;
                 case 5://支部
-                    uiDataUser.setName(user.getSubordinatePartyGroup()+"");
+                    uiName.setName(user.getSubordinatePartyGroup()+"");
                     break;
             }
-            uiDataUserList.add(uiDataUser);
+            uiNameList.add(uiName);
         }
-        return uiDataUserList;
+        return uiNameList;
     }
 
 }
