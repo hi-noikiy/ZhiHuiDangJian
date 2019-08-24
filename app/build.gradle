@@ -171,4 +171,12 @@ dependencies {
 
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+
+    //https://github.com/gzu-liyujiang/AndroidPicker
+    //日期选择器、时间选择器、单项选择器、双项选择器、城市地址选择器、车牌号选择
+    // 器、数字选择器、星座选择器、生肖选择器、颜色选择器、文件选择器、目录选择器
+    implementation('com.github.gzu-liyujiang.AndroidPicker:WheelPicker:1.5.6') {
+        exclude group: 'com.android.support'
+    }
+
 }

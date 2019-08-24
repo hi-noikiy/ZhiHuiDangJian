@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="@dimen/dip_12"
-    android:paddingRight="@dimen/dip_12"
     android:paddingTop="@dimen/dip_5"
+    android:paddingRight="@dimen/dip_12"
     android:paddingBottom="@dimen/dip_5">
 
     <TextView
         android:id="@+id/tv_title"
+        style="@style/text_14"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/text_14"/>
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/edit"
+        style="@style/text_14"
         android:layout_width="0dp"
         android:layout_height="44dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:padding="@dimen/dip_8"
         android:layout_marginLeft="@dimen/dip_12"
-        style="@style/text_14"
+        android:layout_weight="1"
         android:background="@color/white"
-        android:hint="1"/>
+        android:gravity="center_vertical"
+        android:hint="1"
+        android:padding="@dimen/dip_8" />
+
+    <TextView
+        android:id="@+id/text"
+        style="@style/text_14"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/dip_12"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:hint="1"
+        android:padding="@dimen/dip_8" />
 
 </LinearLayout>

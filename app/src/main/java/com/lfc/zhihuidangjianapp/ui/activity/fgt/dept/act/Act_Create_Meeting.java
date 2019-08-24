@@ -6,7 +6,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
@@ -24,6 +26,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.qqtheme.framework.picker.DatePicker;
+import cn.qqtheme.framework.util.ConvertUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -88,34 +92,66 @@ public class Act_Create_Meeting extends BaseActivity {
             protected void convert(ViewHolder holder, UiName data, int position) {
                 holder.setText(R.id.tv_title, data.getTitle());
                 EditText edit = holder.getConvertView().findViewById(R.id.edit);
-                edit.setHint(data.getName());
-                edit.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                TextView text = holder.getConvertView().findViewById(R.id.text);
+                if (position == 1 || position == 2 || position == 3) {
+                    text.setVisibility(View.VISIBLE);
+                    edit.setVisibility(View.GONE);
+                    text.setText(data.getName());
+                    text.setOnClickListener(view -> {
+                        selectTime(position, text);
+                    });
+                }else{
+                    edit.setVisibility(View.VISIBLE);
+                    text.setVisibility(View.GONE);
+                    edit.setHint(data.getName());
+                    edit.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        uiNameList.get(position).setText(s.toString());
-                    }
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            uiNameList.get(position).setText(s.toString());
+                        }
 
-                    @Override
-                    public void afterTextChanged(Editable s) {
+                        @Override
+                        public void afterTextChanged(Editable s) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
 
         });
+    }
+
+    private void selectTime(final int position, TextView text) {
+        final DatePicker picker = new DatePicker(this);
+        picker.setCanceledOnTouchOutside(true);
+        picker.setUseWeight(true);
+        picker.setTopPadding(ConvertUtils.toPx(this, 10));
+        picker.setRangeEnd(2050, 1, 11);
+        picker.setRangeStart(2016, 8, 29);
+        picker.setSelectedItem(2019, 10, 14);
+        picker.setResetWhileWheel(false);
+        picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
+            @Override
+            public void onDatePicked(String year, String month, String day) {
+                String time = year+"-"+month+"-"+day+" 00:00:00";
+                text.setText(time);
+                uiNameList.get(position).setText(time);
+            }
+        });
+        picker.show();
     }
 
     /**
      * 创建会议
      */
     private void createMeeting() {
-        for (UiName uiName: uiNameList){
-            if(TextUtils.isEmpty(uiName.getText())){
+        for (UiName uiName : uiNameList) {
+            if (TextUtils.isEmpty(uiName.getText())) {
                 showTextToast("请完善信息");
                 return;
             }
