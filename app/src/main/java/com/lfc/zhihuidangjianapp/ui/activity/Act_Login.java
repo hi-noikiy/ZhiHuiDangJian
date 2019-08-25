@@ -188,42 +188,7 @@ public class Act_Login extends BaseActivity {
         String currentUsername = loginBean.getLoginName();
         String currentPassword = loginBean.getImPwd();
 
-        EazyChatApi.loginChat(currentUsername, currentPassword, getActivity(), new EMCallBack() {
-            @Override
-            public void onSuccess() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("main", "登录聊天服务器成功！");
-                        String currentUser = EMClient.getInstance().getCurrentUser();
-                        if (TextUtils.equals(loginBean.getLoginName(), currentUser)) {
 
-                            return;
-                        } else if (!TextUtils.isEmpty(currentUser)) {
-                            return;
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void onError(int code, String s) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("main", "登录聊天服务器失败！");
-                    }
-                });
-                if (code == 200) {
-
-                }
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-
-            }
-        });
     }
 
 }

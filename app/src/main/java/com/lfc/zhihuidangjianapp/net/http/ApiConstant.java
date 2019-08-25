@@ -10,6 +10,8 @@ public class ApiConstant {
 
     public static final String MEETING= "meeting";
 
+    public static final String HUANXIN= "huanxin";
+
     //登录
     public static final String LOGIN = "login/login";
     //分页公告信息

@@ -120,6 +120,7 @@ public class EazyChatApi {
                     @Override
                     public void run() {
                         Log.d("main", "登录聊天服务器成功！");
+                        activity.toast("登录聊天服务器成功！");
                     }
                 });
             }
@@ -135,6 +136,7 @@ public class EazyChatApi {
                     @Override
                     public void run() {
                         Log.d("main", "登录聊天服务器失败！");
+                        activity.toast("登录聊天服务器失败！");
                     }
                 });
                 if (code == 200) {

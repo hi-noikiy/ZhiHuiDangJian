@@ -51,6 +51,7 @@ import com.hyphenate.util.EasyUtils;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Friend_list;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Mail_list;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Meeting_Start;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Meeting;
 import com.superrtc.mediamanager.ScreenCaptureManager;
 import com.superrtc.sdk.VideoView;
 
@@ -93,7 +94,7 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
     private List<EMConferenceStream> streamList = new ArrayList<>();
 
     private ConferenceMemberView localView;
-    private IncomingCallView incomingCallView;
+    protected IncomingCallView incomingCallView;
     private MemberViewGroup callConferenceViewGroup;
 
     private EasePageIndicator pageIndicator;
@@ -142,8 +143,11 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
     private ImageView talkingImage;
     private TextView talkerTV;
     // ------ full screen views end -------
-
     private TimeHandler timeHandler;
+
+    protected int enterType = -1;
+    //会议信息
+    protected Meeting meeting;
 
     // 如果groupId不为null,则表示呼叫类型为群组呼叫,显示的联系人只能是该群组中成员
     // 若groupId为null,则表示呼叫类型为联系人呼叫,显示的联系人为当前账号所有好友.
@@ -314,17 +318,21 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
 
         groupId = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_GROUP_ID);
         isCreator = getIntent().getBooleanExtra(Constant.EXTRA_CONFERENCE_IS_CREATOR, false);
-        if (isCreator) {
-            incomingCallView.setVisibility(View.GONE);
-            selectUserToJoinConference();
-        } else {
-            confId = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_ID);
-            password = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_PASS);
+        meeting = (Meeting) getIntent().getSerializableExtra("Meeting");
+        enterType = getIntent().getIntExtra("enterType", 0);
+        if (enterType < 0) {//enterType=-1为即时会议模式
+            if (isCreator) {
+                incomingCallView.setVisibility(View.GONE);
+                selectUserToJoinConference();
+            } else {
+                confId = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_ID);
+                password = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_PASS);
 
-            initLocalConferenceView();
-            String inviter = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_INVITER);
-            incomingCallView.setInviteInfo(String.format(getString(R.string.tips_invite_to_join), inviter));
-            incomingCallView.setVisibility(View.VISIBLE);
+                initLocalConferenceView();
+                String inviter = getIntent().getStringExtra(Constant.EXTRA_CONFERENCE_INVITER);
+                incomingCallView.setInviteInfo(String.format(getString(R.string.tips_invite_to_join), inviter));
+                incomingCallView.setVisibility(View.VISIBLE);
+            }
         }
 
         timeHandler = new TimeHandler();
@@ -554,7 +562,7 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
     /**
      * 作为创建者创建并加入会议
      */
-    private void createAndJoinConference(final EMValueCallBack<EMConference> callBack) {
+    protected void createAndJoinConference(final EMValueCallBack<EMConference> callBack) {
         boolean record = PreferenceManager.getInstance().isRecordOnServer();
         boolean merge = PreferenceManager.getInstance().isMergeStream();
         EMClient.getInstance().conferenceManager().createAndJoinConference(EMConferenceManager.EMConferenceType.LargeCommunication,
@@ -565,6 +573,7 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
                         conference = value;
                         startAudioTalkingMonitor();
                         publish();
+                        createFinish(value.getConferenceId(), value.getPassword());
                         timeHandler.startTime();
                         runOnUiThread(new Runnable() {
                             @Override
@@ -592,10 +601,13 @@ public class ConferenceActivity extends BaseActivity implements EMConferenceList
                 });
     }
 
+    protected void createFinish(String confId, String password) {
+    }
+
     /**
      * 作为成员直接根据 confId 和 password 加入会议
      */
-    private void joinConference() {
+    protected void joinConference() {
         hangupBtn.setVisibility(View.VISIBLE);
         EMClient.getInstance().conferenceManager().joinConference(confId, password, new EMValueCallBack<EMConference>() {
             @Override

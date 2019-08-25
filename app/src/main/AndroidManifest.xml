@@ -141,6 +141,8 @@
         <activity android:name=".ui.activity.fgt.dept.act.Act_Meeting_Line" />
         <activity android:name=".ui.activity.fgt.dept.act.Act_Create_Meeting" />
         <activity android:name=".ui.activity.fgt.dept.act.MeetingCenterActivity" />
+        <activity android:name=".ui.activity.fgt.home.act.ConferenceActivity" />
+        <activity android:name=".ui.activity.fgt.home.act.ConferenceActivity1" />
         <activity
             android:launchMode="singleTop"
             android:name=".ui.activity.fgt.dept.act.Act_Meeting_Start" />

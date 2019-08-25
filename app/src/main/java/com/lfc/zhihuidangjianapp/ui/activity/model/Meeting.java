@@ -1,209 +1,260 @@
 package com.lfc.zhihuidangjianapp.ui.activity.model;
 
+import java.io.Serializable;
+
 /**
  * @date: 2019-08-22
  * @autror: guojian
  * @description:
  */
-public class Meeting {
-    private String beginCreateDt;
+public class Meeting implements Serializable {
 
-    private String createCode;
+        private String beginCreateDt;
+        private String chatroomId;
+        private String confr;
+        private String confrId;
+        private String createCode;
+        private String createName;
+        private long createTime;
+        private String deptName;
+        private String deptNumber;
+        private String endCreateDt;
+        private String groupByClause;
+        private String introduction;
+        private String isDeleteText;
+        private String isEnableText;
+        private String meetingDate;
+        private int meetingId;
+        private String orderByClause;
+        private int pageNumber;
+        private int pageSize;
+        private String password;
+        private String readyTime;
+        private String remark;
+        private String sendPerson;
+        private int startIndex;
+        private String startTime;
+        private int status;
+        private String statusList;
+        private String summary;
+        private String ticket;
+        private String title;
+        private String users;
+        public void setBeginCreateDt(String beginCreateDt) {
+            this.beginCreateDt = beginCreateDt;
+        }
+        public String getBeginCreateDt() {
+            return beginCreateDt;
+        }
 
-    private String createName;
+        public void setChatroomId(String chatroomId) {
+            this.chatroomId = chatroomId;
+        }
+        public String getChatroomId() {
+            return chatroomId;
+        }
 
-    private String createTime;
+        public void setConfr(String confr) {
+            this.confr = confr;
+        }
+        public String getConfr() {
+            return confr;
+        }
 
-    private String deptName;
+        public void setConfrId(String confrId) {
+            this.confrId = confrId;
+        }
+        public String getConfrId() {
+            return confrId;
+        }
 
-    private String deptNumber;
+        public void setCreateCode(String createCode) {
+            this.createCode = createCode;
+        }
+        public String getCreateCode() {
+            return createCode;
+        }
 
-    private String endCreateDt;
+        public void setCreateName(String createName) {
+            this.createName = createName;
+        }
+        public String getCreateName() {
+            return createName;
+        }
 
-    private String groupByClause;
+        public void setCreateTime(long createTime) {
+            this.createTime = createTime;
+        }
+        public long getCreateTime() {
+            return createTime;
+        }
 
-    private String introduction;
+        public void setDeptName(String deptName) {
+            this.deptName = deptName;
+        }
+        public String getDeptName() {
+            return deptName;
+        }
 
-    private String isDeleteText;
+        public void setDeptNumber(String deptNumber) {
+            this.deptNumber = deptNumber;
+        }
+        public String getDeptNumber() {
+            return deptNumber;
+        }
 
-    private String isEnableText;
+        public void setEndCreateDt(String endCreateDt) {
+            this.endCreateDt = endCreateDt;
+        }
+        public String getEndCreateDt() {
+            return endCreateDt;
+        }
 
-    private int meetingId;
+        public void setGroupByClause(String groupByClause) {
+            this.groupByClause = groupByClause;
+        }
+        public String getGroupByClause() {
+            return groupByClause;
+        }
 
-    private String orderByClause;
+        public void setIntroduction(String introduction) {
+            this.introduction = introduction;
+        }
+        public String getIntroduction() {
+            return introduction;
+        }
 
-    private int pageNumber;
+        public void setIsDeleteText(String isDeleteText) {
+            this.isDeleteText = isDeleteText;
+        }
+        public String getIsDeleteText() {
+            return isDeleteText;
+        }
 
-    private int pageSize;
+        public void setIsEnableText(String isEnableText) {
+            this.isEnableText = isEnableText;
+        }
+        public String getIsEnableText() {
+            return isEnableText;
+        }
 
-    private String password;
+        public void setMeetingDate(String meetingDate) {
+            this.meetingDate = meetingDate;
+        }
+        public String getMeetingDate() {
+            return meetingDate;
+        }
 
-    private String readyTime;
+        public void setMeetingId(int meetingId) {
+            this.meetingId = meetingId;
+        }
+        public int getMeetingId() {
+            return meetingId;
+        }
 
-    private String remark;
+        public void setOrderByClause(String orderByClause) {
+            this.orderByClause = orderByClause;
+        }
+        public String getOrderByClause() {
+            return orderByClause;
+        }
 
-    private String sendPerson;
+        public void setPageNumber(int pageNumber) {
+            this.pageNumber = pageNumber;
+        }
+        public int getPageNumber() {
+            return pageNumber;
+        }
 
-    private int startIndex;
+        public void setPageSize(int pageSize) {
+            this.pageSize = pageSize;
+        }
+        public int getPageSize() {
+            return pageSize;
+        }
 
-    private String startTime;
+        public void setPassword(String password) {
+            this.password = password;
+        }
+        public String getPassword() {
+            return password;
+        }
 
-    private int status;
+        public void setReadyTime(String readyTime) {
+            this.readyTime = readyTime;
+        }
+        public String getReadyTime() {
+            return readyTime;
+        }
 
-    private String summary;
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+        public String getRemark() {
+            return remark;
+        }
 
-    private String title;
+        public void setSendPerson(String sendPerson) {
+            this.sendPerson = sendPerson;
+        }
+        public String getSendPerson() {
+            return sendPerson;
+        }
 
-    private String users;
+        public void setStartIndex(int startIndex) {
+            this.startIndex = startIndex;
+        }
+        public int getStartIndex() {
+            return startIndex;
+        }
 
-    public void setBeginCreateDt(String beginCreateDt){
-        this.beginCreateDt = beginCreateDt;
+        public void setStartTime(String startTime) {
+            this.startTime = startTime;
+        }
+        public String getStartTime() {
+            return startTime;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatusList(String statusList) {
+            this.statusList = statusList;
+        }
+        public String getStatusList() {
+            return statusList;
+        }
+
+        public void setSummary(String summary) {
+            this.summary = summary;
+        }
+        public String getSummary() {
+            return summary;
+        }
+
+        public void setTicket(String ticket) {
+            this.ticket = ticket;
+        }
+        public String getTicket() {
+            return ticket;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+        public String getTitle() {
+            return title;
+        }
+
+        public void setUsers(String users) {
+            this.users = users;
+        }
+        public String getUsers() {
+            return users;
+        }
+
     }
-    public String getBeginCreateDt(){
-        return this.beginCreateDt;
-    }
-    public void setCreateCode(String createCode){
-        this.createCode = createCode;
-    }
-    public String getCreateCode(){
-        return this.createCode;
-    }
-    public void setCreateName(String createName){
-        this.createName = createName;
-    }
-    public String getCreateName(){
-        return this.createName;
-    }
-    public void setCreateTime(String createTime){
-        this.createTime = createTime;
-    }
-    public String getCreateTime(){
-        return this.createTime;
-    }
-    public void setDeptName(String deptName){
-        this.deptName = deptName;
-    }
-    public String getDeptName(){
-        return this.deptName;
-    }
-    public void setDeptNumber(String deptNumber){
-        this.deptNumber = deptNumber;
-    }
-    public String getDeptNumber(){
-        return this.deptNumber;
-    }
-    public void setEndCreateDt(String endCreateDt){
-        this.endCreateDt = endCreateDt;
-    }
-    public String getEndCreateDt(){
-        return this.endCreateDt;
-    }
-    public void setGroupByClause(String groupByClause){
-        this.groupByClause = groupByClause;
-    }
-    public String getGroupByClause(){
-        return this.groupByClause;
-    }
-    public void setIntroduction(String introduction){
-        this.introduction = introduction;
-    }
-    public String getIntroduction(){
-        return this.introduction;
-    }
-    public void setIsDeleteText(String isDeleteText){
-        this.isDeleteText = isDeleteText;
-    }
-    public String getIsDeleteText(){
-        return this.isDeleteText;
-    }
-    public void setIsEnableText(String isEnableText){
-        this.isEnableText = isEnableText;
-    }
-    public String getIsEnableText(){
-        return this.isEnableText;
-    }
-    public void setMeetingId(int meetingId){
-        this.meetingId = meetingId;
-    }
-    public int getMeetingId(){
-        return this.meetingId;
-    }
-    public void setOrderByClause(String orderByClause){
-        this.orderByClause = orderByClause;
-    }
-    public String getOrderByClause(){
-        return this.orderByClause;
-    }
-    public void setPageNumber(int pageNumber){
-        this.pageNumber = pageNumber;
-    }
-    public int getPageNumber(){
-        return this.pageNumber;
-    }
-    public void setPageSize(int pageSize){
-        this.pageSize = pageSize;
-    }
-    public int getPageSize(){
-        return this.pageSize;
-    }
-    public void setPassword(String password){
-        this.password = password;
-    }
-    public String getPassword(){
-        return this.password;
-    }
-    public void setReadyTime(String readyTime){
-        this.readyTime = readyTime;
-    }
-    public String getReadyTime(){
-        return this.readyTime;
-    }
-    public void setRemark(String remark){
-        this.remark = remark;
-    }
-    public String getRemark(){
-        return this.remark;
-    }
-    public void setSendPerson(String sendPerson){
-        this.sendPerson = sendPerson;
-    }
-    public String getSendPerson(){
-        return this.sendPerson;
-    }
-    public void setStartIndex(int startIndex){
-        this.startIndex = startIndex;
-    }
-    public int getStartIndex(){
-        return this.startIndex;
-    }
-    public void setStartTime(String startTime){
-        this.startTime = startTime;
-    }
-    public String getStartTime(){
-        return this.startTime;
-    }
-    public void setStatus(int status){
-        this.status = status;
-    }
-    public int getStatus(){
-        return this.status;
-    }
-    public void setSummary(String summary){
-        this.summary = summary;
-    }
-    public String getSummary(){
-        return this.summary;
-    }
-    public void setTitle(String title){
-        this.title = title;
-    }
-    public String getTitle(){
-        return this.title;
-    }
-    public void setUsers(String users){
-        this.users = users;
-    }
-    public String getUsers(){
-        return this.users;
-    }
-}

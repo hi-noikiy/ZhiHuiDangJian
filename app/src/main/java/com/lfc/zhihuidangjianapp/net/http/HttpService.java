@@ -347,6 +347,14 @@ public interface HttpService {
     @POST(ApiConstant.MEETING + "/queryMeetingHisPageList")
     Observable<BaseResponse<ResponseMeetingMine>> queryMeetingHisPageList( @Header("token") String token);
 
+    /**
+     * 创建会议上报
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.HUANXIN + "/createChatroom")
+    Observable<BaseResponse<Object>> createChatroom(@QueryMap Map<String, Object> map, @Header("token") String token);
+
 
 
 }

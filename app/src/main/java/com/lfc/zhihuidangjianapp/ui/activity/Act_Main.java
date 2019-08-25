@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -16,12 +17,14 @@ import android.widget.Toast;
 
 import com.facebook.rebound.SpringConfig;
 import com.hjq.toast.ToastUtils;
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.jpeng.jpspringmenu.MenuListener;
 import com.jpeng.jpspringmenu.SpringMenu;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseFragmentAdapter;
+import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
@@ -71,6 +74,9 @@ public class Act_Main extends EazyChatListenerActivity implements ViewPager.OnPa
 
     @Override
     protected void initView() {
+        //登录环信
+        EazyChatApi.loginChat(MyApplication.getmUserInfo().getUser().getLoginName(), MyApplication.getmUserInfo().getUser().getImPwd(), getActivity(), null);
+
         initImmersionBar(1);
         ButterKnife.bind(this);
         vpHomePager.addOnPageChangeListener(this);
