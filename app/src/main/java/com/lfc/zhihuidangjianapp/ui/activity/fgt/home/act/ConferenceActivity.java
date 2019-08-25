@@ -2,14 +2,15 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 
 
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hyphenate.EMConferenceListener;
 import com.hyphenate.EMValueCallBack;
-import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConference;
 import com.hyphenate.chat.EMConferenceManager;
@@ -17,6 +18,7 @@ import com.hyphenate.chat.EMConferenceMember;
 import com.hyphenate.chat.EMConferenceStream;
 import com.hyphenate.chat.EMStreamParam;
 import com.hyphenate.chat.EMStreamStatistics;
+import com.hyphenate.chatuidemo.DemoHelper;
 import com.hyphenate.chatuidemo.conference.CallFloatWindow;
 import com.hyphenate.chatuidemo.conference.ConferenceMemberView;
 import com.hyphenate.chatuidemo.conference.DebugPanelView;
@@ -26,6 +28,7 @@ import com.hyphenate.chatuidemo.utils.PhoneStateManager;
 import com.hyphenate.chatuidemo.utils.PreferenceManager;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
+import com.hyphenate.util.EasyUtils;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
@@ -34,8 +37,6 @@ import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.BaseConferenceActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Meeting;
-import com.lfc.zhihuidangjianapp.ui.activity.model.User;
-import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * @date: 2019-08-25
@@ -61,6 +63,17 @@ public class ConferenceActivity extends BaseConferenceActivity {
     protected ConferenceMemberView localView;
     protected MemberViewGroup callConferenceViewGroup;
     protected DebugPanelView debugPanelView;
+    private View talkingLayout;
+    private ImageView talkingImage;
+    private TextView talkerTV;
+    // tools panel中显示会议成员名称的TextView
+    private TextView membersTV;
+    // tools panel中显示会议成员数量的TextView
+    private TextView memberCountTV;
+    private TextView membersTVMain;
+    private TextView memberCountTVMain;
+    // 麦克风开关
+    private ImageButton micSwitch;
 
     //data
     protected List<EMConferenceStream> streamList = new ArrayList<>();
@@ -103,7 +116,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
             confId = meeting.getConfrId();
             password = meeting.getPassword();
             //如果是创建者需要创建会议室
-            if (TextUtils.isEmpty(meeting.getConfrId()) && meeting.getCreateCode().equals(MyApplication.getmUserInfo().getUser().getLoginName())) {
+            if ( meeting.getCreateCode().equals(MyApplication.getmUserInfo().getUser().getLoginName())) {
                 createAndJoinConference(null);
             } else {//加入会议室
                 joinConference();
@@ -114,6 +127,14 @@ public class ConferenceActivity extends BaseConferenceActivity {
     private void init() {
         callConferenceViewGroup = (MemberViewGroup) findViewById(R.id.surface_view_group);
         debugPanelView = (DebugPanelView) findViewById(R.id.layout_debug_panel);
+        talkingLayout = findViewById(R.id.layout_talking);
+        talkingImage = (ImageView) findViewById(R.id.icon_talking);
+        talkerTV = (TextView) findViewById(R.id.tv_talker);
+        membersTV = (TextView) findViewById(R.id.tv_members);
+        memberCountTV = (TextView) findViewById(R.id.tv_member_count);
+        membersTVMain = (TextView) findViewById(R.id.tv_members_main);
+        memberCountTVMain = (TextView) findViewById(R.id.tv_member_count_main);
+        micSwitch = (ImageButton) findViewById(R.id.btn_mic_switch);
 
         normalParam = new EMStreamParam();
         normalParam.setStreamType(EMConferenceStream.StreamType.NORMAL);
@@ -124,6 +145,8 @@ public class ConferenceActivity extends BaseConferenceActivity {
         desktopParam.setAudioOff(true);
         desktopParam.setVideoOff(true);
         desktopParam.setStreamType(EMConferenceStream.StreamType.DESKTOP);
+
+        micSwitch.setOnClickListener(listener);
     }
 
     /**
@@ -216,7 +239,6 @@ public class ConferenceActivity extends BaseConferenceActivity {
      */
     private void publish() {
         addSelfToList();
-
         EMClient.getInstance().conferenceManager().publish(normalParam, new EMValueCallBack<String>() {
             @Override
             public void onSuccess(String value) {
@@ -237,6 +259,30 @@ public class ConferenceActivity extends BaseConferenceActivity {
         });
     }
 
+    /**
+     * 语音开关
+     */
+    private void voiceSwitch() {
+        if (normalParam.isAudioOff()) {
+            normalParam.setAudioOff(false);
+            EMClient.getInstance().conferenceManager().openVoiceTransfer();
+        } else {
+            normalParam.setAudioOff(true);
+            EMClient.getInstance().conferenceManager().closeVoiceTransfer();
+        }
+        micSwitch.setActivated(normalParam.isAudioOff());
+        localView.setAudioOff(normalParam.isAudioOff());
+    }
+
+    @Override
+    protected void onDestroy() {
+        EMClient.getInstance().conferenceManager().removeConferenceListener(conferenceListener);
+        DemoHelper.getInstance().popActivity(activity);
+        super.onDestroy();
+        //TODO 扬声器
+//        audioManager.setMode(AudioManager.MODE_NORMAL);
+//        audioManager.setMicrophoneMute(false);
+    }
 
     private void addSelfToList() {
         EMConferenceStream localStream = new EMConferenceStream();
@@ -247,6 +293,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
 
     protected void startAudioTalkingMonitor() {
         EMClient.getInstance().conferenceManager().startMonitorSpeaker(300);
+        EMClient.getInstance().conferenceManager().openVoiceTransfer();
     }
 
     protected void stopAudioTalkingMonitor() {
@@ -260,13 +307,24 @@ public class ConferenceActivity extends BaseConferenceActivity {
         List<EMConferenceMember> members = EMClient.getInstance().conferenceManager().getConferenceMemberList();
         String count = members.size() > 0 ? "(" + members.size() + ")" : "";
         //TODO 更新成员
-//        String membersStr = getMembersStr(members);
-//
-//        membersTV.setText(membersStr);
-//        memberCountTV.setText(count);
-//
-//        membersTVMain.setText(membersStr);
-//        memberCountTVMain.setText(count);
+        String membersStr = getMembersStr(members);
+
+        membersTV.setText(membersStr);
+        memberCountTV.setText(count);
+
+        membersTVMain.setText(membersStr);
+        memberCountTVMain.setText(count);
+    }
+
+    private String getMembersStr(List<EMConferenceMember> members) {
+        String result = "";
+        for (int i = 0; i < members.size(); i++) {
+            result += EasyUtils.useridFromJid(members.get(i).memberName);
+            if (i < members.size() - 1) {
+                result += ", ";
+            }
+        }
+        return result;
     }
 
     /**
@@ -302,6 +360,17 @@ public class ConferenceActivity extends BaseConferenceActivity {
                 Log.e(TAG, "subscribe = onError: "+errorMsg);
             }
         });
+    }
+
+    /**
+     * 移除指定位置的 View，移除时如果已经订阅需要取消订阅
+     */
+    private void removeConferenceView(EMConferenceStream stream) {
+        int index = streamList.indexOf(stream);
+        final ConferenceMemberView memberView = (ConferenceMemberView) callConferenceViewGroup.getChildAt(index);
+        streamList.remove(stream);
+        callConferenceViewGroup.removeView(memberView);
+        debugPanelView.setStreamListAndNotify(streamList);
     }
 
     /**
@@ -354,31 +423,42 @@ public class ConferenceActivity extends BaseConferenceActivity {
      */
     private void currSpeakers(List<String> speakers) {
         for (int i = 0; i < callConferenceViewGroup.getChildCount(); i++) {
-//            if (talkingLayout.getVisibility() == View.VISIBLE) {
-//                // full screen mode.
-//                if (speakers.size() == 0) {
-//                    talkingImage.setVisibility(View.GONE);
-//                    talkerTV.setText("");
-//                } else {
-//                    talkingImage.setVisibility(View.VISIBLE);
-//                    String lastStreamId = speakers.get(speakers.size() - 1);
-//                    EMLog.i("currSpeakers", "currSpeakers: " + lastStreamId);
-//                    String speaker = null;
-//                    for (EMConferenceStream stream : streamList) {
-//                        EMLog.i("currSpeakers", "stream: " + stream.getStreamId());
-//                        if (stream.getStreamId().equals(lastStreamId)) {
-//                            speaker = stream.getUsername();
-//                            break;
-//                        }
-//                    }
-//                    talkerTV.setText(speaker);
-//                }
-//            }
+            if (talkingLayout.getVisibility() == View.VISIBLE) {
+                // full screen mode.
+                if (speakers.size() == 0) {
+                    talkingImage.setVisibility(View.GONE);
+                    talkerTV.setText("");
+                } else {
+                    talkingImage.setVisibility(View.VISIBLE);
+                    String lastStreamId = speakers.get(speakers.size() - 1);
+                    EMLog.i("currSpeakers", "currSpeakers: " + lastStreamId);
+                    String speaker = null;
+                    for (EMConferenceStream stream : streamList) {
+                        EMLog.i("currSpeakers", "stream: " + stream.getStreamId());
+                        if (stream.getStreamId().equals(lastStreamId)) {
+                            speaker = stream.getUsername();
+                            break;
+                        }
+                    }
+                    talkerTV.setText(speaker);
+                }
+            }
 
             ConferenceMemberView view = (ConferenceMemberView) callConferenceViewGroup.getChildAt(i);
             view.setTalking(speakers.contains(view.getStreamId()));
         }
     }
+
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btn_mic_switch:
+                    voiceSwitch();
+                    break;
+            }
+        }
+    };
 
     class ConferenceListener implements EMConferenceListener {
         @Override
@@ -410,7 +490,6 @@ public class ConferenceActivity extends BaseConferenceActivity {
                     Toast.makeText(activity, emConferenceStream.getUsername() + " stream add!", Toast.LENGTH_SHORT)
                             .show();
                     addConferenceView(emConferenceStream);
-
 //                    if (CallFloatWindow.getInstance(getApplicationContext()).isShowing()) { // 通话悬浮窗显示中...
 //                        int position = streamList.indexOf(stream);
 //                        if (position == 1) { // 会议中加入第一个成员,需要把正在显示的悬浮窗从自己更新到这个第一个加入会议的成员.
@@ -429,7 +508,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
                     Toast.makeText(activity, stream.getUsername() + " stream removed!", Toast.LENGTH_SHORT).show();
                     if (streamList.contains(stream)) {
                         int position = streamList.indexOf(stream);
-//                        removeConferenceView(stream);
+                        removeConferenceView(stream);
 
                         if (CallFloatWindow.getInstance(getApplicationContext()).isShowing()) { // 通话悬浮窗显示中...
                             if (position == 1) { // 正在显示悬浮窗的成员退出聊天室
