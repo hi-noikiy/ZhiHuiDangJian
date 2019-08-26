@@ -44,7 +44,7 @@ public class ConferenceActivity1 extends ConferenceActivity {
             } else {//加入会议室
                 joinConference();
             }
-            incomingCallView.setVisibility(View.GONE);
+//            incomingCallView.setVisibility(View.GONE);
         }
     }
 

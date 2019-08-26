@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -82,6 +83,8 @@ public class ConferenceActivity extends BaseConferenceActivity {
     private ImageButton cameraSwitch;
     // 话筒开关
     private ImageButton speakerSwitch;
+    // 挂断按钮
+    private ImageButton hangupBtn;
 
     //data
     protected List<EMConferenceStream> streamList = new ArrayList<>();
@@ -108,6 +111,11 @@ public class ConferenceActivity extends BaseConferenceActivity {
     @Override
     protected void initView() {
         activity = this;
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_FULLSCREEN);
         init();
         conferenceListener = new ConferenceListener();
         EMClient.getInstance().conferenceManager().addConferenceListener(conferenceListener);
@@ -145,6 +153,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
         micSwitch = (ImageButton) findViewById(R.id.btn_mic_switch);
         cameraSwitch = (ImageButton) findViewById(R.id.btn_camera_switch);
         speakerSwitch = (ImageButton) findViewById(R.id.btn_speaker_switch);
+        hangupBtn = (ImageButton) findViewById(R.id.btn_hangup);
 
         normalParam = new EMStreamParam();
         normalParam.setStreamType(EMConferenceStream.StreamType.NORMAL);
@@ -155,6 +164,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
         micSwitch.setOnClickListener(listener);
         cameraSwitch.setOnClickListener(listener);
         speakerSwitch.setOnClickListener(listener);
+        hangupBtn.setOnClickListener(listener);
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
@@ -514,6 +524,29 @@ public class ConferenceActivity extends BaseConferenceActivity {
         speakerSwitch.setActivated(false);
     }
 
+    /**
+     * 退出会议
+     */
+    private void exitConference() {
+        stopAudioTalkingMonitor();
+
+        // Stop to watch the phone call state.
+        PhoneStateManager.get(ConferenceActivity.this).removeStateCallback(phoneStateCallback);
+
+        EMClient.getInstance().conferenceManager().exitConference(new EMValueCallBack() {
+            @Override
+            public void onSuccess(Object value) {
+                finish();
+            }
+
+            @Override
+            public void onError(int error, String errorMsg) {
+                EMLog.e(TAG, "exit conference failed " + error + ", " + errorMsg);
+                finish();
+            }
+        });
+    }
+
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -530,6 +563,9 @@ public class ConferenceActivity extends BaseConferenceActivity {
                     } else {
                         openSpeaker();
                     }
+                    break;
+                case R.id.btn_hangup://挂断
+                    exitConference();
                     break;
             }
         }
