@@ -1,6 +1,8 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act;
 
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -59,6 +61,8 @@ public class ConferenceActivity extends BaseConferenceActivity {
     public static final int TYPE_JOIN = 1;
 
     protected ConferenceListener conferenceListener;
+    private AudioManager audioManager;
+
     //view
     protected ConferenceMemberView localView;
     protected MemberViewGroup callConferenceViewGroup;
@@ -74,6 +78,10 @@ public class ConferenceActivity extends BaseConferenceActivity {
     private TextView memberCountTVMain;
     // 麦克风开关
     private ImageButton micSwitch;
+    // 摄像头开关
+    private ImageButton cameraSwitch;
+    // 话筒开关
+    private ImageButton speakerSwitch;
 
     //data
     protected List<EMConferenceStream> streamList = new ArrayList<>();
@@ -81,7 +89,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
     protected String password = "";
     protected EMConference conference;
     protected EMStreamParam normalParam;
-    protected EMStreamParam desktopParam;
+//    protected EMStreamParam desktopParam;
 
     private int enterType;
     //会议信息
@@ -116,7 +124,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
             confId = meeting.getConfrId();
             password = meeting.getPassword();
             //如果是创建者需要创建会议室
-            if ( meeting.getCreateCode().equals(MyApplication.getmUserInfo().getUser().getLoginName())) {
+            if (meeting.getCreateCode().equals(MyApplication.getmUserInfo().getUser().getLoginName())) {
                 createAndJoinConference(null);
             } else {//加入会议室
                 joinConference();
@@ -135,18 +143,25 @@ public class ConferenceActivity extends BaseConferenceActivity {
         membersTVMain = (TextView) findViewById(R.id.tv_members_main);
         memberCountTVMain = (TextView) findViewById(R.id.tv_member_count_main);
         micSwitch = (ImageButton) findViewById(R.id.btn_mic_switch);
+        cameraSwitch = (ImageButton) findViewById(R.id.btn_camera_switch);
+        speakerSwitch = (ImageButton) findViewById(R.id.btn_speaker_switch);
 
         normalParam = new EMStreamParam();
         normalParam.setStreamType(EMConferenceStream.StreamType.NORMAL);
         normalParam.setVideoOff(true);
         normalParam.setAudioOff(false);
 
-        desktopParam = new EMStreamParam();
-        desktopParam.setAudioOff(true);
-        desktopParam.setVideoOff(true);
-        desktopParam.setStreamType(EMConferenceStream.StreamType.DESKTOP);
 
         micSwitch.setOnClickListener(listener);
+        cameraSwitch.setOnClickListener(listener);
+        speakerSwitch.setOnClickListener(listener);
+
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        micSwitch.setActivated(normalParam.isAudioOff());
+        cameraSwitch.setActivated(normalParam.isVideoOff());
+        speakerSwitch.setActivated(true);
+        openSpeaker();
     }
 
     /**
@@ -239,6 +254,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
      */
     private void publish() {
         addSelfToList();
+        Log.e(TAG, "normalParam = " + normalParam.toString());
         EMClient.getInstance().conferenceManager().publish(normalParam, new EMValueCallBack<String>() {
             @Override
             public void onSuccess(String value) {
@@ -272,6 +288,21 @@ public class ConferenceActivity extends BaseConferenceActivity {
         }
         micSwitch.setActivated(normalParam.isAudioOff());
         localView.setAudioOff(normalParam.isAudioOff());
+    }
+
+    /**
+     * 视频开关
+     */
+    private void videoSwitch() {
+        if (normalParam.isVideoOff()) {
+            normalParam.setVideoOff(false);
+            EMClient.getInstance().conferenceManager().openVideoTransfer();
+        } else {
+            normalParam.setVideoOff(true);
+            EMClient.getInstance().conferenceManager().closeVideoTransfer();
+        }
+        cameraSwitch.setActivated(normalParam.isVideoOff());
+        localView.setVideoOff(normalParam.isVideoOff());
     }
 
     @Override
@@ -352,12 +383,12 @@ public class ConferenceActivity extends BaseConferenceActivity {
         EMClient.getInstance().conferenceManager().subscribe(stream, memberView.getSurfaceView(), new EMValueCallBack<String>() {
             @Override
             public void onSuccess(String value) {
-                Log.e(TAG, "subscribe = onSuccess: "+value);
+                Log.e(TAG, "subscribe = onSuccess: " + value);
             }
 
             @Override
             public void onError(int error, String errorMsg) {
-                Log.e(TAG, "subscribe = onError: "+errorMsg);
+                Log.e(TAG, "subscribe = onError: " + errorMsg);
             }
         });
     }
@@ -449,12 +480,56 @@ public class ConferenceActivity extends BaseConferenceActivity {
         }
     }
 
+    /**
+     * 打开扬声器
+     * 主要是通过扬声器的开关以及设置音频播放模式来实现
+     * 1、MODE_NORMAL：是正常模式，一般用于外放音频
+     * 2、MODE_IN_CALL：
+     * 3、MODE_IN_COMMUNICATION：这个和 CALL 都表示通讯模式，不过 CALL 在华为上不好使，故使用 COMMUNICATION
+     * 4、MODE_RINGTONE：铃声模式
+     */
+    public void openSpeaker() {
+        // 检查是否已经开启扬声器
+        if (!audioManager.isSpeakerphoneOn()) {
+            // 打开扬声器
+            audioManager.setSpeakerphoneOn(true);
+        }
+        // 开启了扬声器之后，因为是进行通话，声音的模式也要设置成通讯模式
+        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        speakerSwitch.setActivated(true);
+    }
+
+    /**
+     * 关闭扬声器，即开启听筒播放模式
+     * 更多内容看{@link #openSpeaker()}
+     */
+    public void closeSpeaker() {
+        // 检查是否已经开启扬声器
+        if (audioManager.isSpeakerphoneOn()) {
+            // 关闭扬声器
+            audioManager.setSpeakerphoneOn(false);
+        }
+        // 设置声音模式为通讯模式
+        audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        speakerSwitch.setActivated(false);
+    }
+
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btn_mic_switch:
+                case R.id.btn_mic_switch://语音开关
                     voiceSwitch();
+                    break;
+                case R.id.btn_camera_switch://视频开关
+                    videoSwitch();
+                    break;
+                case R.id.btn_speaker_switch:
+                    if (speakerSwitch.isActivated()) {
+                        closeSpeaker();
+                    } else {
+                        openSpeaker();
+                    }
                     break;
             }
         }
