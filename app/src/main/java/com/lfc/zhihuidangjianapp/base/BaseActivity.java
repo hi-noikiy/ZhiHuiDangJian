@@ -43,6 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewTree
     protected LoginOutBroadcastReceiver locallReceiver;
     public ImmersionBar mImmersionBar;
     public ZLoadingDialog loding;
+    public Bundle savedInstanceState;
 
     /**
      * 获取一个 Handler 对象
@@ -54,6 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewTree
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
         loding = new ZLoadingDialog(this);
         loding.setLoadingBuilder(Z_TYPE.ROTATE_CIRCLE)//设置类型
                 .setLoadingColor(Color.DKGRAY)//颜色

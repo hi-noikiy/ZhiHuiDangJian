@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
     <application
@@ -63,6 +64,10 @@
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
+
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="eb1c1801db8d7dbb3f8f8953d24c7d4c">
+        </meta-data>
+
         <activity android:name=".ui.activity.Act_Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -179,4 +179,8 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
+    //高德地图
+    implementation 'com.amap.api:3dmap:latest.integration'
+    implementation 'com.amap.api:location:latest.integration'
+
 }

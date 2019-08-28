@@ -7,8 +7,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.MarkerOptions;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
+import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.base.BaseFragment;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
@@ -39,11 +43,10 @@ public class Fgt_Dept_detail extends BaseFragment {
     RecyclerView recyclerView, rvMember;
     private LinearLayout viewMember;
     private TextView tvDeptTitle, tvDirectorTitle;
-
     private String deptNumber;
     private View mRootView;
-
     private int position;
+    private MapView mapView;
 
     @Override
     protected int getLayoutId() {
@@ -61,6 +64,8 @@ public class Fgt_Dept_detail extends BaseFragment {
         viewMember = rootView.findViewById(R.id.view_member);
         tvDeptTitle = rootView.findViewById(R.id.tv_dept_title);
         tvDirectorTitle = rootView.findViewById(R.id.tv_director_title);
+        mapView = rootView.findViewById(R.id.mapView);
+        mapView.onCreate(((BaseActivity)getActivity()).savedInstanceState);
     }
 
     @Override
@@ -143,6 +148,15 @@ public class Fgt_Dept_detail extends BaseFragment {
         }else{
             mRootView.findViewById(R.id.tv_director_title).setVisibility(View.GONE);
         }
+        LatLng latLng = new LatLng(dept.getLatitude(), dept.getLongitude());
+        mapView.getMap().addMarker(new MarkerOptions().position(latLng));
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mapView!=null){
+            mapView.onDestroy();
+        }
+    }
 }

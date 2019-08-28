@@ -114,9 +114,17 @@
                     android:layout_marginTop="@dimen/dip_12"
                     android:layout_marginLeft="@dimen/dip_12"
                     android:layout_marginRight="@dimen/dip_12"
-                    android:drawableLeft="@drawable/ease_location_msg"
                     android:drawablePadding="@dimen/dip_5"
                     android:text="山西省中条山国有林管理局析城山林场山西省大同市灵丘县5号" />
+
+                <com.amap.api.maps.MapView
+                    android:id="@+id/mapView"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/dp_10">
+
+                </com.amap.api.maps.MapView>
+                
 
             </LinearLayout>
 
