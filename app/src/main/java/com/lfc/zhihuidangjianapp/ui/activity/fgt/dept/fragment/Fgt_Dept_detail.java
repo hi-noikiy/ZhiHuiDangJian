@@ -8,8 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.MyLocationStyle;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
@@ -148,8 +150,11 @@ public class Fgt_Dept_detail extends BaseFragment {
         }else{
             mRootView.findViewById(R.id.tv_director_title).setVisibility(View.GONE);
         }
-        LatLng latLng = new LatLng(dept.getLatitude(), dept.getLongitude());
-        mapView.getMap().addMarker(new MarkerOptions().position(latLng));
+
+        LatLng latLng = new LatLng(39.906901,116.397972);
+        mapView.getMap().addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
+//        LatLng latLng = new LatLng(dept.getLatitude(), dept.getLongitude());
+//        mapView.getMap().addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(com.hyphenate.easeui.R.drawable.ease_chat_location_normal)));
     }
 
     @Override

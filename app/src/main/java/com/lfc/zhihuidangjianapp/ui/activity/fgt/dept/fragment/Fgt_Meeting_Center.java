@@ -15,6 +15,7 @@ import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.MeetingDetailActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.ConferenceActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Meeting;
@@ -106,9 +107,16 @@ public class Fgt_Meeting_Center extends BaseFragment {
                 holder.setText(R.id.tv_title, data.getTitle());
                 holder.setText(R.id.tv_title, data.getTitle());
                 holder.getConvertView().findViewById(R.id.tv_join_meeting).setOnClickListener(confe->{
+                    //进入会议
                     Intent intent = new Intent(getActivity(), ConferenceActivity.class);
                     intent.putExtra("Meeting", data);
                     intent.putExtra("enterType", ConferenceActivity.TYPE_JOIN);
+                    startActivity(intent);
+                });
+                holder.getConvertView().findViewById(R.id.tv_meeting_detail).setOnClickListener(confe->{
+                    //会议详情
+                    Intent intent = new Intent(getActivity(), MeetingDetailActivity.class);
+                    intent.putExtra("Meeting", data);
                     startActivity(intent);
                 });
             }

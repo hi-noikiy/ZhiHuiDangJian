@@ -151,6 +151,7 @@
         <activity
             android:launchMode="singleTop"
             android:name=".ui.activity.fgt.dept.act.Act_Meeting_Start" />
+        <activity android:name=".ui.activity.fgt.dept.act.MeetingDetailActivity" />
 
 
         <activity
