@@ -22,9 +22,13 @@ import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.BaseBindViewFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Dynamic_Detail;
+import com.lfc.zhihuidangjianapp.ui.activity.item.BannerViewHolder;
+import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
+import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -49,13 +53,13 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
 
     RecyclerView recyclerView;
 
-    private Unbinder unbinder;
-
     private int partyDynamicType;
+
+    private Banner banner;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.parent_recyclerview;
+        return R.layout.parent_recyclerview_with_banner;
     }
 
     @Override
@@ -82,12 +86,44 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
                         Log.e("Throwable= ", e.getMessage());
                     }
                 }.actual());
+        queryAppConfigList();
     }
 
     @Override
     protected void initView(View rootView) {
         super.initView(rootView);
         recyclerView = rootView.findViewById(R.id.recyclerView);
+        banner = rootView.findViewById(R.id.banner);
+    }
+
+    public void queryAppConfigList() {
+        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+                .queryAppConfigList(MyApplication.getLoginBean().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResponseObserver<AppConfigLists>(getActivity()) {
+
+                    @Override
+                    protected void onNext(AppConfigLists response) {
+                        setBanner(response);
+                    }
+
+                    @Override
+                    protected void onError(Throwable e) {
+                        super.onError(e);
+                        Log.e("Throwable= ", e.getMessage());
+                    }
+                }.actual());
+    }
+
+    private void setBanner(AppConfigLists response) {
+        banner.setImages(response.getAppConfigList().getDatas()).setImageLoader(new BannerViewHolder()).start();
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+
+            }
+        });
     }
 
     private void setRecyclerView(ResponsePartyDynamicList response){

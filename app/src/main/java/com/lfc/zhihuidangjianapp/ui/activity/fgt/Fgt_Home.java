@@ -26,6 +26,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_Emulate;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_PartyBuildingMatrix;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.Act_WebView;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.adapter.HomeAdapter;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fragment.HomeHeadLinesFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.item.BannerViewHolder;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.widget.MyListView;
@@ -80,6 +81,7 @@ public class Fgt_Home extends BaseFragment {
             startActivity(intent);
         });
         ImmersionBar.with(this).statusBarDarkFont(true).init();
+        getFragmentManager().beginTransaction().add( R.id.homeHead,new HomeHeadLinesFragment()).commit();
     }
 
     @Override

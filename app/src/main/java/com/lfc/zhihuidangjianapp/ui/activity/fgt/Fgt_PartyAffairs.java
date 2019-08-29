@@ -94,18 +94,6 @@ public class Fgt_PartyAffairs extends BaseFragment {
             }
 
         });
-//        recyclerView.setAdapter(new BaseQuickAdapter<NativePartyBody.PartBody, BaseViewHolder>(partBodies){
-//            @Override
-//            protected void convert(@NonNull BaseViewHolder helper, NativePartyBody.PartBody item) {
-//
-//            }
-//        });
-//        recyclerView.addOnItemTouchListener(new OnItemClickListener() {
-//            @Override
-//            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
-//
-//            }
-//        });
     }
 
     /**

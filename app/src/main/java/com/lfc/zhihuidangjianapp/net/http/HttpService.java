@@ -9,6 +9,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.Depts;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ForestDistrict;
 import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
+import com.lfc.zhihuidangjianapp.ui.activity.model.HomeHeadLines;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
@@ -354,6 +355,14 @@ public interface HttpService {
      */
     @POST(ApiConstant.HUANXIN + "/createChatroom")
     Observable<BaseResponse<Object>> createChatroom(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     *  首页-头条-党建资讯
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryHomeHeadLinesList")
+    Observable<BaseResponse<HomeHeadLines>> queryHomeHeadLinesList(@Header("token") String token);
 
 
 
