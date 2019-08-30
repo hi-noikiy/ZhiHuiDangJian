@@ -97,8 +97,12 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
     }
 
     public void queryAppConfigList() {
+        Map<String, String> map = new HashMap<>();
+        map.put("ifBanner", "0");
+        map.put("position", "1");
+        map.put("number", partyDynamicType+"");
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .queryAppConfigList(MyApplication.getLoginBean().getToken())
+                .queryAppConfigList(map,MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResponseObserver<AppConfigLists>(getActivity()) {

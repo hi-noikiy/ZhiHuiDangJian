@@ -87,7 +87,7 @@ public class User implements Parcelable {
     private String userNumber;
     private String userType;
     private String workPost;
-    private String imPwd;
+    private String imPwd = "zhdj-888888";
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {

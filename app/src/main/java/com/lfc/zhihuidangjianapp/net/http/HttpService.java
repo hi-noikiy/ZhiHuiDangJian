@@ -67,7 +67,7 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.queryAppConfigList)
-    Observable<String> queryAppConfigList(@QueryMap Map<String, String> map, @Header("token") String token);
+    Observable<BaseResponse<AppConfigLists>> queryAppConfigList(@QueryMap Map<String, String> map, @Header("token") String token);
 
     /**
      * 党建矩阵
