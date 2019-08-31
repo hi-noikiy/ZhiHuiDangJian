@@ -98,8 +98,9 @@ public class Fgt_Dept_dynamic extends BaseBindViewFragment {
 
     public void queryAppConfigList() {
         Map<String, String> map = new HashMap<>();
-        map.put("ifBanner", "0");
+        map.put("ifBanner", "1");
         map.put("position", "1");
+        map.put("type", "1");
         map.put("number", partyDynamicType+"");
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
                 .queryAppConfigList(map,MyApplication.getLoginBean().getToken())
