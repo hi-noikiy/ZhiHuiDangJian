@@ -66,6 +66,7 @@ public class HomeHeadLinesFragment extends BaseFragment {
                     @Override
                     protected void onNext(HomeHeadLines response) {
                         Log.e("onNext= ", response.toString());
+                        if(response==null)return;
                         setRecyclerView(response);
                     }
 

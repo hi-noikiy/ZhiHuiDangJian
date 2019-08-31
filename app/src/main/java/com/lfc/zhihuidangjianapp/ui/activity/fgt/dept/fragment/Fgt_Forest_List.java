@@ -68,16 +68,16 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
         map.put("forestDistrictType", partyDynamicType);
         map.put("pageSize", 20);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .queryForestDistrictPageList(map, MyApplication.getLoginBean().getToken())
+                .queryForestShowPageList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResponseObserver<ForestDistrict>(getActivity()) {
+                .subscribe(new ResponseObserver<Object>(getActivity()) {
 
                     @Override
-                    protected void onNext(ForestDistrict response) {
+                    protected void onNext(Object response) {
                         Log.e("onNext= ", response.toString());
                         if (response == null) return;
-                        setRecyclerView(response);
+//                        setRecyclerView(response);
                     }
 
                     @Override
@@ -97,23 +97,35 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
     private void setRecyclerView(ForestDistrict response) {
         if (partyDynamicType == 0) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        }
-        recyclerView.setAdapter(new CommonAdapter<Forest>(getActivity(), layoutId, response.getForestDistrictList().getDatas()) {
-            @Override
-            protected void convert(ViewHolder holder, Forest data, int position) {
-                holder.setText(R.id.tv_title, data.getAuthor());
-                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-                tvContent.setText(Html.fromHtml(data.getComment()));
-                if (partyDynamicType != 0) {
+            recyclerView.setAdapter(new CommonAdapter<Forest>(getActivity(), layoutId, response.getForestDistrictList().getDatas()) {
+                @Override
+                protected void convert(ViewHolder holder, Forest data, int position) {
+                    TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
+                    tvContent.setText(Html.fromHtml(data.getComment()));
                     ImageView image = holder.getConvertView().findViewById(R.id.image);
                     String url = ApiConstant.ROOT_URL + data.getThumbnailUrl();
                     Glide.with(getActivity()).load(url).into(image);
                 }
-            }
 
-        });
+            });
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            recyclerView.setAdapter(new CommonAdapter<Forest>(getActivity(), layoutId, response.getForestDistrictList().getDatas()) {
+                @Override
+                protected void convert(ViewHolder holder, Forest data, int position) {
+                    ImageView image = holder.getConvertView().findViewById(R.id.image);
+                    String url = ApiConstant.ROOT_URL + data.getThumbnailUrl();
+                    Glide.with(getActivity()).load(url).into(image);
+                    holder.setText(R.id.tvName, data.getCreateName());
+                    holder.setText(R.id.tvName, data.getCreateName());
+                    holder.setText(R.id.tvName, data.getCreateName());
+                    holder.setText(R.id.tvName, data.getCreateName());
+                    holder.setText(R.id.tvName, data.getCreateName());
+                }
+
+            });
+        }
+
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 DividerItemDecoration.VERTICAL_LIST,
                 ContextCompat.getColor(getActivity(), R.color.background),

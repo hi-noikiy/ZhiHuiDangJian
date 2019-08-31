@@ -235,6 +235,16 @@ public interface HttpService {
     Observable<BaseResponse<ForestDistrict>> queryForestDistrictPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
     /**
+     * 分页查询林区风采信息-通过forestDistrictType林区风采类型(0:先进基层党组织1:优秀共产党员2:优秀党务工作者3:优秀党建联络员)
+     * new 新接口
+     * @param map
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryForestShowPageList")
+    Observable<BaseResponse<Object>> queryForestShowPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
      * 分页查询组织生活信息
      * @param map
      * @param token
@@ -361,7 +371,7 @@ public interface HttpService {
      * @param token
      * @return
      */
-    @POST(ApiConstant.API + "/queryHomeHeadLinesList")
+    @GET(ApiConstant.API + "/queryHomeHeadLinesList")
     Observable<BaseResponse<HomeHeadLines>> queryHomeHeadLinesList(@Header("token") String token);
 
 
