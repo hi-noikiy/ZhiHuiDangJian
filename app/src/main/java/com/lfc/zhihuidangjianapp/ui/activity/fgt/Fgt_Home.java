@@ -41,6 +41,8 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -192,8 +194,11 @@ public class Fgt_Home extends BaseFragment {
     }
 
     public void queryAppConfigList() {
+        Map<String, String> map = new HashMap<>();
+        map.put("ifBanner", "0");
+        map.put("position", "0");
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .queryAppConfigList(MyApplication.getLoginBean().getToken())
+                .queryAppConfigList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResponseObserver<AppConfigLists>(getActivity()) {

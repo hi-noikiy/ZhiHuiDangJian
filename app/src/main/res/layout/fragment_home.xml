@@ -15,12 +15,25 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.youth.banner.Banner
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                 />
+                android:layout_height="200dp" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dip"
+                android:layout_marginTop="@dimen/dip_15"
+                android:layout_marginBottom="@dimen/dip_15"
+                android:background="@color/backLine" />
 
             <FrameLayout
                 android:id="@+id/homeHead"
@@ -29,18 +42,6 @@
 
             </FrameLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dip"
-                android:layout_marginTop="@dimen/dip_15"
-                android:background="@color/backLine" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dip"

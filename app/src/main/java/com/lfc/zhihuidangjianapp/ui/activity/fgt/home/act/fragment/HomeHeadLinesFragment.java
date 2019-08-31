@@ -49,7 +49,7 @@ public class HomeHeadLinesFragment extends BaseFragment {
                 holder.setText(R.id.tv_title, data.getTitle());
                 holder.setText(R.id.tv_content, data.getReleaseDate());
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
-                Glide.with(image.getContext()).load(ApiConstant.ROOT_URL+data.getUrl());
+                Glide.with(image.getContext()).load(ApiConstant.ROOT_URL+data.getUrl()).into(image);
             }
 
         });

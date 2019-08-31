@@ -717,7 +717,7 @@ public class User implements Parcelable {
     }
 
     public String getImPwd() {
-        return imPwd;
+        return imPwd == null ? "zhdj-888888" : imPwd;
     }
 
     public void setImPwd(String imPwd) {
