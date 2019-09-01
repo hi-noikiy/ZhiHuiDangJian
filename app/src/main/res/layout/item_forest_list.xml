@@ -30,7 +30,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/image"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/dip_20"
+            android:layout_marginRight="@dimen/dip_10"
+            android:layout_marginLeft="@dimen/dip_10"
             style="@style/text_14"
             android:text="姓名："/>
         <TextView
@@ -41,7 +42,8 @@
             app:layout_constraintLeft_toRightOf="@+id/image"
             android:layout_marginTop="@dimen/dip_5"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/dip_20"
+            android:layout_marginRight="@dimen/dip_10"
+            android:layout_marginLeft="@dimen/dip_10"
             style="@style/text_14"
             android:text="出生日期："/>
         <TextView
@@ -52,7 +54,8 @@
             android:layout_marginTop="@dimen/dip_5"
             app:layout_constraintLeft_toRightOf="@+id/image"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/dip_20"
+            android:layout_marginRight="@dimen/dip_10"
+            android:layout_marginLeft="@dimen/dip_10"
             style="@style/text_14"
             android:text="职务："/>
         <TextView
@@ -63,8 +66,9 @@
             android:layout_marginTop="@dimen/dip_5"
             app:layout_constraintLeft_toRightOf="@+id/image"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/dip_20"
             style="@style/text_14"
+            android:layout_marginRight="@dimen/dip_10"
+            android:layout_marginLeft="@dimen/dip_10"
             android:text="学历："/>
         <TextView
             android:id="@+id/tvParty"
@@ -74,9 +78,10 @@
             android:layout_marginTop="@dimen/dip_5"
             app:layout_constraintLeft_toRightOf="@+id/image"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/dip_20"
             style="@style/text_14"
-            android:text="姓名："/>
+            android:layout_marginRight="@dimen/dip_10"
+            android:layout_marginLeft="@dimen/dip_10"
+            android:text="所属支部："/>
 
     </android.support.constraint.ConstraintLayout>
 

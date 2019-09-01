@@ -71,13 +71,13 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
                 .queryForestShowPageList(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResponseObserver<Object>(getActivity()) {
+                .subscribe(new ResponseObserver<ForestDistrict>(getActivity()) {
 
                     @Override
-                    protected void onNext(Object response) {
+                    protected void onNext(ForestDistrict response) {
                         Log.e("onNext= ", response.toString());
                         if (response == null) return;
-//                        setRecyclerView(response);
+                        setRecyclerView(response);
                     }
 
                     @Override
@@ -101,7 +101,7 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
                 @Override
                 protected void convert(ViewHolder holder, Forest data, int position) {
                     TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-                    tvContent.setText(Html.fromHtml(data.getComment()));
+                    tvContent.setText(Html.fromHtml(data.getDeptName()));
                     ImageView image = holder.getConvertView().findViewById(R.id.image);
                     String url = ApiConstant.ROOT_URL + data.getThumbnailUrl();
                     Glide.with(getActivity()).load(url).into(image);
@@ -109,18 +109,18 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
 
             });
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(new CommonAdapter<Forest>(getActivity(), layoutId, response.getForestDistrictList().getDatas()) {
                 @Override
                 protected void convert(ViewHolder holder, Forest data, int position) {
                     ImageView image = holder.getConvertView().findViewById(R.id.image);
                     String url = ApiConstant.ROOT_URL + data.getThumbnailUrl();
                     Glide.with(getActivity()).load(url).into(image);
-                    holder.setText(R.id.tvName, data.getCreateName());
-                    holder.setText(R.id.tvName, data.getCreateName());
-                    holder.setText(R.id.tvName, data.getCreateName());
-                    holder.setText(R.id.tvName, data.getCreateName());
-                    holder.setText(R.id.tvName, data.getCreateName());
+                    holder.setText(R.id.tvName, "姓名："+data.getAuthor());
+                    holder.setText(R.id.tvBirthday, "出生日期："+data.getBirthday());
+                    holder.setText(R.id.tvFunction, "职务："+data.getPartyPosts());
+                    holder.setText(R.id.tvEducation, "学历："+data.getEducation());
+                    holder.setText(R.id.tvParty, "所属支部："+data.getDeptName());
                 }
 
             });

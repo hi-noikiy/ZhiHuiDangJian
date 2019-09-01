@@ -24,35 +24,30 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dip_15">
 
             </android.support.v7.widget.RecyclerView>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.1dip"
-                android:layout_marginTop="@dimen/dip_15"
-                android:layout_marginBottom="@dimen/dip_15"
-                android:background="@color/backLine" />
+                android:layout_height="@dimen/dp_10"
+                android:background="@color/background" />
 
             <FrameLayout
                 android:id="@+id/homeHead"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dip_15">
 
             </FrameLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dip"
-                android:layout_marginTop="@dimen/dip_15"
-                android:background="@color/backLine" />
 
             <RelativeLayout
                 android:id="@+id/relativeAnnoun"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
+                >
 
                 <TextView
                     android:layout_width="wrap_content"

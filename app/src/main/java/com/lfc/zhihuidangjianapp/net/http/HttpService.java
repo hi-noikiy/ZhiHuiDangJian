@@ -242,7 +242,7 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.API + "/queryForestShowPageList")
-    Observable<BaseResponse<Object>> queryForestShowPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
+    Observable<BaseResponse<ForestDistrict>> queryForestShowPageList(@QueryMap Map<String, Object> map, @Header("token") String token);
 
     /**
      * 分页查询组织生活信息

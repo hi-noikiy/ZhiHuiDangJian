@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fragment;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,8 +15,10 @@ import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
+import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.model.HomeHead;
 import com.lfc.zhihuidangjianapp.ui.activity.model.HomeHeadLines;
+import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -53,6 +56,12 @@ public class HomeHeadLinesFragment extends BaseFragment {
             }
 
         });
+        recyclerView.addItemDecoration(new DividerItemDecoration(
+                DividerItemDecoration.VERTICAL_LIST,
+                ContextCompat.getColor(MyApplication.getAppContext(), R.color.background),
+                DispalyUtil.dp2px(MyApplication.getAppContext(), 5),
+                0, 0, false
+        ));
     }
 
     @Override

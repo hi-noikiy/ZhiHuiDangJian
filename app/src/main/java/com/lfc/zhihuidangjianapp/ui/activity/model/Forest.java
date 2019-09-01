@@ -9,27 +9,24 @@ public class Forest {
 
     private String author;
     private String beginCreateDt;
-    private String comment;
-    private String createCode;
-    private String createName;
-    private long createTime;
+    private String birthday;
+    private String deptName;
+    private String deptNumber;
+    private String education;
     private String endCreateDt;
     private int forestDistrictId;
     private int forestDistrictType;
     private String groupByClause;
-    private String idList;
-    private int ifPass;
-    private int ifTop;
     private String isDeleteText;
     private String isEnableText;
     private String orderByClause;
     private int pageNumber;
     private int pageSize;
-    private String remark;
+    private String partyPosts;
     private int startIndex;
+    private String thumbnailAppUrl;
+    private String thumbnailSmallUrl;
     private String thumbnailUrl;
-    private String topNum;
-    private String urlList;
 
     public void setAuthor(String author) {
         this.author = author;
@@ -47,36 +44,36 @@ public class Forest {
         return beginCreateDt;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
-    public String getComment() {
-        return comment;
+    public String getBirthday() {
+        return birthday==null?"暂无":birthday;
     }
 
-    public void setCreateCode(String createCode) {
-        this.createCode = createCode;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
-    public String getCreateCode() {
-        return createCode;
+    public String getDeptName() {
+        return deptName==null?"暂无":deptName;
     }
 
-    public void setCreateName(String createName) {
-        this.createName = createName;
+    public void setDeptNumber(String deptNumber) {
+        this.deptNumber = deptNumber;
     }
 
-    public String getCreateName() {
-        return createName;
+    public String getDeptNumber() {
+        return deptNumber;
     }
 
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
+    public void setEducation(String education) {
+        this.education = education;
     }
 
-    public long getCreateTime() {
-        return createTime;
+    public String getEducation() {
+        return education==null?"暂无":education;
     }
 
     public void setEndCreateDt(String endCreateDt) {
@@ -109,30 +106,6 @@ public class Forest {
 
     public String getGroupByClause() {
         return groupByClause;
-    }
-
-    public void setIdList(String idList) {
-        this.idList = idList;
-    }
-
-    public String getIdList() {
-        return idList;
-    }
-
-    public void setIfPass(int ifPass) {
-        this.ifPass = ifPass;
-    }
-
-    public int getIfPass() {
-        return ifPass;
-    }
-
-    public void setIfTop(int ifTop) {
-        this.ifTop = ifTop;
-    }
-
-    public int getIfTop() {
-        return ifTop;
     }
 
     public void setIsDeleteText(String isDeleteText) {
@@ -175,12 +148,12 @@ public class Forest {
         return pageSize;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setPartyPosts(String partyPosts) {
+        this.partyPosts = partyPosts;
     }
 
-    public String getRemark() {
-        return remark;
+    public String getPartyPosts() {
+        return partyPosts;
     }
 
     public void setStartIndex(int startIndex) {
@@ -191,6 +164,22 @@ public class Forest {
         return startIndex;
     }
 
+    public void setThumbnailAppUrl(String thumbnailAppUrl) {
+        this.thumbnailAppUrl = thumbnailAppUrl;
+    }
+
+    public String getThumbnailAppUrl() {
+        return thumbnailAppUrl;
+    }
+
+    public void setThumbnailSmallUrl(String thumbnailSmallUrl) {
+        this.thumbnailSmallUrl = thumbnailSmallUrl;
+    }
+
+    public String getThumbnailSmallUrl() {
+        return thumbnailSmallUrl;
+    }
+
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
@@ -198,21 +187,4 @@ public class Forest {
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
-
-    public void setTopNum(String topNum) {
-        this.topNum = topNum;
-    }
-
-    public String getTopNum() {
-        return topNum;
-    }
-
-    public void setUrlList(String urlList) {
-        this.urlList = urlList;
-    }
-
-    public String getUrlList() {
-        return urlList;
-    }
-
 }

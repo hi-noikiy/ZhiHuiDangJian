@@ -122,7 +122,7 @@ public class Fgt_Home extends BaseFragment {
                         case 1://学习强局
                             startActivity(new Intent(getContext(), Act_Emulate.class));
                             break;
-                        case 2://党建动态
+                        case 2://党建资讯
                             startActivity(new Intent(getActivity(), Act_Dept_dynamic.class));
                             break;
                         case 3://专题专栏

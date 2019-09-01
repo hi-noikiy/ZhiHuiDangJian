@@ -19,6 +19,7 @@ import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Craftsman_Training;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.fragment.HomeStudyFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.AppConfigLists;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DeptDetailUser;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseStudyStrong;
@@ -37,7 +38,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class Act_Emulate extends BaseActivity {
 
-    private RecyclerView rvStudyStrong, rvStudyStrongVideo;
+    private RecyclerView rvStudyStrong, rvStudyStrongVideo, rv_study_forest;
 
     private TextView tvCraft;
 
@@ -55,8 +56,6 @@ public class Act_Emulate extends BaseActivity {
     protected void initView() {
         initImmersionBar(0);
         findViewById(R.id.imgBack).setOnClickListener(back->finish());
-        rvStudyStrong = findViewById(R.id.rv_study_strong);
-        rvStudyStrongVideo = findViewById(R.id.rv_study_strong_video);
         tvCraft = findViewById(R.id.tv_craft);
         setEvent();
     }
@@ -69,67 +68,10 @@ public class Act_Emulate extends BaseActivity {
 
     @Override
     protected void initData() {
-        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .queryStudyStrongBureauVideoPageList(MyApplication.getLoginBean().getToken())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResponseObserver<ResponseStudyStrong>(getActivity()) {
+        getSupportFragmentManager().beginTransaction().add(R.id.rv_study_forest, HomeStudyFragment.getInstance(0)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.rv_study_strong, HomeStudyFragment.getInstance(1)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.rv_study_strong_video, HomeStudyFragment.getInstance(2)).commit();
 
-                    @Override
-                    protected void onNext(ResponseStudyStrong response) {
-                        Log.e("onNext= ",response.toString());
-                        setRecyclerView(response);
-                    }
-
-                    @Override
-                    protected void onError(Throwable e) {
-                        super.onError(e);
-                        Log.e("Throwable= ",e.getMessage());
-                    }
-                }.actual());
     }
 
-    private void setRecyclerView(ResponseStudyStrong response){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        //工匠培养
-        rvStudyStrong.setLayoutManager(linearLayoutManager);
-        rvStudyStrong.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_dept_dynamic
-                , response.getStudyStrongBureauList().getDatas()) {
-            @Override
-            protected void convert(ViewHolder holder, StudyStrongBureau data, int position) {
-                TextView title = holder.getConvertView().findViewById(R.id.tv_title);
-                title.setText(Html.fromHtml(data.getComment()));
-                holder.setText(R.id.tv_bottom, data.getTitle());
-                TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
-                tvContent.setText(data.getReleaseDate());
-                ImageView image = holder.getConvertView().findViewById(R.id.image);
-                String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
-                Glide.with(getActivity()).load(url).into(image);
-                holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
-                    Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
-                    intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");
-                    startActivity(intent);
-                });
-            }
-
-        });
-        //学习心得
-        rvStudyStrongVideo.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        rvStudyStrongVideo.setAdapter(new CommonAdapter<StudyStrongBureau>(getActivity(), R.layout.item_craftsman
-                , response.getStudyStrongBureauList().getDatas()) {
-            @Override
-            protected void convert(ViewHolder holder, StudyStrongBureau data, int position) {
-                holder.setText(R.id.tv_title, data.getTitle());
-                ImageView image = holder.getConvertView().findViewById(R.id.image);
-                String url = ApiConstant.ROOT_URL+data.getThumbnailUrl();
-                Glide.with(getActivity()).load(url).into(image);
-                holder.getConvertView().setOnClickListener(Act_Strong_Study_Experience->{
-                    Intent intent = new Intent(getActivity(), com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Strong_Study_Experience.class);
-                    intent.putExtra("studyStrongBureauId", data.getStudyStrongBureauId()+"");
-                    startActivity(intent);
-                });
-            }
-
-        });
-    }
 }
