@@ -2,14 +2,12 @@ package com.lfc.zhihuidangjianapp.ui.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.TextView;
 
-import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
-import com.lfc.zhihuidangjianapp.bean.TabEntity;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.FragPagerAdapter;
 
 import java.util.ArrayList;
@@ -30,6 +28,8 @@ public abstract class TabWithToolbarActivity extends BaseActivity {
 
     private ViewPager viewPager;
 
+    private TextView tvAppText, tvRight;
+
     @Override
     protected int getLayoutId() {
         return R.layout.tab_viewpager_with_toolbar;
@@ -39,6 +39,8 @@ public abstract class TabWithToolbarActivity extends BaseActivity {
     protected void initView() {
         initImmersionBar(0);
         findViewById(R.id.imgBack).setOnClickListener(back->finish());
+        tvRight = findViewById(R.id.tvRight);
+        tvAppText = findViewById(R.id.tv_title);
         mTitles = getTitles();
         mFragnents = getFragments();
         if(mTitles==null||mFragnents==null||mFragnents.isEmpty()||mFragnents.size()!=mTitles.length){
@@ -79,6 +81,16 @@ public abstract class TabWithToolbarActivity extends BaseActivity {
 
             }
         });
+    }
+
+    public void setAppText(String text){
+        if(tvAppText!=null){
+            tvAppText.setText(text);
+        }
+    }
+
+    public TextView getTvRight() {
+        return tvRight;
     }
 
     public abstract List<Fragment> getFragments();

@@ -31,7 +31,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:gravity="left"
         style="@style/text_14_grey"
-        android:text="请选择时间"/>
+        android:text="请选择"/>
 
     <EditText
         android:id="@+id/input"

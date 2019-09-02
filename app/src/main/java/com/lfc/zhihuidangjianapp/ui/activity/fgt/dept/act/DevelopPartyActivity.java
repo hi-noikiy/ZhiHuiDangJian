@@ -1,6 +1,7 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.lfc.zhihuidangjianapp.ui.activity.TabWithToolbarActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.ApplyEducationPartyFragment;
@@ -50,6 +51,10 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
 
     @Override
     protected void initData() {
-
+        setAppText("发展党员");
+        getTvRight().setVisibility(View.VISIBLE);
+        getTvRight().setOnClickListener(submit->{
+            //TODO 提交
+        });
     }
 }
