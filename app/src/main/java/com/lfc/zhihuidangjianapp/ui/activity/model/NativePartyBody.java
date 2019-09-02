@@ -26,7 +26,9 @@ public class NativePartyBody {
                     R.mipmap.img_dangwu_tab1_item2,
                     R.mipmap.img_dangwu_tab1_item3,
                     R.mipmap.img_dangwu_tab1_item4,
-                    R.mipmap.img_dangwu_tab1_item5},
+                    R.mipmap.img_dangwu_tab1_item5,
+                    R.mipmap.img_develop_party
+            },
             {
                     R.mipmap.img_dangwu_tab2_item1,
                     R.mipmap.img_dangwu_tab2_item2,
@@ -56,7 +58,7 @@ public class NativePartyBody {
 
     private String[][] contents = {
             {
-                    "党建矩阵", "党费收缴", "党员关系转移", "组织生活", "工作周报"
+                    "党建矩阵", "党费收缴", "党员关系转移", "组织生活", "工作周报", "发展党员"
             },
             {
                     "党建动态", "群团统战", "廉政建设"
