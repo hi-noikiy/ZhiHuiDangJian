@@ -3,7 +3,11 @@ package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 import android.support.v4.app.Fragment;
 
 import com.lfc.zhihuidangjianapp.ui.activity.TabWithToolbarActivity;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.ApplyEducationPartyFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.ApplyPartyFragment;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.DevelopConfirmFragment;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.PrepareMainFragment;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.PrepareReceiveFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +31,11 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
 
     private void initFragments(){
         fragments.clear();
-        fragments.add(new ApplyPartyFragment());
-        fragments.add(new ApplyPartyFragment());
-        fragments.add(new ApplyPartyFragment());
-        fragments.add(new ApplyPartyFragment());
-        fragments.add(new ApplyPartyFragment());
+        fragments.add(new ApplyPartyFragment());//申请入党阶段
+        fragments.add(new ApplyEducationPartyFragment());//申请积极分子的确定和培养教育阶段
+        fragments.add(new DevelopConfirmFragment());//发展对象的确定和考察阶段
+        fragments.add(new PrepareReceiveFragment());//预备党员的接收阶段
+        fragments.add(new PrepareMainFragment());//预备党员的教育考察和转正
     }
 
     @Override

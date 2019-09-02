@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.flyco.tablayout.CommonTabLayout;
+import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.lfc.zhihuidangjianapp.R;
@@ -25,9 +26,7 @@ public abstract class TabWithToolbarActivity extends BaseActivity {
 
     private List<Fragment> mFragnents = new ArrayList<>();
 
-    private CommonTabLayout tabLayout;
-
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+    private SlidingTabLayout tabLayout;
 
     private ViewPager viewPager;
 
@@ -52,10 +51,7 @@ public abstract class TabWithToolbarActivity extends BaseActivity {
         fpa.setFragmentList(mFragnents);
         viewPager.setOffscreenPageLimit(mTitles.length);
         viewPager.setAdapter(fpa);
-        for (int i = 0; i < mTitles.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles[i]));
-        }
-        tabLayout.setTabData(mTabEntities);
+        tabLayout.setViewPager(viewPager, mTitles);
         tabLayout.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

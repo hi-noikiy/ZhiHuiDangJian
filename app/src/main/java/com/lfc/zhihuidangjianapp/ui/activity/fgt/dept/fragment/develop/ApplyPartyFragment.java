@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @date: 2019-09-02
  * @autror: guojian
- * @description:
+ * @description:申请入党阶段
  */
 public class ApplyPartyFragment extends BaseDevelopPartyFragment {
 
@@ -21,8 +21,8 @@ public class ApplyPartyFragment extends BaseDevelopPartyFragment {
     private List<NativeDevelopParty> initPartys(){
         List<NativeDevelopParty> partyList= new ArrayList<>();
         partyList.add(new NativeDevelopParty(0,"递交入党申请书时间", ""));
-        partyList.add(new NativeDevelopParty(1,"谈话时间", ""));
-        partyList.add(new NativeDevelopParty(0,"谈话人", ""));
+        partyList.add(new NativeDevelopParty(0,"谈话时间", ""));
+        partyList.add(new NativeDevelopParty(1,"谈话人", ""));
         return partyList;
     }
 
