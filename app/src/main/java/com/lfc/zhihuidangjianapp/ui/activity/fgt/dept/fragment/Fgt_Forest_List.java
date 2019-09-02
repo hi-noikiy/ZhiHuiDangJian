@@ -21,6 +21,7 @@ import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.BaseBindViewFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Dept_Dynamic_Detail;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.ForestDetailActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Dynamic;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Forest;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ForestDistrict;
@@ -105,6 +106,11 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
                     ImageView image = holder.getConvertView().findViewById(R.id.image);
                     String url = ApiConstant.ROOT_URL + data.getThumbnailUrl();
                     Glide.with(getActivity()).load(url).into(image);
+                    holder.getConvertView().setOnClickListener(detail->{
+                        Intent intent = new Intent(holder.getConvertView().getContext(), ForestDetailActivity.class);
+                        intent.putExtra("forest", data);
+                        startActivity(intent);
+                    });
                 }
 
             });
@@ -121,6 +127,11 @@ public class Fgt_Forest_List extends BaseBindViewFragment {
                     holder.setText(R.id.tvFunction, "职务："+data.getPartyPosts());
                     holder.setText(R.id.tvEducation, "学历："+data.getEducation());
                     holder.setText(R.id.tvParty, "所属支部："+data.getDeptName());
+                    holder.getConvertView().setOnClickListener(detail->{
+                        Intent intent = new Intent(holder.getConvertView().getContext(), ForestDetailActivity.class);
+                        intent.putExtra("forest", data);
+                        startActivity(intent);
+                    });
                 }
 
             });

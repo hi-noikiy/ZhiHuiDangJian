@@ -66,6 +66,13 @@ public class Act_Login extends BaseActivity {
 //            startActivity(Act_Main.class);
 //        }
         captcha();
+        setEvent();
+    }
+
+    private void setEvent() {
+        ivCode.setOnClickListener(code->{
+            captcha();
+        });
     }
 
     private void initTTS() {

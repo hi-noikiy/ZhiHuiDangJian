@@ -13,6 +13,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.HomeHeadLines;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
+import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseForestDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseMeetingMine;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseOrganizationalLife;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponsePartyDynamicList;
@@ -374,6 +375,13 @@ public interface HttpService {
     @GET(ApiConstant.API + "/queryHomeHeadLinesList")
     Observable<BaseResponse<HomeHeadLines>> queryHomeHeadLinesList(@Header("token") String token);
 
+    /**
+     * 查看林区风采详情信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryForestDistrictDetail")
+    Observable<BaseResponse<ResponseForestDetail>> queryForestDistrictDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
 
 
 }

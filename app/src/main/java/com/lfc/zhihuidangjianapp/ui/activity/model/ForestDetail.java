@@ -1,34 +1,35 @@
 package com.lfc.zhihuidangjianapp.ui.activity.model;
 
-import java.io.Serializable;
-
 /**
- * @date: 2019-08-09
+ * @date: 2019-09-02
  * @autror: guojian
  * @description:
  */
-public class Forest implements Serializable {
+public class ForestDetail {
 
     private String author;
     private String beginCreateDt;
-    private String birthday;
-    private String deptName;
-    private String deptNumber;
-    private String education;
+    private String comment;
+    private String createCode;
+    private String createName;
+    private long createTime;
     private String endCreateDt;
     private int forestDistrictId;
     private int forestDistrictType;
     private String groupByClause;
+    private String idList;
+    private int ifPass;
+    private int ifTop;
     private String isDeleteText;
     private String isEnableText;
     private String orderByClause;
     private int pageNumber;
     private int pageSize;
-    private String partyPosts;
+    private String remark;
     private int startIndex;
-    private String thumbnailAppUrl;
-    private String thumbnailSmallUrl;
     private String thumbnailUrl;
+    private String topNum;
+    private String urlList;
 
     public void setAuthor(String author) {
         this.author = author;
@@ -46,36 +47,36 @@ public class Forest implements Serializable {
         return beginCreateDt;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public String getBirthday() {
-        return birthday==null?"暂无":birthday;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDeptName(String deptName) {
-        this.deptName = deptName;
+    public void setCreateCode(String createCode) {
+        this.createCode = createCode;
     }
 
-    public String getDeptName() {
-        return deptName==null?"暂无":deptName;
+    public String getCreateCode() {
+        return createCode;
     }
 
-    public void setDeptNumber(String deptNumber) {
-        this.deptNumber = deptNumber;
+    public void setCreateName(String createName) {
+        this.createName = createName;
     }
 
-    public String getDeptNumber() {
-        return deptNumber;
+    public String getCreateName() {
+        return createName;
     }
 
-    public void setEducation(String education) {
-        this.education = education;
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
     }
 
-    public String getEducation() {
-        return education==null?"暂无":education;
+    public long getCreateTime() {
+        return createTime;
     }
 
     public void setEndCreateDt(String endCreateDt) {
@@ -108,6 +109,30 @@ public class Forest implements Serializable {
 
     public String getGroupByClause() {
         return groupByClause;
+    }
+
+    public void setIdList(String idList) {
+        this.idList = idList;
+    }
+
+    public String getIdList() {
+        return idList;
+    }
+
+    public void setIfPass(int ifPass) {
+        this.ifPass = ifPass;
+    }
+
+    public int getIfPass() {
+        return ifPass;
+    }
+
+    public void setIfTop(int ifTop) {
+        this.ifTop = ifTop;
+    }
+
+    public int getIfTop() {
+        return ifTop;
     }
 
     public void setIsDeleteText(String isDeleteText) {
@@ -150,12 +175,12 @@ public class Forest implements Serializable {
         return pageSize;
     }
 
-    public void setPartyPosts(String partyPosts) {
-        this.partyPosts = partyPosts;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
-    public String getPartyPosts() {
-        return partyPosts;
+    public String getRemark() {
+        return remark;
     }
 
     public void setStartIndex(int startIndex) {
@@ -166,27 +191,27 @@ public class Forest implements Serializable {
         return startIndex;
     }
 
-    public void setThumbnailAppUrl(String thumbnailAppUrl) {
-        this.thumbnailAppUrl = thumbnailAppUrl;
-    }
-
-    public String getThumbnailAppUrl() {
-        return thumbnailAppUrl;
-    }
-
-    public void setThumbnailSmallUrl(String thumbnailSmallUrl) {
-        this.thumbnailSmallUrl = thumbnailSmallUrl;
-    }
-
-    public String getThumbnailSmallUrl() {
-        return thumbnailSmallUrl;
-    }
-
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getThumbnailUrl() {
         return thumbnailUrl;
+    }
+
+    public void setTopNum(String topNum) {
+        this.topNum = topNum;
+    }
+
+    public String getTopNum() {
+        return topNum;
+    }
+
+    public void setUrlList(String urlList) {
+        this.urlList = urlList;
+    }
+
+    public String getUrlList() {
+        return urlList;
     }
 }
