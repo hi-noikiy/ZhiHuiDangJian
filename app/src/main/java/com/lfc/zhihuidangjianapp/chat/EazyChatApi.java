@@ -2,6 +2,7 @@ package com.lfc.zhihuidangjianapp.chat;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -108,7 +109,7 @@ public class EazyChatApi {
 
 
     public static void loginChat(String username, String password, BaseActivity activity, EMCallBack emCallBack) {
-        password = (password == null ? "zhdj-888888" : password);
+        password = (TextUtils.isEmpty(password) ? "zhdj-888888" : password);
         if (username == null || password == null) {
             activity.toast("用户名密码错误！");
             return;

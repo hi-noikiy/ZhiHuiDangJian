@@ -12,7 +12,7 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:layout_gravity="center_horizontal"
-        android:background="@mipmap/img_iconlogo"/>
+        android:background="@mipmap/img_party"/>
 
     <TextView
         android:id="@+id/tv_dept"

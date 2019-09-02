@@ -88,8 +88,6 @@ public class Act_Main extends EazyChatListenerActivity implements ViewPager.OnPa
 
     @Override
     protected void initView() {
-        //登录环信
-        EazyChatApi.loginChat(MyApplication.getmUserInfo().getUser().getLoginName(), MyApplication.getmUserInfo().getUser().getImPwd(), getActivity(), null);
 
         initImmersionBar(1);
         ButterKnife.bind(this);
@@ -158,6 +156,7 @@ public class Act_Main extends EazyChatListenerActivity implements ViewPager.OnPa
                         Log.e("onNext=", response.toString());
                         if (response != null) {
                             MyApplication.setmUserInfo(response);
+                            EazyChatApi.loginChat(MyApplication.getmUserInfo().getUser().getLoginName(), MyApplication.getmUserInfo().getUser().getImPwd(), getActivity(), null);
                         }
                     }
 
