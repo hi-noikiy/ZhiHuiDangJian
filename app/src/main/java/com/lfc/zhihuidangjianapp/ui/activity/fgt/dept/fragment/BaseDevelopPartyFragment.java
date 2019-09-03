@@ -4,6 +4,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -36,12 +37,21 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.parent_recyclerview;
+        return R.layout.fragment_base_develop;
     }
 
     @Override
     protected void initView(View rootView) {
         recyclerView = rootView.findViewById(R.id.recyclerView);
+        rootView.findViewById(R.id.tvSave).setOnClickListener(save->{
+            for (NativeDevelopParty developParty: parties){
+                if(TextUtils.isEmpty(developParty.getContent())){
+                    toast("请填写"+developParty.getTitle());
+                    return;
+                }
+            }
+            submit(parties);
+        });
     }
 
     @Override
@@ -118,5 +128,7 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
     }
 
     public abstract List<NativeDevelopParty> getParties();
+
+    public abstract void submit(List<NativeDevelopParty> parties);
 
 }

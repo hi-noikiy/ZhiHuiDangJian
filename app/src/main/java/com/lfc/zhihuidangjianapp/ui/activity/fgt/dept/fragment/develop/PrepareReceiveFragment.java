@@ -18,6 +18,11 @@ public class PrepareReceiveFragment extends BaseDevelopPartyFragment {
         return initPartys();
     }
 
+    @Override
+    public void submit(List<NativeDevelopParty> parties) {
+
+    }
+
     private List<NativeDevelopParty> initPartys(){
         List<NativeDevelopParty> partyList= new ArrayList<>();
         partyList.add(new NativeDevelopParty(0,"支委会审查时间", ""));
