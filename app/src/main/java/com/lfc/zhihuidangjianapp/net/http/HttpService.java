@@ -13,6 +13,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.HomeHeadLines;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Payment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseForestDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseMeetingMine;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseOrganizationalLife;
@@ -382,6 +383,22 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryForestDistrictDetail")
     Observable<BaseResponse<ResponseForestDetail>> queryForestDistrictDetail(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 查询党费缴费记录信息-我的组织
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryMyPartyPaymentHis")
+    Observable<BaseResponse<Payment>> queryMyPartyPaymentHis(@Header("token") String token);
+
+//    /**
+//     * 查询党费缴费记录信息-我的组织
+//     * @param token
+//     * @return
+//     */
+//    @POST(ApiConstant.API + "/queryMyPartyPaymentHis")
+//    Observable<BaseResponse<Payment>> queryMyPartyPaymentHis(@Header("token") String token);
 
 
 }

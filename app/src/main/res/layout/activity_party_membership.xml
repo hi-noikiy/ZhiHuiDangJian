@@ -37,6 +37,19 @@
             android:textSize="19dp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tvRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dip_20"
+            android:paddingRight="@dimen/dip_20"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/tv_title"
+            android:gravity="center"
+            style="@style/text_16_white"
+            android:text="我的组织"/>
+
     </RelativeLayout>
 
     <ImageView

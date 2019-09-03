@@ -150,6 +150,7 @@
         <activity android:name=".ui.activity.fgt.home.act.ConferenceActivity1" />
         <activity android:name=".ui.activity.fgt.dept.act.ForestDetailActivity" />
         <activity android:name=".ui.activity.fgt.dept.act.DevelopPartyActivity" />
+        <activity android:name=".ui.activity.fgt.dept.act.MyOrgnizeActivity" />
 
         <activity
             android:launchMode="singleTop"

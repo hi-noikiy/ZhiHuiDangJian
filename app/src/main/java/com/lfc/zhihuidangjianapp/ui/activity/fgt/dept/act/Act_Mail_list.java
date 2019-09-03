@@ -86,12 +86,12 @@ public class Act_Mail_list extends BaseActivity {
                 holder.setText(R.id.tv_name, data.getAbbreviation());
                 holder.getConvertView().setOnClickListener(mailList->{
                     //TODO 通讯录
-//                    Intent intent = new Intent(getActivity(), Act_Friend_list.class);
-//                    intent.putExtra("deptNumber", data.getDeptNumber());
-//                    startActivity(intent);
-                    MyApplication.setDeptNumber(data.getDeptNumber());
-                    //创建音视频会议
-                    ConferenceActivity.startConferenceCall(getActivity(), null);
+                    Intent intent = new Intent(getActivity(), Act_Friend_list.class);
+                    intent.putExtra("deptNumber", data.getDeptNumber());
+                    startActivity(intent);
+//                    MyApplication.setDeptNumber(data.getDeptNumber());
+//                    //创建音视频会议
+//                    ConferenceActivity.startConferenceCall(getActivity(), null);
                 });
             }
 

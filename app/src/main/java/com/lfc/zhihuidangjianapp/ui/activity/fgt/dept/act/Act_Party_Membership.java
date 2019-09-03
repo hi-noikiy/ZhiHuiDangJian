@@ -73,6 +73,10 @@ public class Act_Party_Membership extends BaseActivity {
             intent.putExtra("pay", responsePartyPayment.getMoney());
             startActivity(intent);
         });
+        //我的组织
+        findViewById(R.id.tvRight).setOnClickListener(myOrgnize->{
+            startActivity(new Intent(this, MyOrgnizeActivity.class));
+        });
     }
 
     private void initPayView(ResponsePartyPayment response){

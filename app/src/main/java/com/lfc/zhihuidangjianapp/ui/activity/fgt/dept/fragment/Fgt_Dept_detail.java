@@ -12,6 +12,7 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.baidu.mapapi.model.inner.GeoPoint;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
@@ -67,20 +68,20 @@ public class Fgt_Dept_detail extends BaseFragment {
         tvDeptTitle = rootView.findViewById(R.id.tv_dept_title);
         tvDirectorTitle = rootView.findViewById(R.id.tv_director_title);
         mapView = rootView.findViewById(R.id.mapView);
-        mapView.onCreate(((BaseActivity)getActivity()).savedInstanceState);
+        mapView.onCreate(((BaseActivity) getActivity()).savedInstanceState);
     }
 
     @Override
     protected void initData() {
         deptNumber = getArguments().getString("deptNumber");
         position = getArguments().getInt("position");
-        if(position==0){
+        if (position == 0) {
             tvDeptTitle.setText("党委介绍");
             tvDirectorTitle.setText("党委成员");
-        }else if(position==1){
+        } else if (position == 1) {
             tvDeptTitle.setText("支部介绍");
             tvDirectorTitle.setText("支委成员");
-        }else if(position==2){
+        } else if (position == 2) {
             tvDeptTitle.setText("支部介绍");
             tvDirectorTitle.setText("支委成员");
         }
@@ -95,7 +96,7 @@ public class Fgt_Dept_detail extends BaseFragment {
                     @Override
                     protected void onNext(DeptDetail response) {
                         Log.e("DeptDetail= ", response.toString());
-                        if(response==null){
+                        if (response == null) {
                             return;
                         }
                         initDeptDetail(response);
@@ -109,21 +110,21 @@ public class Fgt_Dept_detail extends BaseFragment {
                 }.actual());
     }
 
-    private void initDeptDetail(DeptDetail response){
+    private void initDeptDetail(DeptDetail response) {
         Dept dept = response.getDept();
-        if(dept==null){
+        if (dept == null) {
             return;
         }
 //        ButterKnife.bind(this);
         tvTitle.setText(dept.getDeptName());
-        if(dept.getBriefIntroduction()!=null) {
+        if (dept.getBriefIntroduction() != null) {
             tvBriefIntrodection.setText(dept.getBriefIntroduction());
-        }else{
+        } else {
             mRootView.findViewById(R.id.view_introduction).setVisibility(View.GONE);
         }
         tvAddress.setText(dept.getDeptAddress());
 
-        if(response.getUserlist()!=null&&!response.getUserlist().isEmpty()) {
+        if (response.getUserlist() != null && !response.getUserlist().isEmpty()) {
             recyclerView.setLayoutManager(new LinearLayoutManager(MyApplication.getAppContext()));
             recyclerView.setAdapter(new CommonAdapter<DeptDetailUser>(MyApplication.getAppContext(), R.layout.item_dept_user, response.getUserlist()) {
                 @Override
@@ -134,11 +135,11 @@ public class Fgt_Dept_detail extends BaseFragment {
                 }
 
             });
-        }else{
+        } else {
             viewMember.setVisibility(View.GONE);
         }
         List<String> members = response.getDirectorNameList();
-        if(members!=null&&!members.isEmpty()){
+        if (members != null && !members.isEmpty()) {
             rvMember.setLayoutManager(new LinearLayoutManager(getActivity()));
             rvMember.setAdapter(new CommonAdapter<String>(getActivity(), R.layout.item_director_member, members) {
                 @Override
@@ -147,20 +148,19 @@ public class Fgt_Dept_detail extends BaseFragment {
                 }
 
             });
-        }else{
+        } else {
             mRootView.findViewById(R.id.tv_director_title).setVisibility(View.GONE);
         }
 
-        LatLng latLng = new LatLng(39.906901,116.397972);
-        mapView.getMap().addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
-//        LatLng latLng = new LatLng(dept.getLatitude(), dept.getLongitude());
-//        mapView.getMap().addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(com.hyphenate.easeui.R.drawable.ease_chat_location_normal)));
+        LatLng latLng = new LatLng(39.906901, 116.397972);
+
+        mapView.getMap().setPointToCenter((int) dept.getLatitude(), (int) dept.getLongitude());
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(mapView!=null){
+        if (mapView != null) {
             mapView.onDestroy();
         }
     }
