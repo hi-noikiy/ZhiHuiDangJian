@@ -49,7 +49,7 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
 
     protected CommonAdapter mAdapter;
 
-    protected Map<String, Object> params = new HashMap<>();
+    public Map<String, Object> params = new HashMap<>();
 
     @Override
     protected int getLayoutId() {
@@ -154,10 +154,10 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
                 .insertJoinPartyStage(map, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResponseObserver<Payment>(getActivity()) {
+                .subscribe(new ResponseObserver<Object>(getActivity()) {
 
                     @Override
-                    protected void onNext(Payment response) {
+                    protected void onNext(Object response) {
                         Log.e("onNext= ", response.toString());
                         if(response==null) return;
                         toast("保存成功");

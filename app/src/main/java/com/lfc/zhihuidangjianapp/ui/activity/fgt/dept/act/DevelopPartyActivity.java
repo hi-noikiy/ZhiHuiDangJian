@@ -18,7 +18,9 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.JoinPartyStage;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Payment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -71,9 +73,41 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
         getTvRight().setVisibility(View.VISIBLE);
         getTvRight().setOnClickListener(submit->{
             //TODO 提交
+            submitParty();
             finish();
         });
         getDevelopData();
+    }
+
+    /**
+     * 提交发展党员信息
+     */
+    private void submitParty() {
+        Map<String, Object> map = new HashMap<>();
+        map.putAll(applyPartyFragment.params);
+        map.putAll(applyEducationPartyFragment.params);
+        map.putAll(developConfirmFragment.params);
+        map.putAll(prepareReceiveFragment.params);
+        map.putAll(prepareMainFragment.params);
+        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+                .updateJoinPartyStage(map, MyApplication.getLoginBean().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResponseObserver<Object>(getActivity()) {
+
+                    @Override
+                    protected void onNext(Object response) {
+                        Log.e("onNext= ", response.toString());
+                        if(response==null) return;
+                        finish();
+                    }
+
+                    @Override
+                    protected void onError(Throwable e) {
+                        super.onError(e);
+                        Log.e("Throwable= ", e.getMessage());
+                    }
+                }.actual());
     }
 
     /**

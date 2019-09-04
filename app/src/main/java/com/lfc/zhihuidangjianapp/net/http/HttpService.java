@@ -399,7 +399,7 @@ public interface HttpService {
      * @return
      */
     @POST(ApiConstant.API + "/insertJoinPartyStage")
-    Observable<BaseResponse<Payment>> insertJoinPartyStage(@QueryMap Map<String, Object> map, @Header("token") String token);
+    Observable<BaseResponse<Object>> insertJoinPartyStage(@QueryMap Map<String, Object> map, @Header("token") String token);
 
     /**
      * 查询发展党员信息
@@ -408,6 +408,14 @@ public interface HttpService {
      */
     @POST(ApiConstant.API + "/queryJoinPartyStageDeatil")
     Observable<BaseResponse<JoinPartyStage>> queryDevelopPartyDeatil(@Header("token") String token);
+
+    /**
+     * 更新发展党员信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/updateJoinPartyStage")
+    Observable<BaseResponse<Object>> updateJoinPartyStage(@QueryMap Map<String, Object> map,@Header("token") String token);
 
 
 }
