@@ -23,14 +23,23 @@ public class ApplyEducationPartyFragment extends BaseDevelopPartyFragment {
 
     @Override
     public void submit(List<NativeDevelopParty> parties) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("recommendationMode2", parties.get(0).getContent());
-        map.put("partyGroupPassTime2", parties.get(1).getContent());
-        map.put("branchCommitteePassTime2", parties.get(2).getContent());
-        map.put("designatedCulturePerson2", parties.get(3).getContent());
-        map.put("keepRecordTime2", parties.get(4).getContent());
-        map.put("partyCommitteeExaminationTime2", parties.get(5).getContent());
-        saveData(map);
+        saveData(params);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        setParams();
+    }
+
+    public void setParams(){
+        params = new HashMap<>();
+        params.put("recommendationMode2", parties.get(0).getContent());
+        params.put("partyGroupPassTime2", parties.get(1).getContent());
+        params.put("branchCommitteePassTime2", parties.get(2).getContent());
+        params.put("designatedCulturePerson2", parties.get(3).getContent());
+        params.put("keepRecordTime2", parties.get(4).getContent());
+        params.put("partyCommitteeExaminationTime2", parties.get(5).getContent());
     }
 
     private List<NativeDevelopParty> initPartys(){

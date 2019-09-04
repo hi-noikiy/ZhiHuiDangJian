@@ -7,7 +7,6 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.NativeDevelopParty;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @date: 2019-09-02
@@ -23,21 +22,30 @@ public class PrepareReceiveFragment extends BaseDevelopPartyFragment {
 
     @Override
     public void submit(List<NativeDevelopParty> parties) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("subcommitteeReviewTime4", parties.get(0).getContent());
-        map.put("publicityTime4", parties.get(1).getContent());
-        map.put("parentPartyCommitteePretrialTime4", parties.get(2).getContent());
-        map.put("branchConferencePassTime4", parties.get(3).getContent());
-        map.put("parentPartyCommitteeTalkTime4", parties.get(4).getContent());
-        map.put("talker4", parties.get(5).getContent());
-        map.put("parentPartyCommitteePassTime4", parties.get(6).getContent());
-        map.put("meetingTime4", parties.get(7).getContent());
-        map.put("partyMembersCount4", parties.get(8).getContent());
-        map.put("partyMembershipCount4", parties.get(9).getContent());
-        map.put("sendVotes4", parties.get(10).getContent());
-        map.put("takeBackVotes4", parties.get(11).getContent());
-        map.put("agreeVotes4", parties.get(12).getContent());
-        saveData(map);
+        saveData(params);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        setParams();
+    }
+
+    public void setParams(){
+        params = new HashMap<>();
+        params.put("subcommitteeReviewTime4", parties.get(0).getContent());
+        params.put("publicityTime4", parties.get(1).getContent());
+        params.put("parentPartyCommitteePretrialTime4", parties.get(2).getContent());
+        params.put("branchConferencePassTime4", parties.get(3).getContent());
+        params.put("parentPartyCommitteeTalkTime4", parties.get(4).getContent());
+        params.put("talker4", parties.get(5).getContent());
+        params.put("parentPartyCommitteePassTime4", parties.get(6).getContent());
+        params.put("meetingTime4", parties.get(7).getContent());
+        params.put("partyMembersCount4", parties.get(8).getContent());
+        params.put("partyMembershipCount4", parties.get(9).getContent());
+        params.put("sendVotes4", parties.get(10).getContent());
+        params.put("takeBackVotes4", parties.get(11).getContent());
+        params.put("agreeVotes4", parties.get(12).getContent());
     }
 
     public void setPartyData(DevelopParty developParty){

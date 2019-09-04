@@ -7,7 +7,6 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.NativeDevelopParty;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @date: 2019-09-02
@@ -23,19 +22,29 @@ public class DevelopConfirmFragment extends BaseDevelopPartyFragment {
 
     @Override
     public void submit(List<NativeDevelopParty> parties) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("partyGroupPassTime3", parties.get(0).getContent());
-        map.put("partyBranchPassTime3", parties.get(1).getContent());
-        map.put("branchCommitteePassTime3", parties.get(2).getContent());
-        map.put("partyCommitteeResearchDecisionTime3", parties.get(3).getContent());
-        map.put("defineJoinPartyPerson3", parties.get(4).getContent());
-        map.put("talkTime3", parties.get(5).getContent());
-        map.put("talkCount3", parties.get(6).getContent());
-        map.put("checkPoliticalBackgroundTime3", parties.get(7).getContent());
-        map.put("politicalConclusion3", parties.get(8).getContent());
-        map.put("concentratedTrainingTime3", parties.get(9).getContent());
-        map.put("trainingResults3", parties.get(10).getContent());
-        saveData(map);
+        
+        saveData(params);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        setParams();
+    }
+
+    public void setParams(){
+        params = new HashMap<>();
+        params.put("partyGroupPassTime3", parties.get(0).getContent());
+        params.put("partyBranchPassTime3", parties.get(1).getContent());
+        params.put("branchCommitteePassTime3", parties.get(2).getContent());
+        params.put("partyCommitteeResearchDecisionTime3", parties.get(3).getContent());
+        params.put("defineJoinPartyPerson3", parties.get(4).getContent());
+        params.put("talkTime3", parties.get(5).getContent());
+        params.put("talkCount3", parties.get(6).getContent());
+        params.put("checkPoliticalBackgroundTime3", parties.get(7).getContent());
+        params.put("politicalConclusion3", parties.get(8).getContent());
+        params.put("concentratedTrainingTime3", parties.get(9).getContent());
+        params.put("trainingResults3", parties.get(10).getContent());
     }
 
     private List<NativeDevelopParty> initPartys(){

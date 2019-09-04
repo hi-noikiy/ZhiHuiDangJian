@@ -74,7 +74,6 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
         getTvRight().setOnClickListener(submit->{
             //TODO 提交
             submitParty();
-            finish();
         });
         getDevelopData();
     }
@@ -99,6 +98,7 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
                     protected void onNext(Object response) {
                         Log.e("onNext= ", response.toString());
                         if(response==null) return;
+                        toast("已提交党员信息");
                         finish();
                     }
 

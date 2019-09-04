@@ -23,11 +23,20 @@ public class ApplyPartyFragment extends BaseDevelopPartyFragment {
 
     @Override
     public void submit(List<NativeDevelopParty> parties) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("submitApplicationTime1", parties.get(0).getContent());
-        map.put("talkTime1", parties.get(1).getContent());
-        map.put("talker1", parties.get(2).getContent());
-        saveData(map);
+        saveData(params);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        setParams();
+    }
+
+    public void setParams(){
+        params = new HashMap<>();
+        params.put("submitApplicationTime1", parties.get(0).getContent());
+        params.put("talkTime1", parties.get(1).getContent());
+        params.put("talker1", parties.get(2).getContent());
     }
 
     private List<NativeDevelopParty> initPartys(){
@@ -43,11 +52,11 @@ public class ApplyPartyFragment extends BaseDevelopPartyFragment {
 
         }
         List<NativeDevelopParty> partyList = parties;
-//        mAdapter.getDatas().addAll(partyList);
         partyList.get(0).setContent(developParty.submitApplicationTime1);
         partyList.get(1).setContent(developParty.talkTime1);
         partyList.get(2).setContent(developParty.talker1);
-        mAdapter.notifyDataSetChanged();
+        parties = partyList;
+        setRecyclerView();
     }
 
 }

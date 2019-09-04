@@ -74,6 +74,16 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
     protected void initData() {
         parties = getParties();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(
+                DividerItemDecoration.VERTICAL_LIST,
+                ContextCompat.getColor(getActivity(), R.color.background),
+                DispalyUtil.dp2px(getActivity(), 1),
+                0, 0, false
+        ));
+        setRecyclerView();
+    }
+
+    public void setRecyclerView(){
         mAdapter = new CommonAdapter<NativeDevelopParty>(getActivity(), R.layout.item_develop_party, parties) {
             @Override
             protected void convert(ViewHolder holder, NativeDevelopParty data, int position) {
@@ -81,7 +91,11 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
                     holder.getConvertView().findViewById(R.id.input).setVisibility(View.GONE);
                     TextView tvContent = holder.getConvertView().findViewById(R.id.tvContent);
                     tvContent.setVisibility(View.VISIBLE);
-                    tvContent.setText("请选择"+data.getTitle());
+                    if(TextUtils.isEmpty(data.getContent())){
+                        tvContent.setText("请选择"+data.getTitle());
+                    }else{
+                        tvContent.setText(data.getContent());
+                    }
                     tvContent.setOnClickListener( new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -91,7 +105,11 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
                     });
                 }else{
                     EditText input = holder.getConvertView().findViewById(R.id.input);
-                    input.setHint("请输入"+data.getTitle());
+                    if(TextUtils.isEmpty(data.getContent())){
+                        input.setHint("请输入"+data.getTitle());
+                    }else{
+                        input.setText(data.getContent());
+                    }
                     input.setVisibility(View.VISIBLE);
                     holder.getConvertView().findViewById(R.id.tvContent).setVisibility(View.GONE);
                     input.addTextChangedListener(new TextWatcher() {
@@ -116,12 +134,6 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
 
         };
         recyclerView.setAdapter(mAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(
-                DividerItemDecoration.VERTICAL_LIST,
-                ContextCompat.getColor(getActivity(), R.color.background),
-                DispalyUtil.dp2px(getActivity(), 1),
-                0, 0, false
-        ));
     }
 
     private void selectTime(final int position, TextView text) {
@@ -149,9 +161,8 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
     public abstract void submit(List<NativeDevelopParty> parties);
 
     protected void saveData(Map<String, Object> map){
-        params = map;
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
-                .insertJoinPartyStage(map, MyApplication.getLoginBean().getToken())
+                .insertJoinPartyStage(params, MyApplication.getLoginBean().getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ResponseObserver<Object>(getActivity()) {
