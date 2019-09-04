@@ -181,6 +181,8 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">@dimen/dip_5</item>
+        <item name="android:layout_marginLeft">@dimen/dip_20</item>
+        <item name="android:layout_marginRight">@dimen/dip_20</item>
         <item name="android:paddingBottom">@dimen/dip_5</item>
         <item name="android:paddingLeft">@dimen/dip_10</item>
         <item name="android:paddingRight">@dimen/dip_10</item>

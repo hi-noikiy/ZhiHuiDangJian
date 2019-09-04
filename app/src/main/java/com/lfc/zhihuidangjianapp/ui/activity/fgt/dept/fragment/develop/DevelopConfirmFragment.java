@@ -1,5 +1,8 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop;
 
+import android.view.View;
+
+import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.BaseDevelopPartyFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.model.DevelopParty;
 import com.lfc.zhihuidangjianapp.ui.activity.model.NativeDevelopParty;
@@ -22,7 +25,7 @@ public class DevelopConfirmFragment extends BaseDevelopPartyFragment {
 
     @Override
     public void submit(List<NativeDevelopParty> parties) {
-        
+        setParams();
         saveData(params);
     }
 
@@ -65,7 +68,9 @@ public class DevelopConfirmFragment extends BaseDevelopPartyFragment {
 
     public void setPartyData(DevelopParty developParty){
         if(developParty.submitStatus == 1){
-
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
+        }else{
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
         }
         parties.get(0).setContent(developParty.partyGroupPassTime3);
         parties.get(1).setContent(developParty.partyBranchPassTime3);

@@ -51,6 +51,8 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
 
     public Map<String, Object> params = new HashMap<>();
 
+    protected View mRootView;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_base_develop;
@@ -58,6 +60,7 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
 
     @Override
     protected void initView(View rootView) {
+        mRootView = rootView;
         recyclerView = rootView.findViewById(R.id.recyclerView);
         rootView.findViewById(R.id.tvSave).setOnClickListener(save->{
             for (NativeDevelopParty developParty: parties){

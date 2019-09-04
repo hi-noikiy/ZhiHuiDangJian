@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -21,6 +22,9 @@ import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseFragment;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
 import com.lfc.zhihuidangjianapp.net.http.HttpHelper;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Party_Membership;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.Act_Weekend_Report;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.CodeSafeActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.personal.act.bean.UserDataBean;
 
 import java.text.SimpleDateFormat;
@@ -189,13 +193,13 @@ public class Fgt_Personal extends BaseFragment implements View.OnClickListener {
 
                 break;
             case R.id.min_zhanghuanquan://账户安全
-
+                startActivity(new Intent(getActivity(), CodeSafeActivity.class));
                 break;
             case R.id.min_gongzuozhoubao://工作周报
-
+                startActivity(new Intent(getActivity(), Act_Weekend_Report.class));
                 break;
             case R.id.min_dangfei://党费缴纳
-
+                startActivity(new Intent(getActivity(), Act_Party_Membership.class));
                 break;
         }
     }

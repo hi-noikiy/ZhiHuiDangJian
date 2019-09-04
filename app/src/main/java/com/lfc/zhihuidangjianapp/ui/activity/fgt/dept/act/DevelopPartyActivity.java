@@ -124,6 +124,11 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
                     protected void onNext(JoinPartyStage response) {
                         Log.e("onNext= ", response.toString());
                         if(response==null||response.getJoinPartyStage()==null) return;
+                        if(response.getJoinPartyStage().submitStatus==1){
+                            getTvRight().setVisibility(View.GONE);
+                        }else{
+                            getTvRight().setVisibility(View.VISIBLE);
+                        }
                         applyPartyFragment.setPartyData(response.getJoinPartyStage());
                         applyEducationPartyFragment.setPartyData(response.getJoinPartyStage());
                         developConfirmFragment.setPartyData(response.getJoinPartyStage());

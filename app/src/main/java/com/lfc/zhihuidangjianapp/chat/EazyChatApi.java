@@ -109,8 +109,8 @@ public class EazyChatApi {
 
 
     public static void loginChat(String username, String password, BaseActivity activity, EMCallBack emCallBack) {
-        password = "zhdj-888888";
-        password = (TextUtils.isEmpty(password) ? "zhdj-888888" : password);
+//        password = "zhdj-888888";
+//        password = (TextUtils.isEmpty(password) ? "zhdj-888888" : password);
         if (username == null || password == null) {
             activity.toast("用户名密码错误！");
             return;

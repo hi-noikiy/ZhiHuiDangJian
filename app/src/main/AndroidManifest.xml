@@ -151,6 +151,8 @@
         <activity android:name=".ui.activity.fgt.dept.act.ForestDetailActivity" />
         <activity android:name=".ui.activity.fgt.dept.act.DevelopPartyActivity" />
         <activity android:name=".ui.activity.fgt.dept.act.MyOrgnizeActivity" />
+        <activity android:name=".ui.activity.fgt.personal.act.CodeSafeActivity" />
+        <activity android:name=".ui.activity.fgt.personal.act.UpdatePasswordActivity" />
 
         <activity
             android:launchMode="singleTop"

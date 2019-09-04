@@ -417,5 +417,13 @@ public interface HttpService {
     @POST(ApiConstant.API + "/updateJoinPartyStage")
     Observable<BaseResponse<Object>> updateJoinPartyStage(@QueryMap Map<String, Object> map,@Header("token") String token);
 
+    /**
+     * 修改密码
+     * @param token
+     * @return
+     */
+    @POST("login/updatePwd")
+    Observable<BaseResponse<Object>> updatePwd(@QueryMap Map<String, Object> map,@Header("token") String token);
+
 
 }
