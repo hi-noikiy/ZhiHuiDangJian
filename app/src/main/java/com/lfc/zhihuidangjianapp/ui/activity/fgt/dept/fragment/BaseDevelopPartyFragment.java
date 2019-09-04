@@ -1,28 +1,40 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment;
 
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.lfc.zhihuidangjianapp.R;
+import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseFragment;
+import com.lfc.zhihuidangjianapp.net.http.HttpService;
+import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
+import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
+import com.lfc.zhihuidangjianapp.ui.activity.model.DevelopParty;
 import com.lfc.zhihuidangjianapp.ui.activity.model.NativeDevelopParty;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Payment;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.qqtheme.framework.picker.DatePicker;
 import cn.qqtheme.framework.util.ConvertUtils;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @date: 2019-09-02
@@ -31,9 +43,13 @@ import cn.qqtheme.framework.util.ConvertUtils;
  */
 public abstract class BaseDevelopPartyFragment extends BaseFragment {
 
-    private List<NativeDevelopParty> parties = new ArrayList<>();
+    protected List<NativeDevelopParty> parties = new ArrayList<>();
 
     private RecyclerView recyclerView;
+
+    protected CommonAdapter mAdapter;
+
+    protected Map<String, Object> params = new HashMap<>();
 
     @Override
     protected int getLayoutId() {
@@ -58,7 +74,7 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
     protected void initData() {
         parties = getParties();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CommonAdapter<NativeDevelopParty>(getActivity(), R.layout.item_develop_party, parties) {
+        mAdapter = new CommonAdapter<NativeDevelopParty>(getActivity(), R.layout.item_develop_party, parties) {
             @Override
             protected void convert(ViewHolder holder, NativeDevelopParty data, int position) {
                 if(data.getStyleId() == 0){
@@ -98,7 +114,8 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
                 holder.setText(R.id.tvTitle, data.getTitle());
             }
 
-        });
+        };
+        recyclerView.setAdapter(mAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 DividerItemDecoration.VERTICAL_LIST,
                 ContextCompat.getColor(getActivity(), R.color.background),
@@ -119,7 +136,7 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
         picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
             @Override
             public void onDatePicked(String year, String month, String day) {
-                String time = year+"-"+month+"-"+day+" 00:00:00";
+                String time = year+"-"+month+"-"+day+"";
                 text.setText(time);
                 parties.get(position).setContent(time);
             }
@@ -130,5 +147,29 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
     public abstract List<NativeDevelopParty> getParties();
 
     public abstract void submit(List<NativeDevelopParty> parties);
+
+    protected void saveData(Map<String, Object> map){
+        params = map;
+        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+                .insertJoinPartyStage(map, MyApplication.getLoginBean().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResponseObserver<Payment>(getActivity()) {
+
+                    @Override
+                    protected void onNext(Payment response) {
+                        Log.e("onNext= ", response.toString());
+                        if(response==null) return;
+                        toast("保存成功");
+                    }
+
+                    @Override
+                    protected void onError(Throwable e) {
+                        super.onError(e);
+                        Log.e("Throwable= ", e.getMessage());
+                    }
+                }
+                .actual());
+    }
 
 }

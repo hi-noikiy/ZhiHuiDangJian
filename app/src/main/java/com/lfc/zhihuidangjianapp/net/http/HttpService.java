@@ -10,6 +10,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.model.DynamicDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ForestDistrict;
 import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.HomeHeadLines;
+import com.lfc.zhihuidangjianapp.ui.activity.model.JoinPartyStage;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.OrganizationalLifeDetail;
 import com.lfc.zhihuidangjianapp.ui.activity.model.PartyOrganiza;
@@ -392,13 +393,21 @@ public interface HttpService {
     @POST(ApiConstant.API + "/queryMyPartyPaymentHis")
     Observable<BaseResponse<Payment>> queryMyPartyPaymentHis(@Header("token") String token);
 
-//    /**
-//     * 查询党费缴费记录信息-我的组织
-//     * @param token
-//     * @return
-//     */
-//    @POST(ApiConstant.API + "/queryMyPartyPaymentHis")
-//    Observable<BaseResponse<Payment>> queryMyPartyPaymentHis(@Header("token") String token);
+    /**
+     * 新增发展党员信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/insertJoinPartyStage")
+    Observable<BaseResponse<Payment>> insertJoinPartyStage(@QueryMap Map<String, Object> map, @Header("token") String token);
+
+    /**
+     * 查询发展党员信息
+     * @param token
+     * @return
+     */
+    @POST(ApiConstant.API + "/queryJoinPartyStageDeatil")
+    Observable<BaseResponse<JoinPartyStage>> queryDevelopPartyDeatil(@Header("token") String token);
 
 
 }

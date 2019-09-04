@@ -1,17 +1,27 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 
+import com.lfc.zhihuidangjianapp.app.MyApplication;
+import com.lfc.zhihuidangjianapp.net.http.HttpService;
+import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
+import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.TabWithToolbarActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.ApplyEducationPartyFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.ApplyPartyFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.DevelopConfirmFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.PrepareMainFragment;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.fragment.develop.PrepareReceiveFragment;
+import com.lfc.zhihuidangjianapp.ui.activity.model.JoinPartyStage;
+import com.lfc.zhihuidangjianapp.ui.activity.model.Payment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @date: 2019-09-02
@@ -24,6 +34,12 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
 
     private List<Fragment> fragments = new ArrayList<>();
 
+    private ApplyPartyFragment applyPartyFragment = new ApplyPartyFragment();
+    private ApplyEducationPartyFragment applyEducationPartyFragment = new ApplyEducationPartyFragment();
+    private DevelopConfirmFragment developConfirmFragment = new DevelopConfirmFragment();
+    private PrepareReceiveFragment prepareReceiveFragment = new PrepareReceiveFragment();
+    private PrepareMainFragment prepareMainFragment = new PrepareMainFragment();
+
     @Override
     public List<Fragment> getFragments() {
         initFragments();
@@ -32,11 +48,11 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
 
     private void initFragments(){
         fragments.clear();
-        fragments.add(new ApplyPartyFragment());//申请入党阶段
-        fragments.add(new ApplyEducationPartyFragment());//申请积极分子的确定和培养教育阶段
-        fragments.add(new DevelopConfirmFragment());//发展对象的确定和考察阶段
-        fragments.add(new PrepareReceiveFragment());//预备党员的接收阶段
-        fragments.add(new PrepareMainFragment());//预备党员的教育考察和转正
+        fragments.add(applyPartyFragment);//申请入党阶段
+        fragments.add(applyEducationPartyFragment);//申请积极分子的确定和培养教育阶段
+        fragments.add(developConfirmFragment);//发展对象的确定和考察阶段
+        fragments.add(prepareReceiveFragment);//预备党员的接收阶段
+        fragments.add(prepareMainFragment);//预备党员的教育考察和转正
     }
 
     @Override
@@ -55,6 +71,37 @@ public class DevelopPartyActivity extends TabWithToolbarActivity {
         getTvRight().setVisibility(View.VISIBLE);
         getTvRight().setOnClickListener(submit->{
             //TODO 提交
+            finish();
         });
+        getDevelopData();
+    }
+
+    /**
+     * 查询发展党员信息
+     */
+    private void getDevelopData() {
+        RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
+                .queryDevelopPartyDeatil( MyApplication.getLoginBean().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResponseObserver<JoinPartyStage>(getActivity()) {
+
+                    @Override
+                    protected void onNext(JoinPartyStage response) {
+                        Log.e("onNext= ", response.toString());
+                        if(response==null||response.getJoinPartyStage()==null) return;
+                        applyPartyFragment.setPartyData(response.getJoinPartyStage());
+                        applyEducationPartyFragment.setPartyData(response.getJoinPartyStage());
+                        developConfirmFragment.setPartyData(response.getJoinPartyStage());
+                        prepareReceiveFragment.setPartyData(response.getJoinPartyStage());
+                        prepareMainFragment.setPartyData(response.getJoinPartyStage());
+                    }
+
+                    @Override
+                    protected void onError(Throwable e) {
+                        super.onError(e);
+                        Log.e("Throwable= ", e.getMessage());
+                    }
+                }.actual());
     }
 }

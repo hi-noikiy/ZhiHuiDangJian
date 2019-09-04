@@ -1,11 +1,13 @@
 package com.lfc.zhihuidangjianapp.ui.activity.model;
 
+import java.io.Serializable;
+
 /**
  * @date: 2019-09-03
  * @autror: guojian
  * @description:
  */
-public class DevelopParty {
+public class DevelopParty implements Serializable {
     /**
      * 主键id
      */
@@ -114,7 +116,7 @@ public class DevelopParty {
     /**
      * 谈话次数3
      */
-    public Integer talkCount3;
+    public String talkCount3;
 
     /**
      * 政治审查时间3
@@ -179,27 +181,27 @@ public class DevelopParty {
     /**
      * 应到会党员数4
      */
-    public Integer partyMembersCount4;
+    public String partyMembersCount4;
 
     /**
      * 实到会党员数4
      */
-    public Integer partyMembershipCount4;
+    public String partyMembershipCount4;
 
     /**
      * 发出票数4
      */
-    public Integer sendVotes4;
+    public String sendVotes4;
 
     /**
      * 收回票数4
      */
-    public Integer takeBackVotes4;
+    public String takeBackVotes4;
 
     /**
      * 同意票数4
      */
-    public Integer agreeVotes4;
+    public String agreeVotes4;
 
     /**
      * 编入党支部和党小组时间5
@@ -249,27 +251,27 @@ public class DevelopParty {
     /**
      * 应到会党员数5
      */
-    public Integer partyMembersCount5;
+    public String partyMembersCount5;
 
     /**
      * 实到会党员数5
      */
-    public Integer partyMembershipCount5;
+    public String partyMembershipCount5;
 
     /**
      * 发出票数5
      */
-    public Integer sendVotes5;
+    public String sendVotes5;
 
     /**
      * 收回票数5
      */
-    public Integer takeBackVotes5;
+    public String takeBackVotes5;
 
     /**
      * 同意票数5
      */
-    public Integer agreeVotes5;
+    public String agreeVotes5;
 
     /**
      * 需要特别说明的情况6
