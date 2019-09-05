@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.gyf.barlibrary.ImmersionBar;
 import com.hjq.toast.ToastUtils;
-import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.service.LoginOutBroadcastReceiver;
 import com.wuxiaolong.androidutils.library.ActivityManagerUtil;
@@ -30,8 +29,6 @@ import com.zyao89.view.zloading.ZLoadingDialog;
 import com.zyao89.view.zloading.Z_TYPE;
 
 import java.util.Random;
-
-import me.jessyan.autosize.utils.LogUtils;
 
 /**
  * desc   : Activity 基类
@@ -65,6 +62,11 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewTree
                 .setDurationTime(0.5) // 设置动画时间百分比 - 0.5倍
                 .setDialogBackgroundColor(Color.parseColor("#CCffffff")); // 设置背景色，默认白色
         initActivity();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     protected void initActivity() {
@@ -192,6 +194,11 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewTree
         intentFilter.addAction("com.gesoft.admin.loginout");
         locallReceiver = new LoginOutBroadcastReceiver();
         registerReceiver(locallReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override

@@ -32,6 +32,7 @@ public class Act_Meeting extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.imgBack).setOnClickListener(this);
         findViewById(R.id.relAddMeet).setOnClickListener(this);
         findViewById(R.id.relJoinMeet).setOnClickListener(this);
+        findViewById(R.id.viewChat).setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +58,11 @@ public class Act_Meeting extends BaseActivity implements View.OnClickListener {
                 //会议中心
 //                startActivity(new Intent(getActivity(), Act_Meeting_Start.class));
                 startActivity(new Intent(getActivity(), MeetingCenterActivity.class));
+                break;
+            case R.id.viewChat:
+                Intent intent = new Intent(getActivity(), Act_Mail_list.class);
+                intent.putExtra("enter", Act_Friend_list.ENTER_SIGLE);
+                startActivity(intent);
                 break;
             default:
         }

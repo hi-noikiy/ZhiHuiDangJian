@@ -21,6 +21,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView= inflater.inflate(getLayoutId(), container, false);
+//        RxBus.get().register(this);
         loding = new ZLoadingDialog(getContext());
         loding.setLoadingBuilder(Z_TYPE.ROTATE_CIRCLE)//设置类型
                 .setLoadingColor(Color.DKGRAY)//颜色
@@ -32,6 +33,12 @@ public abstract class BaseFragment extends Fragment {
         initView(rootView);
         initData();
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+//        RxBus.get().unregister(this);
     }
 
     //引入布局

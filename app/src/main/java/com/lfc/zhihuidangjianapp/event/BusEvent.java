@@ -3,15 +3,15 @@ package com.lfc.zhihuidangjianapp.event;
 /**
  * @author snkso <snkso@foxmail.com>
  */
-public class RxBusEvent {
+public class BusEvent {
     private int event;
     private Object eventObj;
 
-    public RxBusEvent(int event) {
+    public BusEvent(int event) {
         this.event = event;
     }
 
-    public RxBusEvent(int event, Object eventObj) {
+    public BusEvent(int event, Object eventObj) {
         this.event = event;
         this.eventObj = eventObj;
     }

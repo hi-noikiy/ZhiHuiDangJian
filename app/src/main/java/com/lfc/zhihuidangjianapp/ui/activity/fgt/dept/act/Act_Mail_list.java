@@ -1,23 +1,22 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.hyphenate.chatuidemo.conference.ConferenceActivity;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
+import com.lfc.zhihuidangjianapp.event.EventConstants;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
 import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
-import com.lfc.zhihuidangjianapp.ui.activity.model.User;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -26,13 +25,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 通讯录
+ * 通讯录-支部列表
  */
 public class Act_Mail_list extends BaseActivity {
 
     private RecyclerView recyclerView;
 
     private LinearLayoutManager linearLayoutManager;
+
+    private int enter;
 
     @Override
     protected int getLayoutId() {
@@ -49,7 +50,7 @@ public class Act_Mail_list extends BaseActivity {
         initImmersionBar(0);
         findViewById(R.id.imgBack).setOnClickListener(back -> finish());
         recyclerView = findViewById(R.id.recyclerView);
-
+        enter = getIntent().getIntExtra("enter", 0);
     }
 
     @Override
@@ -76,6 +77,15 @@ public class Act_Mail_list extends BaseActivity {
                 }.actual());
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            setResult(EventConstants.EVENT_APPLY,data);
+            finish();
+        }
+    }
+
     private void setRecyclerView(MailList response) {
         //TODO 初始化操作
         linearLayoutManager = new LinearLayoutManager(this);
@@ -88,7 +98,8 @@ public class Act_Mail_list extends BaseActivity {
                     //TODO 通讯录
                     Intent intent = new Intent(getActivity(), Act_Friend_list.class);
                     intent.putExtra("deptNumber", data.getDeptNumber());
-                    startActivity(intent);
+                    intent.putExtra("enter", enter);
+                    startActivityForResult( intent, 1);
 //                    MyApplication.setDeptNumber(data.getDeptNumber());
 //                    //创建音视频会议
 //                    ConferenceActivity.startConferenceCall(getActivity(), null);

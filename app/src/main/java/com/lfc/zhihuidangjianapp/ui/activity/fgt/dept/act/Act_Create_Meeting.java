@@ -1,5 +1,7 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -10,13 +12,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
+import com.lfc.zhihuidangjianapp.event.BusEvent;
+import com.lfc.zhihuidangjianapp.event.EventConstants;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UiName;
+import com.lfc.zhihuidangjianapp.ui.activity.model.User;
 import com.lfc.zhihuidangjianapp.ui.activity.model.UserInfo;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -59,6 +66,7 @@ public class Act_Create_Meeting extends BaseActivity {
         recyclerView = findViewById(R.id.recyclerView);
         setRecyclerView(uiNameList);
         setEvent();
+        RxBus.get().register(this);
     }
 
     private void setEvent() {
@@ -70,6 +78,35 @@ public class Act_Create_Meeting extends BaseActivity {
     @Override
     protected void initData() {
 
+    }
+
+    @Subscribe
+    public void receiveEvent(BusEvent rxBusEvent) {
+        if (rxBusEvent.getEvent() == EventConstants.EVENT_APPLY) {
+            List<User> selectuser = (List<User>) rxBusEvent.getEventObj();
+            if (selectuser == null || selectuser.isEmpty()) return;
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < selectuser.size(); i++) {
+                if (i == 0) {
+                    stringBuilder.append(selectuser.get(i).getLoginName());
+                } else {
+                    stringBuilder.append("," + selectuser.get(i).getLoginName());
+                }
+            }
+            uiNameList.get(5).setText(stringBuilder.toString());
+            setRecyclerView(uiNameList);
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && data != null) {
+            String users = data.getStringExtra("users");
+            uiNameList.get(5).setName(users);
+            setRecyclerView(uiNameList);
+        }
     }
 
     private List<UiName> loadData() {
@@ -100,7 +137,18 @@ public class Act_Create_Meeting extends BaseActivity {
                     text.setOnClickListener(view -> {
                         selectTime(position, text);
                     });
-                }else{
+                }
+                else if (position == 5) {
+                    text.setVisibility(View.VISIBLE);
+                    edit.setVisibility(View.GONE);
+                    text.setText(data.getName());
+                    text.setOnClickListener(view -> {
+                        //通讯录-支部
+                        Intent intent = new Intent(getActivity(), Act_Mail_list.class);
+                        intent.putExtra("enter", Act_Friend_list.ENTER_NORMAL);
+                        startActivityForResult(intent, 1);
+                    });
+                } else {
                     edit.setVisibility(View.VISIBLE);
                     text.setVisibility(View.GONE);
                     edit.setHint(data.getName());
@@ -126,6 +174,7 @@ public class Act_Create_Meeting extends BaseActivity {
         });
     }
 
+
     private void selectTime(final int position, TextView text) {
         final DatePicker picker = new DatePicker(this);
         picker.setCanceledOnTouchOutside(true);
@@ -138,7 +187,7 @@ public class Act_Create_Meeting extends BaseActivity {
         picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
             @Override
             public void onDatePicked(String year, String month, String day) {
-                String time = year+"-"+month+"-"+day+" 00:00:00";
+                String time = year + "-" + month + "-" + day + " 00:00:00";
                 text.setText(time);
                 uiNameList.get(position).setText(time);
             }

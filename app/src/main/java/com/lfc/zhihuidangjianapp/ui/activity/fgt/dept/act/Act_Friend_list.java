@@ -1,35 +1,28 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ImageView;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.hwangjr.rxbus.RxBus;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
-import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
+import com.lfc.zhihuidangjianapp.event.EventConstants;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.adapter.DividerItemDecoration;
-import com.lfc.zhihuidangjianapp.ui.activity.model.Dept;
+import com.lfc.zhihuidangjianapp.ui.activity.adapter.FriendListAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
-import com.lfc.zhihuidangjianapp.ui.activity.model.MailList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.User;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
-import com.zhy.adapter.recyclerview.CommonAdapter;
-import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,13 +31,23 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 通讯录列表
+ * 通讯录-用户
  */
 public class Act_Friend_list extends BaseActivity {
 
+    public static final int ENTER_CLOSE = 0;
+    public static final int ENTER_SIGLE = 1;
+    public static final int ENTER_NORMAL = 2;
+
+    private int enter;
+
     private RecyclerView recyclerView;
 
+    private TextView tvRight;
+
     private LinearLayoutManager linearLayoutManager;
+
+    private FriendListAdapter friendListAdapter;
 
     private String deptNumber;
 
@@ -67,13 +70,14 @@ public class Act_Friend_list extends BaseActivity {
         TextView tvTitle = findViewById(R.id.tv_title);
         tvTitle.setText("通讯录");
         recyclerView = findViewById(R.id.recyclerView);
-
+        tvRight = findViewById(R.id.tvRight);
+        RxBus.get().register(this);
     }
 
     @Override
     protected void initData() {
-//        deptNumber = getIntent().getStringExtra("deptNumber");
-        deptNumber = MyApplication.getDeptNumber();
+        deptNumber = getIntent().getStringExtra("deptNumber");
+        enter = getIntent().getIntExtra("enter",0);
         Map<String, Object> map = new HashMap<>();
         map.put("deptNumber", deptNumber);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
@@ -86,6 +90,26 @@ public class Act_Friend_list extends BaseActivity {
                     protected void onNext(FriendList response) {
                         if (response == null) return;
                         Log.e("onNext= ", response.toString());
+                        if(enter==ENTER_NORMAL){
+                            tvRight.setVisibility(View.VISIBLE);
+                            tvRight.setText("邀请");
+                            tvRight.setOnClickListener(users->{
+                                List<User> selectUsers = getSelectUser();
+                                StringBuilder stringBuilder = new StringBuilder();
+                                for (int i=0;i<selectUsers.size();i++){
+                                    if(i==0){
+                                        stringBuilder.append(selectUsers.get(i).getLoginName());
+                                    }else{
+                                        stringBuilder.append(","+selectUsers.get(i).getLoginName());
+                                    }
+                                }
+
+                                Intent intent = new Intent();
+                                intent.putExtra("users", stringBuilder.toString());
+                                setResult(EventConstants.EVENT_APPLY,intent );
+                                finish();
+                            });
+                        }
                         setRecyclerView(response);
                     }
 
@@ -101,46 +125,22 @@ public class Act_Friend_list extends BaseActivity {
         //TODO 初始化操作
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new CommonAdapter<User>(MyApplication.getAppContext(), R.layout.item_friend_list, response.getUserList()) {
-            @Override
-            protected void convert(ViewHolder holder, User data, int position) {
-                holder.setText(R.id.tv_name, data.getSealName());
-                ImageView image = holder.getConvertView().findViewById(R.id.iv_head);
-                Glide.with(holder.getConvertView().getContext()).load(ApiConstant.ROOT_URL+data.getImgAddress()).into(image);
-                holder.setText(R.id.tv_content, data.getSubordinatePartyGroup());
-                holder.setText(R.id.tv_tell, data.getMobileNumber());
-                holder.getConvertView().setOnClickListener(meeting->{
-                    if(selectUsers.contains(data)){
-                        selectUsers.remove(data);
-                    }else{
-                        selectUsers.add(data);
-                    }
-                    if(selectUsers.isEmpty()){
-                        return;
-                    }
-//                    Intent intent = new Intent(getActivity(), Act_Meeting_Start.class);
-//                    intent.putParcelableArrayListExtra("users", selectUsers);
-//                    intent.putExtra("type", Act_Meeting_Start.TYPE_CREATE);
-//                    startActivity(intent);
-                    //todo 环信
-                    String[] members = new String[selectUsers.size()];
-                    for (int i=0;i<selectUsers.size();i++){
-                        members[i] = selectUsers.get(i).getLoginName();
-                    }
-                    Intent i = new Intent();
-                    i.putExtra("members", members);
-                    setResult(Activity.RESULT_OK, i);
-                    finish();
-                });
-            }
-
-        });
+        friendListAdapter = new FriendListAdapter(MyApplication.getAppContext(), R.layout.item_friend_list, response.getUserList());
+        friendListAdapter.setEnter(enter);
+        recyclerView.setAdapter(friendListAdapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(
                 DividerItemDecoration.VERTICAL_LIST,
                 ContextCompat.getColor(getActivity(), R.color.background),
                 DispalyUtil.dp2px(getActivity(), 1),
                 0, 0, false
         ));
+    }
+
+    private List<User> getSelectUser(){
+        if(friendListAdapter==null){
+            return new ArrayList<>();
+        }
+        return friendListAdapter.getSelectUser();
     }
 
 }
