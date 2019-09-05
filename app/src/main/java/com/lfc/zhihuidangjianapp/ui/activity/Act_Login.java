@@ -143,7 +143,6 @@ public class Act_Login extends BaseActivity {
             ToastUtils.show("请输入您的账号");
             return;
         }
-        editPassword.setText("888888");
         if (editPassword.getText().toString().trim().equals("")) {
             ToastUtils.show("请输入密码");
             return;
