@@ -21,6 +21,7 @@ import com.lfc.zhihuidangjianapp.ui.activity.adapter.FriendListAdapter;
 import com.lfc.zhihuidangjianapp.ui.activity.model.FriendList;
 import com.lfc.zhihuidangjianapp.ui.activity.model.User;
 import com.lfc.zhihuidangjianapp.utlis.DispalyUtil;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class Act_Friend_list extends BaseActivity {
 
     private String deptNumber;
 
-    private ArrayList<User> selectUsers = new ArrayList<>();
+    private List<User> userList = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -74,10 +75,31 @@ public class Act_Friend_list extends BaseActivity {
         RxBus.get().register(this);
     }
 
+    private void setEvent() {
+        friendListAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                if(enter==ENTER_NORMAL){
+                    //多选模式为邀请成员参加会议，禁止响应
+                    return;
+                }
+                User user = userList.get(position);
+                Intent intent = new Intent(Act_Friend_list.this, MailDetailActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
+    }
+
     @Override
     protected void initData() {
         deptNumber = getIntent().getStringExtra("deptNumber");
-        enter = getIntent().getIntExtra("enter",0);
+        enter = getIntent().getIntExtra("enter", 0);
         Map<String, Object> map = new HashMap<>();
         map.put("deptNumber", deptNumber);
         RetrofitFactory.getDefaultRetrofit().create(HttpService.class)
@@ -90,23 +112,24 @@ public class Act_Friend_list extends BaseActivity {
                     protected void onNext(FriendList response) {
                         if (response == null) return;
                         Log.e("onNext= ", response.toString());
-                        if(enter==ENTER_NORMAL){
+                        userList = response.getUserList();
+                        if (enter == ENTER_NORMAL) {
                             tvRight.setVisibility(View.VISIBLE);
                             tvRight.setText("邀请");
-                            tvRight.setOnClickListener(users->{
+                            tvRight.setOnClickListener(users -> {
                                 List<User> selectUsers = getSelectUser();
                                 StringBuilder stringBuilder = new StringBuilder();
-                                for (int i=0;i<selectUsers.size();i++){
-                                    if(i==0){
+                                for (int i = 0; i < selectUsers.size(); i++) {
+                                    if (i == 0) {
                                         stringBuilder.append(selectUsers.get(i).getLoginName());
-                                    }else{
-                                        stringBuilder.append(","+selectUsers.get(i).getLoginName());
+                                    } else {
+                                        stringBuilder.append("," + selectUsers.get(i).getLoginName());
                                     }
                                 }
 
                                 Intent intent = new Intent();
                                 intent.putExtra("users", stringBuilder.toString());
-                                setResult(EventConstants.EVENT_APPLY,intent );
+                                setResult(EventConstants.EVENT_APPLY, intent);
                                 finish();
                             });
                         }
@@ -134,10 +157,11 @@ public class Act_Friend_list extends BaseActivity {
                 DispalyUtil.dp2px(getActivity(), 1),
                 0, 0, false
         ));
+        setEvent();
     }
 
-    private List<User> getSelectUser(){
-        if(friendListAdapter==null){
+    private List<User> getSelectUser() {
+        if (friendListAdapter == null) {
             return new ArrayList<>();
         }
         return friendListAdapter.getSelectUser();

@@ -95,6 +95,9 @@ public class User implements Parcelable {
         dest.writeString(imgAddress);
         dest.writeString(loginName);
         dest.writeString(imPwd);
+        dest.writeString(mobileNumber);
+        dest.writeString(deptName);
+        dest.writeString(sealName);
     }
 
     public User() {
@@ -105,6 +108,9 @@ public class User implements Parcelable {
         imgAddress = in.readString();
         loginName = in.readString();
         imPwd = in.readString();
+        mobileNumber = in.readString();
+        deptName = in.readString();
+        sealName = in.readString();
     }
 
 

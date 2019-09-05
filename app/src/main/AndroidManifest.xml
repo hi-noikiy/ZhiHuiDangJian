@@ -153,6 +153,7 @@
         <activity android:name=".ui.activity.fgt.dept.act.MyOrgnizeActivity" />
         <activity android:name=".ui.activity.fgt.personal.act.CodeSafeActivity" />
         <activity android:name=".ui.activity.fgt.personal.act.UpdatePasswordActivity" />
+        <activity android:name=".ui.activity.fgt.dept.act.MailDetailActivity" />
 
         <activity
             android:launchMode="singleTop"

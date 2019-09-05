@@ -1,9 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.adapter;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -83,6 +80,9 @@ public class FriendListAdapter extends CommonAdapter<User> {
             } else if (enter == 2) {//多选
                 ivCheck.setSelected(!ivCheck.isSelected());
                 selectUsers.get(position).setSelect(ivCheck.isSelected());
+            }
+            if(mOnItemClickListener!=null){
+                mOnItemClickListener.onItemClick(holder.getConvertView(), holder, position);
             }
         });
     }

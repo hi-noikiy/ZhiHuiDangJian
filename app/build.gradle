@@ -170,7 +170,7 @@ dependencies {
     implementation 'org.sufficientlysecure:html-textview:3.6'
 
     //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
+//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
 
     //https://github.com/gzu-liyujiang/AndroidPicker
     //日期选择器、时间选择器、单项选择器、双项选择器、城市地址选择器、车牌号选择

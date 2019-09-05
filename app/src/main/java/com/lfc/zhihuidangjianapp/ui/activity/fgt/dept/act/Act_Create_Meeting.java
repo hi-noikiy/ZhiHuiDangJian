@@ -103,9 +103,11 @@ public class Act_Create_Meeting extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && data != null) {
-            String users = data.getStringExtra("users");
-            uiNameList.get(5).setName(users);
-            setRecyclerView(uiNameList);
+            try {
+                String users = data.getStringExtra("users");
+                uiNameList.get(5).setName(users);
+                setRecyclerView(uiNameList);
+            }catch (Exception e){}
         }
     }
 
