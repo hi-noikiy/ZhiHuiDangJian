@@ -99,13 +99,15 @@ public abstract class BaseDevelopPartyFragment extends BaseFragment {
                     }else{
                         tvContent.setText(data.getContent());
                     }
-                    tvContent.setOnClickListener( new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //选择时间
-                            selectTime(position, tvContent);
-                        }
-                    });
+                    if(data.status==0) {
+                        tvContent.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                //选择时间
+                                selectTime(position, tvContent);
+                            }
+                        });
+                    }
                 }else{
                     EditText input = holder.getConvertView().findViewById(R.id.input);
                     if(TextUtils.isEmpty(data.getContent())){

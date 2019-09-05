@@ -58,20 +58,22 @@ public class ApplyEducationPartyFragment extends BaseDevelopPartyFragment {
     }
 
     public void setPartyData(DevelopParty developParty){
-        if(developParty.submitStatus == 1){
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
-        }else{
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
-        }
         parties.get(0).setContent(developParty.recommendationMode2);
         parties.get(1).setContent(developParty.partyGroupPassTime2);
         parties.get(2).setContent(developParty.branchCommitteePassTime2);
         parties.get(3).setContent(developParty.designatedCulturePerson2);
         parties.get(4).setContent(developParty.keepRecordTime2);
         parties.get(5).setContent(developParty.partyCommitteeExaminationTime2);
-//        mAdapter.getDatas().clear();
-//        mAdapter.getDatas().addAll(parties);
-        mAdapter.notifyDataSetChanged();
+        if(developParty.submitStatus == 1){
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
+            for (NativeDevelopParty party: parties){
+                party.status = 1;
+                party.setStyleId(0);
+            }
+        }else{
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
+        }
+        setRecyclerView();
     }
 
 }

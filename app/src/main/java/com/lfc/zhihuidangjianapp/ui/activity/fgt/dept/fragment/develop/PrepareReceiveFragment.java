@@ -53,11 +53,6 @@ public class PrepareReceiveFragment extends BaseDevelopPartyFragment {
     }
 
     public void setPartyData(DevelopParty developParty){
-        if(developParty.submitStatus == 1){
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
-        }else{
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
-        }
         parties.get(0).setContent(developParty.subcommitteeReviewTime4);
         parties.get(1).setContent(developParty.publicityTime4);
         parties.get(2).setContent(developParty.parentPartyCommitteePretrialTime4);
@@ -71,9 +66,16 @@ public class PrepareReceiveFragment extends BaseDevelopPartyFragment {
         parties.get(10).setContent(developParty.sendVotes4);
         parties.get(11).setContent(developParty.takeBackVotes4);
         parties.get(12).setContent(developParty.agreeVotes4);
-//        mAdapter.getDatas().clear();
-//        mAdapter.getDatas().addAll(parties);
-        mAdapter.notifyDataSetChanged();
+        if(developParty.submitStatus == 1){
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
+            for (NativeDevelopParty party: parties){
+                party.status = 1;
+                party.setStyleId(0);
+            }
+        }else{
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
+        }
+        setRecyclerView();
     }
 
     private List<NativeDevelopParty> initPartys(){

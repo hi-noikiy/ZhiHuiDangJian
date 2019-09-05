@@ -10,6 +10,7 @@ public class NativeDevelopParty {
     private int styleId;
     private String title;
     private String content;
+    public int status;
 
     public int getStyleId() {
         return styleId;

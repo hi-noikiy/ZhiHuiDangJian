@@ -54,11 +54,6 @@ public class PrepareMainFragment extends BaseDevelopPartyFragment {
     }
 
     public void setPartyData(DevelopParty developParty){
-        if(developParty.submitStatus == 1){
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
-        }else{
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
-        }
         parties.get(0).setContent(developParty.compilePartyGroupPartyBranchTime5);
         parties.get(1).setContent(developParty.joinPartySwearOathTime5);
         parties.get(2).setContent(developParty.applicationCorrectionTime5);
@@ -73,8 +68,15 @@ public class PrepareMainFragment extends BaseDevelopPartyFragment {
         parties.get(11).setContent(developParty.sendVotes5);
         parties.get(12).setContent(developParty.takeBackVotes5);
         parties.get(13).setContent(developParty.agreeVotes5);
-//        mAdapter.getDatas().clear();
-//        mAdapter.getDatas().addAll(parties);
+        if(developParty.submitStatus == 1){
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
+            for (NativeDevelopParty party: parties){
+                party.status = 1;
+                party.setStyleId(0);
+            }
+        }else{
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
+        }
         mAdapter.notifyDataSetChanged();
     }
 

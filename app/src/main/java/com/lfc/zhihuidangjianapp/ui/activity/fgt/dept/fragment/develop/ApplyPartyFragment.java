@@ -52,16 +52,20 @@ public class ApplyPartyFragment extends BaseDevelopPartyFragment {
     }
 
     public void setPartyData(DevelopParty developParty){
-        if(developParty.submitStatus == 1){
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
-        }else{
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
-        }
         List<NativeDevelopParty> partyList = parties;
         partyList.get(0).setContent(developParty.submitApplicationTime1);
         partyList.get(1).setContent(developParty.talkTime1);
         partyList.get(2).setContent(developParty.talker1);
         parties = partyList;
+        if(developParty.submitStatus == 1){
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
+            for (NativeDevelopParty party: parties){
+                party.status = 1;
+                party.setStyleId(0);
+            }
+        }else{
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
+        }
         setRecyclerView();
     }
 

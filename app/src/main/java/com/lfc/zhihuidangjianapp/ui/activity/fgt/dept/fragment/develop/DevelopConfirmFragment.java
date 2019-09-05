@@ -67,11 +67,6 @@ public class DevelopConfirmFragment extends BaseDevelopPartyFragment {
     }
 
     public void setPartyData(DevelopParty developParty){
-        if(developParty.submitStatus == 1){
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
-        }else{
-            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
-        }
         parties.get(0).setContent(developParty.partyGroupPassTime3);
         parties.get(1).setContent(developParty.partyBranchPassTime3);
         parties.get(2).setContent(developParty.branchCommitteePassTime3);
@@ -83,9 +78,16 @@ public class DevelopConfirmFragment extends BaseDevelopPartyFragment {
         parties.get(8).setContent(developParty.partyCommitteeResearchDecisionTime3);
         parties.get(9).setContent(developParty.concentratedTrainingTime3);
         parties.get(10).setContent(developParty.trainingResults3);
-//        mAdapter.getDatas().clear();
-//        mAdapter.getDatas().addAll(parties);
-        mAdapter.notifyDataSetChanged();
+        if(developParty.submitStatus == 1){
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.GONE);
+            for (NativeDevelopParty party: parties){
+                party.status = 1;
+                party.setStyleId(0);
+            }
+        }else{
+            mRootView.findViewById(R.id.tvSave).setVisibility(View.VISIBLE);
+        }
+        setRecyclerView();
     }
 
 }
