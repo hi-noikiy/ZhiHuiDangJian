@@ -16,7 +16,7 @@ import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act.MeetingDetailActivity;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.ConferenceActivity;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.AppConferenceActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.BaseResponse;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Meeting;
 import com.lfc.zhihuidangjianapp.ui.activity.model.ResponseMeetingMine;
@@ -108,9 +108,9 @@ public class Fgt_Meeting_Center extends BaseFragment {
                 holder.setText(R.id.tv_title, data.getTitle());
                 holder.getConvertView().findViewById(R.id.tv_join_meeting).setOnClickListener(confe->{
                     //进入会议
-                    Intent intent = new Intent(getActivity(), ConferenceActivity.class);
+                    Intent intent = new Intent(getActivity(), AppConferenceActivity.class);
                     intent.putExtra("Meeting", data);
-                    intent.putExtra("enterType", ConferenceActivity.SUBSCRIBE);
+                    intent.putExtra("enterType", AppConferenceActivity.SUBSCRIBE);
                     startActivity(intent);
                 });
                 holder.getConvertView().findViewById(R.id.tv_meeting_detail).setOnClickListener(confe->{

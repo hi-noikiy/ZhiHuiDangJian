@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
-import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.ConferenceActivity;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.AppConferenceActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Meeting;
 
 /**
@@ -54,9 +54,9 @@ public class MeetingDetailActivity extends BaseActivity {
         findViewById(R.id.tv_detail).setOnClickListener(detail->{
             //进入会议
             if(meeting==null)return;
-            Intent intent = new Intent(getActivity(), ConferenceActivity.class);
+            Intent intent = new Intent(getActivity(), AppConferenceActivity.class);
             intent.putExtra("Meeting", meeting);
-            intent.putExtra("enterType", ConferenceActivity.SUBSCRIBE);
+            intent.putExtra("enterType", AppConferenceActivity.SUBSCRIBE);
             startActivity(intent);
         });
     }

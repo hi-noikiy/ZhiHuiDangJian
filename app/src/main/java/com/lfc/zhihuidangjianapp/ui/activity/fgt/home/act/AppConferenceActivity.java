@@ -57,7 +57,7 @@ import io.reactivex.schedulers.Schedulers;
  * @autror: guojian
  * @description:
  */
-public class ConferenceActivity extends BaseConferenceActivity {
+public class AppConferenceActivity extends BaseConferenceActivity {
     protected static final String TAG = "ConferenceActivity";
     protected BaseActivity activity;
     //即时会议
@@ -297,7 +297,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
                 debugPanelView.setStreamListAndNotify(streamList);
 
                 // Start to watch the phone call state.
-                PhoneStateManager.get(ConferenceActivity.this).addStateCallback(phoneStateCallback);
+                PhoneStateManager.get(AppConferenceActivity.this).addStateCallback(phoneStateCallback);
             }
 
             @Override
@@ -553,7 +553,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
         stopAudioTalkingMonitor();
 
         // Stop to watch the phone call state.
-        PhoneStateManager.get(ConferenceActivity.this).removeStateCallback(phoneStateCallback);
+        PhoneStateManager.get(AppConferenceActivity.this).removeStateCallback(phoneStateCallback);
 
         EMClient.getInstance().conferenceManager().exitConference(new EMValueCallBack() {
             @Override
