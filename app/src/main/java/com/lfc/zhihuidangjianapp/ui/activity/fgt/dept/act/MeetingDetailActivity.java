@@ -56,7 +56,7 @@ public class MeetingDetailActivity extends BaseActivity {
             if(meeting==null)return;
             Intent intent = new Intent(getActivity(), ConferenceActivity.class);
             intent.putExtra("Meeting", meeting);
-            intent.putExtra("enterType", ConferenceActivity.TYPE_JOIN);
+            intent.putExtra("enterType", ConferenceActivity.SUBSCRIBE);
             startActivity(intent);
         });
     }

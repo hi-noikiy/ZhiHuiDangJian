@@ -35,11 +35,13 @@ import com.hyphenate.util.EasyUtils;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.app.MyApplication;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
+import com.lfc.zhihuidangjianapp.chat.EazyChatApi;
 import com.lfc.zhihuidangjianapp.net.http.HttpService;
 import com.lfc.zhihuidangjianapp.net.http.ResponseObserver;
 import com.lfc.zhihuidangjianapp.net.http.RetrofitFactory;
 import com.lfc.zhihuidangjianapp.ui.activity.fgt.BaseConferenceActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.Meeting;
+import com.lfc.zhihuidangjianapp.ui.activity.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,8 +60,12 @@ import io.reactivex.schedulers.Schedulers;
 public class ConferenceActivity extends BaseConferenceActivity {
     protected static final String TAG = "ConferenceActivity";
     protected BaseActivity activity;
-    public static final int TYPE_CREATE = 0;
-    public static final int TYPE_JOIN = 1;
+    //即时会议
+    public static final int TYPE_AT_TIME = 0;
+    //订阅
+    public static final int SUBSCRIBE = 1;
+    //接听会议
+    public static final int TYPE_RECEIVE = 2;
 
     protected ConferenceListener conferenceListener;
     private AudioManager audioManager;
@@ -127,16 +133,26 @@ public class ConferenceActivity extends BaseConferenceActivity {
     protected void initData() {
         meeting = (Meeting) getIntent().getSerializableExtra("Meeting");
         enterType = getIntent().getIntExtra("enterType", 0);
-        if (enterType == TYPE_JOIN) {
-            //加入会议
+        if (enterType == SUBSCRIBE) {
+            //预约会议
             confId = meeting.getConfrId();
             password = meeting.getPassword();
             //如果是创建者需要创建会议室
             if (meeting.getCreateCode().equals(MyApplication.getmUserInfo().getUser().getLoginName())) {
-                createAndJoinConference(null);
+                //创建
+                createAndJoinConference(null, null);
             } else {//加入会议室
                 joinConference();
             }
+        }else if(enterType==TYPE_AT_TIME){
+            //即时会议发送邀请
+            List<User> selectUser = getIntent().getParcelableArrayListExtra("users");
+            createAndJoinConference(null, selectUser);
+        }else if(enterType == TYPE_RECEIVE){
+            //接听会议
+            confId = getIntent().getStringExtra("conferenceId");
+            password = getIntent().getStringExtra("password");
+            joinConference();
         }
     }
 
@@ -190,7 +206,7 @@ public class ConferenceActivity extends BaseConferenceActivity {
     /**
      * 作为创建者创建并加入会议
      */
-    private void createAndJoinConference(final EMValueCallBack<EMConference> callBack) {
+    private void createAndJoinConference(final EMValueCallBack<EMConference> callBack, List<User> users) {
         boolean record = PreferenceManager.getInstance().isRecordOnServer();
         boolean merge = PreferenceManager.getInstance().isMergeStream();
         EMClient.getInstance().conferenceManager().createAndJoinConference(EMConferenceManager.EMConferenceType.LargeCommunication,
@@ -201,10 +217,16 @@ public class ConferenceActivity extends BaseConferenceActivity {
                         conference = value;
                         startAudioTalkingMonitor();
                         publish();
-                        createFinish(value.getConferenceId(), value.getPassword());
+                        if(enterType == SUBSCRIBE) {
+                            createFinish(value.getConferenceId(), value.getPassword());
+                        }
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                if(users!=null&&!users.isEmpty()){
+                                    //发送消息邀请参加会议
+                                    EazyChatApi.sendMeeting(users, value.getConferenceId(), value.getPassword());
+                                }
                                 Toast.makeText(activity, "Create and join conference success", Toast.LENGTH_SHORT).show();
                                 if (callBack != null) {
                                     callBack.onSuccess(value);

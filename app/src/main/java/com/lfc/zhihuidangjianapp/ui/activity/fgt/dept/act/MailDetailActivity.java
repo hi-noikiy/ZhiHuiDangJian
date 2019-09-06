@@ -1,5 +1,6 @@
 package com.lfc.zhihuidangjianapp.ui.activity.fgt.dept.act;
 
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -7,7 +8,11 @@ import com.bumptech.glide.Glide;
 import com.lfc.zhihuidangjianapp.R;
 import com.lfc.zhihuidangjianapp.base.BaseActivity;
 import com.lfc.zhihuidangjianapp.net.http.ApiConstant;
+import com.lfc.zhihuidangjianapp.ui.activity.fgt.home.act.ConferenceActivity;
 import com.lfc.zhihuidangjianapp.ui.activity.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @date: 2019-09-05
@@ -52,6 +57,11 @@ public class MailDetailActivity extends BaseActivity {
         tvDept.setText("所属支部："+user.getDeptName());
         findViewById(R.id.tvCall).setOnClickListener(call->{
             //TODO 音视频语音
+            ArrayList<User> users = new ArrayList<>();
+            users.add(user);
+            Intent intent = new Intent(getActivity(), ConferenceActivity.class);
+            intent.putParcelableArrayListExtra("users", users);
+            startActivity(intent);
         });
     }
 

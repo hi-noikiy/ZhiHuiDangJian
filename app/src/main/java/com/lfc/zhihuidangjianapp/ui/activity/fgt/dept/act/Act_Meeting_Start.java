@@ -175,7 +175,7 @@ public class Act_Meeting_Start extends BaseActivity {
                                 if (selectUsers == null || selectUsers.isEmpty()) {
                                     return;
                                 }
-                                EazyChatApi.sendMeeting(selectUsers, value.getConferenceId());
+//                                EazyChatApi.sendMeeting(selectUsers, value.getConferenceId());
                                 //推流
                                 pubLocalStream();
                             }

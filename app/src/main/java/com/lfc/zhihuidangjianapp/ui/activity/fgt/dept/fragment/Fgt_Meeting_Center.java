@@ -110,7 +110,7 @@ public class Fgt_Meeting_Center extends BaseFragment {
                     //进入会议
                     Intent intent = new Intent(getActivity(), ConferenceActivity.class);
                     intent.putExtra("Meeting", data);
-                    intent.putExtra("enterType", ConferenceActivity.TYPE_JOIN);
+                    intent.putExtra("enterType", ConferenceActivity.SUBSCRIBE);
                     startActivity(intent);
                 });
                 holder.getConvertView().findViewById(R.id.tv_meeting_detail).setOnClickListener(confe->{
