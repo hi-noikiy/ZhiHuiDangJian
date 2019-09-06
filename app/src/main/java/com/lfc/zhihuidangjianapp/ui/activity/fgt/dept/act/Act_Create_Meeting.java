@@ -105,7 +105,7 @@ public class Act_Create_Meeting extends BaseActivity {
         if (requestCode == 1 && data != null) {
             try {
                 String users = data.getStringExtra("users");
-                uiNameList.get(5).setName(users);
+                uiNameList.get(5).setText(users);
                 setRecyclerView(uiNameList);
             }catch (Exception e){}
         }
@@ -135,7 +135,7 @@ public class Act_Create_Meeting extends BaseActivity {
                 if (position == 1 || position == 2 || position == 3) {
                     text.setVisibility(View.VISIBLE);
                     edit.setVisibility(View.GONE);
-                    text.setText(data.getName());
+                    text.setText(TextUtils.isEmpty(data.getText())?data.getName():data.getText());
                     text.setOnClickListener(view -> {
                         selectTime(position, text);
                     });
@@ -143,7 +143,7 @@ public class Act_Create_Meeting extends BaseActivity {
                 else if (position == 5) {
                     text.setVisibility(View.VISIBLE);
                     edit.setVisibility(View.GONE);
-                    text.setText(data.getName());
+                    text.setText(TextUtils.isEmpty(data.getText())?data.getName():data.getText());
                     text.setOnClickListener(view -> {
                         //通讯录-支部
                         Intent intent = new Intent(getActivity(), Act_Mail_list.class);
@@ -153,7 +153,7 @@ public class Act_Create_Meeting extends BaseActivity {
                 } else {
                     edit.setVisibility(View.VISIBLE);
                     text.setVisibility(View.GONE);
-                    edit.setHint(data.getName());
+                    edit.setHint(TextUtils.isEmpty(data.getText())?data.getName():data.getText());
                     edit.addTextChangedListener(new TextWatcher() {
                         @Override
                         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

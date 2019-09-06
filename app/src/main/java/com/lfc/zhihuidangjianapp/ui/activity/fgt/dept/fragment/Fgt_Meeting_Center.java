@@ -94,7 +94,6 @@ public class Fgt_Meeting_Center extends BaseFragment {
             protected void convert(ViewHolder holder, Meeting data, int position) {
                 if(TextUtils.isEmpty(data.getConfrId())&&!data.getCreateCode().equals(MyApplication.getmUserInfo().getUser().getLoginName())){
                     //会议室不存在，不是创建人无权限进入会议
-                    toast("会议还没有开始！");
                     return;
                 }
                 String username = MyApplication.getmUserInfo().getUser().getLoginName();
