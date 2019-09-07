@@ -56,12 +56,7 @@ public class HomeHeadLinesFragment extends BaseFragment {
                 holder.setText(R.id.tv_content, data.getReleaseDate());
                 ImageView image = holder.getConvertView().findViewById(R.id.image);
                 Glide.with(image.getContext()).load(ApiConstant.ROOT_URL+data.getUrl()).into(image);
-               /* holder.getView(R.id.image).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(mContext, "fsdfds", Toast.LENGTH_SHORT).show();
-                    }
-                });*/
+                //首页党建资讯列表进详情
                 holder.getConvertView().setOnClickListener(item->{
                     Intent intent = new Intent(MyApplication.getAppContext(), Act_Dept_Dynamic_Detail.class);
                     intent.putExtra("partyDynamicId", data.getArticleId()+"");
