@@ -135,6 +135,7 @@ public class Act_AnnouncementList extends BaseActivity {
                 TextView tvContent = holder.getConvertView().findViewById(R.id.tv_content);
                 tvContent.setText(Html.fromHtml(data.getAnnouncementComtent()));
                 holder.setText(R.id.tv_time, DateUtils.timeStampToStr(data.getCreateTime(),"yyyy-MM-dd"));
+                //首页党建资讯列表点击进详情
                 holder.getConvertView().setOnClickListener(detail->{
                     Intent intent = new Intent(getActivity(), Act_Announcement.class);
                     intent.putExtra("id", data.getNoticeAnnouncementId() + "");
